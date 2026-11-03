@@ -1,0 +1,110 @@
+# Root-level gitignore for BuoyAI project
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+**/appsettings.Development.json
+**/appsettings.Local.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/*.log
+logs/*.pid
+logs/*.txt
+
+# Temporary files
+*.tmp
+*.temp
+
+# AI temporary development files
+.ai-scratch/
+
+# Claude Code local settings (contains API tokens — never commit)
+.claude/settings.local.json
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Flutter build artifacts
+flutter/build/
+flutter/.dart_tool/
+flutter/.flutter-plugins-dependencies
+flutter/android/.gradle/
+flutter/android/local.properties
+flutter/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+flutter/ios/Flutter/Generated.xcconfig
+flutter/ios/Flutter/ephemeral/
+flutter/ios/Flutter/flutter_export_environment.sh
+flutter/ios/Runner/GeneratedPluginRegistrant.*
+flutter/macos/Flutter/ephemeral/
+flutter/linux/flutter/ephemeral/
+flutter/windows/flutter/ephemeral/
+flutter/*.iml
+flutter/android/*.iml
+
+# Synced legal files (generated from legal/ by scripts/sync-legal.sh before build).
+# Keep the directory in the repo via .gitkeep so pubspec's asset declaration
+# resolves even before a sync has been run — prevents a noisy analyzer warning.
+flutter/assets/legal/*
+!flutter/assets/legal/.gitkeep
+
+# Local tools — root only. An unanchored `tools/` matches ANY directory named
+# tools at any depth (case-insensitively on Windows/macOS), which silently ignored
+# backend/src/BuoyAI.Infrastructure/MCP/Tools/. New files there vanished from commits
+# while still building locally, so CI failed on a type that "existed".
+/tools/
+
+# Aggressive Flutter Boilerplate Ignores
+flutter/.dart_tool/
+flutter/build/
+flutter/.idea/
+flutter/macos/
+flutter/windows/
+flutter/linux/
+
+# Secret metadata
+scripts/bsm-uuid-mapping.json
+Flutter_App_Source/
+scripts/bsm-uuid-mapping.json
+
+# Local testing credentials (real account secrets — never commit)
+.claude/*.local.md
+
+# Local agent fleet — per-worktree slot state (logs, pids, slot.env)
+.dev/
+
+# Local agent fleet — downloaded dev tooling (chromedriver, etc.); never commit binaries
+.dev-tools/
+
+# API keys / secrets (never commit)
+*.key
+gemini*.local
+# Local Android build keys (PostHog/Sentry/OAuth for signed AAB builds).
+# The .example template IS tracked; the filled-in .local is not.
+scripts/dev/android-build.env.local
+# Badge generation intermediates (raw model JPEGs, transparent PNGs, venv).
+# The final app-ready assets are checked in under flutter/assets/achievements/.
+scripts/badges/out/
+scripts/badges/png/
+scripts/badges/.venv/
+scripts/badges/_*
+
+# Python bytecode
+scripts/**/__pycache__/
+scripts/dev/**/__pycache__/

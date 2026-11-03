@@ -1,0 +1,154 @@
+---
+/*
+  Countdown to the self-hosted launch. This is the launch of the self-hosted edition only;
+  it is NOT the end of founding spots (those are limited to the first 150 founders).
+
+  The initial values are rendered at build time so the clock is never blank without JS. The
+  <script> below is bundled by Astro into an external file (production CSP bans inline JS)
+  and ticks the digits once a second. Once the time passes, the clock is replaced by the
+  "Self-hosting is live" message.
+*/
+interface Props {
+  /** ISO timestamp of the launch. */
+  target?: string;
+  docsHref?: string;
+}
+
+const { target = '2026-11-04T15:00:00Z', docsHref = '/docs/selfhost/install' } = Astro.props;
+
+const ms = Math.max(0, new Date(target).getTime() - Date.now());
+const live = ms === 0;
+const total = Math.floor(ms / 1000);
+const pad = (n: number) => String(n).padStart(2, '0');
+const parts = {
+  days: pad(Math.floor(total / 86400)),
+  hours: pad(Math.floor((total % 86400) / 3600)),
+  minutes: pad(Math.floor((total % 3600) / 60)),
+  seconds: pad(total % 60),
+};
+const units = ['days', 'hours', 'minutes', 'seconds'] as const;
+---
+
+<div class="launch-countdown" data-target={target}>
+  <div class="lc-pending" hidden={live}>
+    <p class="lc-title">Self-hosting launches in</p>
+    <div class="lc-clock" role="timer" aria-label="Time until the self-hosted launch">
+      {
+        units.map((u, i) => (
+          <>
+            {i > 0 && <span class="lc-sep" aria-hidden="true">:</span>}
+            <div class="lc-cell">
+              <span class="lc-num" data-unit={u}>{parts[u]}</span>
+              <span class="lc-label">{u}</span>
+            </div>
+          </>
+        ))
+      }
+    </div>
+    <p class="lc-when">Wednesday, November 4, 2026 at 9:00 AM Central</p>
+  </div>
+  <div class="lc-live" hidden={!live}>
+    <p class="lc-live-title">Self-hosting is live</p>
+    <p><a href={docsHref}>Read the self-hosting guide</a></p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.launch-countdown').forEach((root) => {
+    const target = Date.parse(root.dataset.target || '');
+    if (Number.isNaN(target)) return;
+    const pending = root.querySelector<HTMLElement>('.lc-pending');
+    const live = root.querySelector<HTMLElement>('.lc-live');
+    const nums: Record<string, HTMLElement | null> = {};
+    ['days', 'hours', 'minutes', 'seconds'].forEach((u) => {
+      nums[u] = root.querySelector<HTMLElement>(`[data-unit="${u}"]`);
+    });
+    const pad = (n: number) => String(n).padStart(2, '0');
+    let timer = 0;
+    const tick = () => {
+      const left = Math.max(0, Math.floor((target - Date.now()) / 1000));
+      if (left === 0) {
+        if (pending) pending.hidden = true;
+        if (live) live.hidden = false;
+        window.clearInterval(timer);
+        return;
+      }
+      if (nums.days) nums.days.textContent = pad(Math.floor(left / 86400));
+      if (nums.hours) nums.hours.textContent = pad(Math.floor((left % 86400) / 3600));
+      if (nums.minutes) nums.minutes.textContent = pad(Math.floor((left % 3600) / 60));
+      if (nums.seconds) nums.seconds.textContent = pad(left % 60);
+    };
+    tick();
+    timer = window.setInterval(tick, 1000);
+  });
+</script>
+
+<style>
+  .launch-countdown {
+    margin: 36px auto 0;
+    text-align: center;
+  }
+  .lc-title {
+    margin: 0 0 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .lc-clock {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(6px, 2vw, 18px);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+    color: var(--blue);
+  }
+  .lc-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .lc-num {
+    font-size: clamp(1.9rem, 9vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+  }
+  .lc-sep {
+    font-size: clamp(1.9rem, 9vw, 4rem);
+    font-weight: 200;
+    line-height: 1.1;
+    color: var(--ink-faint);
+  }
+  .lc-label {
+    margin-top: 6px;
+    font-family: var(--font-sans);
+    font-size: clamp(0.6rem, 2.4vw, 0.72rem);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .lc-when {
+    margin: 16px 0 0;
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+  }
+  .lc-live-title {
+    margin: 0 0 8px;
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--green-text);
+  }
+  .lc-live a {
+    font-weight: 600;
+  }
+  [hidden] {
+    display: none !important;
+  }
+</style>

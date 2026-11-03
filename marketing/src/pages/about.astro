@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+
+const jsonLd = [
+  {
+    '@type': 'AboutPage',
+    name: 'About Buoy Money',
+    url: `${SITE.url}/about`,
+    publisher: { '@id': `${SITE.url}/#org` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${SITE.url}/about` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Buoy Money builds a personal-finance app around count-up budgeting, a system designed to make saving feel like winning instead of going without."
+  path="/about"
+  jsonLd={jsonLd}
+>
+  <header class="page-hero">
+    <div class="container">
+      <p class="kicker">ABOUT</p>
+      <h1>I think budgeting has the psychology backwards.</h1>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:clamp(32px,5vw,56px)">
+    <div class="container prose">
+      <p>
+        Most budgeting tools are built on subtraction. You start the month with a number
+        and watch it shrink with every purchase, until the "win" is a small, anxious
+        balance and the lesson is that spending equals loss. For a lot of people, that
+        framing is exactly why budgeting never sticks.
+      </p>
+      <p>
+        Buoy Money is built on the opposite idea, <a href="/count-up-budgeting">count-up
+        budgeting</a>. Each spending category earns a small allowance every day, and the
+        number you watch <em>grows</em> when you underspend. Saving becomes a visible,
+        rewarding action instead of an act of restraint. I pair it with streaks, badges,
+        and levels so good decisions feel like progress, because they are.
+      </p>
+
+      <h2>What I believe</h2>
+      <ul>
+        <li><strong>Saving should feel good.</strong> Motivation beats guilt every time.</li>
+        <li><strong>Your data is yours.</strong> Bank connections are read-only, encrypted, and never sold. See my <a href="/security">approach to security</a>.</li>
+        <li><strong>Clarity over complexity.</strong> A simple daily number you actually understand beats a spreadsheet you dread.</li>
+      </ul>
+
+      <h2>How Buoy works</h2>
+      <p>
+        Link your accounts in under a minute through <a href="/security">Plaid</a>,
+        and Buoy categorizes transactions automatically, surfaces subscriptions, and turns
+        each category into a daily count-up allowance. An AI advisor is on hand for the
+        "can I afford this?" moments. It’s personal finance that runs itself, and roots
+        for you.
+      </p>
+
+      <p>
+        Questions or feedback? Email
+        <a href="mailto:contact@buoy-ai.com">contact@buoy-ai.com</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(180deg, var(--sky-top), var(--surface));
+    padding: clamp(48px, 8vw, 88px) 0 clamp(20px, 3vw, 36px);
+  }
+  .page-hero .container {
+    max-width: 820px;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+  }
+</style>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Sign in with Apple capability -->
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
+	<!-- Associated Domains. Requires the matching capability on the App ID in the Apple
+	     Developer portal + a regenerated provisioning profile for the entitled build to sign.
+	     - applinks:      Universal Links — return into the app from hosted Stripe Checkout, etc.
+	     - webcredentials: required by the passkeys plugin (ASAuthorizationController) so iOS
+	       will register/authenticate passkeys for this relying-party domain. Without it, iOS
+	       passkey setup/login fails with a domain-association error (web passkeys are
+	       unaffected, which hides this in browser testing). -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:buoy-ai.com</string>
+		<string>webcredentials:buoy-ai.com</string>
+	</array>
+	<!-- Push notifications (#190). Xcode/dev signing uses the development APNs
+	     environment; App Store / TestFlight distribution signing rewrites this to
+	     production automatically from the provisioning profile. Requires the Push
+	     Notifications capability on the App ID in the Apple Developer portal. -->
+	<key>aps-environment</key>
+	<string>development</string>
+</dict>
+</plist>

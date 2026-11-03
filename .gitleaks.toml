@@ -1,0 +1,24 @@
+# gitleaks configuration for the public repo. The default rules stay on; only the paths below
+# have been read by a person and hold no secrets. Add an entry only with a written reason.
+title = "Buoy Money"
+
+[extend]
+useDefault = true
+
+# One global allowlist on purpose. The newer per-rule form ([[allowlists]] with targetRules) was
+# tried and does not take effect on top of the default rules in gitleaks v8.21 to v8.28, so the
+# findings stayed in the report and the review could not finish. Every path here was read.
+[allowlist]
+description = "Reviewed: fixtures and lines that only look like keys."
+paths = [
+  # Fake keys, tokens and published test vectors in unit, widget and integration tests
+  # (for example 'test-encryption-key-32-characters', 'sk_test_fakefakefake', the HPKE vector).
+  '''backend/tests/''',
+  '''flutter/test/''',
+  '''flutter/integration_test/''',
+  # Source lines that only look like keys: an empty JWT_KEY= example, a localStorage key name, and
+  # a Dart copyWith parameter named plaidReconnectionSuccess.
+  '''backend/\.env\.example$''',
+  '''marketing/public/trial-offer\.js$''',
+  '''flutter/lib/services/email_preferences_service\.dart$''',
+]

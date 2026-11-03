@@ -1,0 +1,5 @@
+{
+  "customerId": "cus_1",
+  "environment": "production",
+  "returnUrl": "https://buoy-ai.com/#/settings/cloud/billing"
+}

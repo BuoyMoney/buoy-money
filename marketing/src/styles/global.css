@@ -1,0 +1,330 @@
+/* BuoyAI marketing — "Open Water" design language.
+   COMPLEMENTARY to the app's dark cinematic UI, not a copy of it: this is the
+   light, nautical, trustworthy front door, built on the true logo palette.
+   Brand: deep royal blue #094AAA + vivid green #1EB442 on light; deep-navy ink. */
+
+/* Self-hosted variable font (one file covers all weights) — no render-blocking
+   third-party request; served from /fonts by nginx ('self', CSP-safe). */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-var.woff2') format('woff2');
+}
+
+:root {
+  --blue: #094aaa; /* primary — the buoy */
+  --blue-bright: #1e88e5; /* lighter accent / links / gradients */
+  --blue-deep: #082a5f;
+  --green: #1eb442; /* accent — the wave / "AI" (fills/icons only) */
+  --green-deep: #149a36;
+  --green-text: #0e8a37; /* AA-contrast green for text on light */
+  --green-on-dark: #45d265; /* green for the dark footer */
+
+  --ink: #0c2440; /* headings + body (deep navy, softer than black) */
+  --ink-soft: #4a5a6e; /* muted text */
+  --ink-faint: #5f6f86; /* faint text — darkened to keep AA on light */
+
+  --surface: #ffffff;
+  --surface-tint: #eef5fc; /* alternating section background */
+  --sky-top: #e7f1fb; /* hero gradient top */
+  --line: #dbe7f3;
+
+  --radius: 18px;
+  --radius-lg: 26px;
+  --shadow-sm: 0 1px 2px rgba(12, 36, 64, 0.06), 0 2px 8px rgba(12, 36, 64, 0.05);
+  --shadow-md: 0 6px 24px -8px rgba(9, 74, 170, 0.18);
+  --shadow-lg: 0 30px 60px -28px rgba(9, 74, 170, 0.35);
+
+  --maxw: 1140px;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  overflow-x: clip; /* guard against incidental horizontal scroll on mobile */
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Typography ---- */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0 0 18px;
+}
+.kicker::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--green);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.lead {
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  line-height: 1.55;
+}
+
+.text-green {
+  color: var(--green-text);
+}
+.text-blue {
+  color: var(--blue);
+}
+
+/* Visible keyboard focus site-wide (WCAG 2.4.7) */
+:where(a, button, label, summary, input):focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.section {
+  padding: clamp(64px, 10vw, 116px) 0;
+  position: relative;
+}
+.section-tint {
+  background: var(--surface-tint);
+}
+
+.section-head {
+  max-width: 680px;
+  margin-bottom: 52px;
+}
+.section-head h2 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 26px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease,
+    border-color 0.16s ease, color 0.16s ease;
+}
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+.btn-primary:hover {
+  background: #0a54c2;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.btn-green {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 10px 26px -10px rgba(30, 180, 66, 0.6);
+}
+.btn-green:hover {
+  background: var(--green-deep);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.btn-ghost:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-2px);
+}
+
+/* ---- Cards ---- */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Wave divider (nautical motif, not animation copy) ---- */
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 6vw, 80px);
+  margin: 0;
+}
+
+/* ---- Prose (legal + blog markdown) ---- */
+.prose {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--ink-soft);
+}
+.prose h1,
+.prose h2,
+.prose h3 {
+  color: var(--ink);
+  margin: 1.7em 0 0.5em;
+  line-height: 1.2;
+}
+.prose h1 {
+  font-size: 2.3rem;
+}
+.prose h2 {
+  font-size: 1.6rem;
+}
+.prose h3 {
+  font-size: 1.25rem;
+}
+.prose p,
+.prose li {
+  font-size: 1.03rem;
+}
+.prose a {
+  color: var(--blue-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose strong {
+  color: var(--ink);
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 2.4em 0;
+}
+.prose code {
+  background: var(--surface-tint);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+/* Markdown tables (persona/blog bodies rendered via set:html) — bare tables read
+   as raw data; give them the same tasteful, theme-consistent treatment as cards.
+   `display:block; overflow-x:auto` lets wide tables scroll instead of forcing the
+   page to overflow horizontally on narrow screens. */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8em 0;
+  font-size: 0.97rem;
+  display: block;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  --table-radius: 12px;
+  border-radius: var(--table-radius);
+}
+.prose th,
+.prose td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.prose thead th {
+  background: var(--surface-tint);
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 2px solid var(--line);
+}
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+/* With display:block the box fills the column but the rows inside only fit their content, so
+   a narrow table's header shading stopped short of its border. Wider than a phone, lay it out
+   as a real table at full width (separate borders keep the rounded corners); phones keep the
+   scrolling block above. */
+@media (min-width: 641px) {
+  .prose table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  /* The header cells sit inside the 1px border, so their corners curve 1px tighter. */
+  .prose thead th:first-child {
+    border-top-left-radius: calc(var(--table-radius) - 1px);
+  }
+  .prose thead th:last-child {
+    border-top-right-radius: calc(var(--table-radius) - 1px);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

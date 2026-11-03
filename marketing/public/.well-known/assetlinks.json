@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.buoyai.buoy_ai",
+      "sha256_cert_fingerprints": [
+        "96:E5:0F:2B:C3:61:6F:3B:01:53:54:8B:50:66:9A:49:85:D1:DB:39:4E:2C:A4:9B:4B:A3:81:21:02:BD:9A:8F",
+        "80:67:1A:CE:63:23:F5:85:5C:DB:BE:FC:34:A8:10:8F:A6:95:C2:B7:DD:8B:B5:16:9A:DB:E4:A5:D4:07:8F:4D"
+      ]
+    }
+  }
+]

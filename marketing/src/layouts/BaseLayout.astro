@@ -1,0 +1,90 @@
+---
+import Seo from '../components/Seo.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import TrialOffer from '../components/TrialOffer.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import { SITE } from '../consts';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  path?: string;
+  ogType?: 'website' | 'article';
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
+  /** hreflang alternates, passed through to Seo (see Seo.astro). */
+  alternates?: { hreflang: string; href: string }[];
+}
+
+const { title, description, path, ogType, image, noindex, jsonLd, alternates } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#094AAA" />
+    {SITE.googleSiteVerification && (
+      <meta name="google-site-verification" content={SITE.googleSiteVerification} />
+    )}
+    {SITE.bingSiteVerification && (
+      <meta name="msvalidate.01" content={SITE.bingSiteVerification} />
+    )}
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Self-hosted variable font; preload so first paint isn't render-blocked -->
+    <link
+      rel="preload"
+      href="/fonts/plus-jakarta-sans-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <Seo
+      title={title}
+      description={description}
+      path={path}
+      ogType={ogType}
+      image={image}
+      noindex={noindex}
+      jsonLd={jsonLd}
+      alternates={alternates}
+    />
+  </head>
+  <body>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <!--
+      Migration cleanup: unregister the stale root-scoped Flutter service worker
+      (the app now lives under /app/). Static file referenced by src so it stays
+      external and satisfies CSP script-src 'self' (no inline scripts allowed).
+    -->
+    <script type="module" src="/sw-cleanup.js"></script>
+
+    <!--
+      Email-capture offer. Inert markup until /trial-offer.js decides to show it; that
+      script owns all the frequency capping and page exclusions.
+    -->
+    <TrialOffer />
+
+    <!--
+      Analytics consent. Shows only when no choice is stored in the shared
+      `buoy_consent` cookie, so a visitor who already answered inside the app at
+      /app/ is never asked a second time here (and vice versa).
+    -->
+    <ConsentBanner />
+  </body>
+</html>

@@ -1,0 +1,43 @@
+---
+import { MANIFESTO } from '../consts';
+---
+
+<section class="section manifesto">
+  <div class="container">
+    <p class="kicker">{MANIFESTO.kicker}</p>
+    <p class="manifesto-lead">
+      Most budgeting apps run on <span class="muted">restriction and guilt</span>.
+      Buoy runs on <span class="text-green">momentum</span>.
+    </p>
+    <p class="manifesto-body" set:html={MANIFESTO.body}></p>
+  </div>
+</section>
+
+<style>
+  .manifesto .container {
+    max-width: 880px;
+    text-align: center;
+  }
+  .manifesto .kicker {
+    justify-content: center;
+  }
+  .manifesto-lead {
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.18;
+    color: var(--ink);
+    margin: 0 auto 26px;
+    max-width: 18ch;
+  }
+  .muted {
+    color: var(--ink-faint);
+  }
+  .manifesto-body {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 60ch;
+    margin: 0 auto;
+  }
+</style>

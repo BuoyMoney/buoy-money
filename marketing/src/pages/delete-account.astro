@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+
+const email = 'privacy@buoy-ai.com';
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Delete Account', item: `${SITE.url}/delete-account` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Delete Your Account"
+  description="How to permanently delete your Buoy Money account and all associated data, in the app or by request, without reinstalling."
+  path="/delete-account"
+  jsonLd={jsonLd}
+>
+  <header class="page-hero">
+    <div class="container">
+      <p class="kicker" style="justify-content:center">ACCOUNT DELETION</p>
+      <h1>Delete your Buoy Money account</h1>
+      <p class="lead" style="margin-inline:auto">
+        You can permanently delete your Buoy Money account and everything tied to it at any time:
+        from inside the app, or by requesting it here without reinstalling.
+      </p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:clamp(28px,4vw,48px)">
+    <div class="container prose">
+      <h2>Option 1 — In the app (fastest)</h2>
+      <ol>
+        <li>Open Buoy Money and go to <strong>Profile / Settings</strong>.</li>
+        <li>Tap <strong>Delete Account</strong>.</li>
+        <li>Confirm. Your account is deactivated immediately and permanently deleted within 30 days (usually much sooner).</li>
+      </ol>
+
+      <h2>Option 2 — Request deletion without the app</h2>
+      <p>
+        Email <a href={`mailto:${email}?subject=Delete%20my%20account`}>{email}</a> from the email
+        address on your Buoy Money account, with the subject <strong>“Delete my account.”</strong>
+        We verify that you own the account and then permanently delete everything within
+        <strong>30 days</strong> (usually much sooner) and email you a confirmation.
+      </p>
+
+      <h2>What gets deleted</h2>
+      <ul>
+        <li>Your account, profile, and login credentials (password, Google / Apple sign-in links, passkeys, and two-factor settings).</li>
+        <li>All financial data: connected accounts, transactions, budgets, savings goals, and categories.</li>
+        <li>Your bank connections — access tokens are <strong>revoked at Plaid</strong>, so the link is cut off on their side too.</li>
+        <li>Your billing profile: any active subscription is cancelled and your <strong>Stripe customer record is deleted</strong>.</li>
+        <li>AI insights and conversation history, gamification progress, notifications, and analytics tied to your account.</li>
+        <li>If you own a family plan, it is dissolved; other members keep their own individual accounts.</li>
+      </ul>
+
+      <h2>A few things we can’t control</h2>
+      <p>
+        Our payment processor (Stripe) and bank-linking provider (Plaid) keep their own limited
+        records under their retention policies and applicable law — for example, Stripe retains
+        certain transaction records for tax and anti-fraud compliance. We revoke access and delete
+        your customer record with them as part of deletion, but their independent retention is
+        governed by their policies.
+      </p>
+      <p>
+        Full details are in our <a href="/privacy-policy">Privacy Policy</a>. Questions?
+        Email <a href={`mailto:${email}`}>{email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

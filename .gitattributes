@@ -1,0 +1,9 @@
+# Shell scripts keep LF endings (run via bash)
+*.sh text eol=lf
+
+# Self-host files are read inside Linux containers (a CRLF Dockerfile breaks line continuations)
+Dockerfile.selfhost text eol=lf
+selfhost/** text eol=lf
+
+# Publish tooling is run by bash and python on Linux runners; keep LF
+scripts/publish/** text eol=lf

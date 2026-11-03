@@ -1,0 +1,66 @@
+# LOCAL DEVELOPMENT ONLY. Not a deployment file and not the self-host stack.
+#
+# - Runs the API in ASPNETCORE_ENVIRONMENT=Development (Swagger, debug endpoints,
+#   verbose errors). Never expose this to a network you do not trust.
+# - Postgres is NOT published to the host. Reach it with:
+#     docker compose exec postgres psql -U buoyai -d BuoyAI
+# - The API is bound to 127.0.0.1:5000 only.
+# - Secrets come from backend/.env (copy .env.example; the file is gitignored).
+#   Compose refuses to start if a required value is missing.
+#
+# - Upgrading from the old compose file (user "postgres")? The existing postgres-data
+#   volume keeps the old role and password, because Postgres only reads POSTGRES_USER
+#   and POSTGRES_PASSWORD when it initializes an empty data directory. This stack is
+#   throwaway local data, so reset it once with:
+#     docker compose down -v
+#   (or keep the data: rename the role and set its password inside the old volume).
+#
+#   cp .env.example .env   # then fill in the values
+#   docker compose up --build
+
+services:
+  buoyai-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:5000:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=BuoyAI;Username=buoyai;Password=${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in backend/.env}"
+      Jwt__Key: ${JWT_KEY:?set JWT_KEY in backend/.env (32+ random characters)}
+      Encryption__Key: ${ENCRYPTION_KEY:?set ENCRYPTION_KEY in backend/.env (32 random characters)}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - buoyai-network
+
+  postgres:
+    # postgres:15-alpine, pinned by digest
+    image: postgres:15-alpine@sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81
+    environment:
+      POSTGRES_DB: BuoyAI
+      POSTGRES_USER: buoyai
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in backend/.env}
+    # No "ports:" on purpose. To reach the DB from a host tool, add
+    #   ports: ["127.0.0.1:5432:5432"]
+    # in a local, uncommitted docker-compose.override.yml.
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U buoyai -d BuoyAI"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - buoyai-network
+
+networks:
+  buoyai-network:
+    driver: bridge
+
+volumes:
+  postgres-data:

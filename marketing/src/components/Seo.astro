@@ -1,0 +1,128 @@
+---
+import { SITE, SOCIAL_PROFILES, FOUNDER } from '../consts';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Path-only canonical (e.g. "/pricing"); defaults to the current request path. */
+  path?: string;
+  ogType?: 'website' | 'article';
+  image?: string;
+  /** Set true on app/utility pages that should not be indexed. */
+  noindex?: boolean;
+  /** Optional extra JSON-LD node(s) injected into the @graph. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /**
+   * hreflang alternates for pages with country/language variants (#941 intl).
+   * Give the FULL set including the page itself and an x-default, e.g.
+   * [{hreflang:'en',href:'/'},{hreflang:'x-default',href:'/'}].
+   * Every variant page must list the same set (hreflang is reciprocal or ignored).
+   */
+  alternates?: { hreflang: string; href: string }[];
+}
+
+const {
+  title,
+  description = SITE.description,
+  path,
+  ogType = 'website',
+  image = SITE.ogImage,
+  noindex = false,
+  jsonLd,
+  alternates,
+} = Astro.props;
+
+const FOUNDER_ID = `${SITE.url}/#founder`;
+const canonicalPath = path ?? Astro.url.pathname;
+const canonical = new URL(canonicalPath, SITE.url).href.replace(/\/$/, '') || SITE.url;
+const imageUrl = new URL(image, SITE.url).href;
+const fullTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
+
+// Organization + SoftwareApplication structured data on every page so crawlers
+// that read JSON-LD (Google) get brand + product context without executing JS.
+const baseGraph = [
+  {
+    '@type': 'Organization',
+    '@id': `${SITE.url}/#org`,
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    // `sameAs` is what lets a knowledge graph resolve "BuoyAI" to an entity rather than
+    // leaving it an unlinked string. Empty entries are filtered in consts — a 404 here
+    // breaks the corroboration it exists to provide.
+    ...(SOCIAL_PROFILES.length ? { sameAs: SOCIAL_PROFILES } : {}),
+    founder: { '@id': FOUNDER_ID },
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/logo-mark.png', SITE.url).href,
+      width: 512,
+      height: 512,
+    },
+  },
+  // The founder Person is emitted site-wide, not just on /our-story, so every page
+  // carries the same @id and the author/founder references elsewhere resolve to a real
+  // node. Personal finance is the strictest YMYL category there is: an identifiable,
+  // credentialed human author is the E-E-A-T signal that matters most here.
+  {
+    '@type': 'Person',
+    '@id': FOUNDER_ID,
+    name: FOUNDER.name,
+    jobTitle: FOUNDER.title,
+    image: new URL(FOUNDER.photo, SITE.url).href,
+    url: `${SITE.url}/our-story`,
+    sameAs: [FOUNDER.linkedin],
+    alumniOf: { '@type': 'CollegeOrUniversity', name: FOUNDER.alumniOf },
+    knowsAbout: ['Software engineering', 'Personal finance', 'Artificial intelligence', 'Data security'],
+    worksFor: { '@id': `${SITE.url}/#org` },
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${SITE.url}/#site`,
+    name: SITE.name,
+    url: SITE.url,
+    publisher: { '@id': `${SITE.url}/#org` },
+  },
+  {
+    '@type': 'SoftwareApplication',
+    name: SITE.name,
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web, iOS, Android',
+    description: SITE.description,
+    offers: [
+      { '@type': 'Offer', price: '100.00', priceCurrency: 'USD', name: 'Standard (annual)', url: `${SITE.url}/pricing` },
+      { '@type': 'Offer', price: '150.00', priceCurrency: 'USD', name: 'Premium (annual)', url: `${SITE.url}/pricing` },
+    ],
+  },
+];
+const structured = {
+  '@context': 'https://schema.org',
+  '@graph': jsonLd ? [...baseGraph, jsonLd] : baseGraph,
+};
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{alternates?.map((alt) => (
+  <link rel="alternate" hreflang={alt.hreflang} href={new URL(alt.href, SITE.url).href.replace(/\/$/, '') || SITE.url} />
+))}
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+{SITE.twitter && <meta name="twitter:site" content={SITE.twitter} />}
+
+<script type="application/ld+json" set:html={JSON.stringify(structured)} />

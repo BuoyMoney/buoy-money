@@ -1,0 +1,67 @@
+{
+  // BuoyAI Configuration Template
+  // 
+  // SETUP INSTRUCTIONS:
+  // 1. Copy this file to appsettings.json (or appsettings.Development.json)
+  // 2. Replace all "your_*" placeholder values with your actual credentials
+  // 3. Never commit the actual appsettings.json files to version control
+  // 
+  // For detailed setup instructions, see: ENVIRONMENT_SETUP.md and GOOGLE_OAUTH_SETUP.md
+  
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=BuoyAI_Dev;Username=postgres;Password=your_postgres_password_here"
+  },
+  "Jwt": {
+    "Key": "your-secure-jwt-signing-key-must-be-at-least-32-characters-long-for-security",
+    "Issuer": "BuoyAI",
+    "Audience": "BuoyAI-Users",
+    "ExpiryInMinutes": 60
+  },
+  "Google": {
+    "ClientId": "your-google-oauth-client-id.apps.googleusercontent.com",
+    "ClientSecret": "your-google-oauth-client-secret"
+  },
+  "Plaid": {
+    "Environment": "sandbox",
+    "ClientId": "your_plaid_sandbox_client_id",
+    "SecretKey": "your_plaid_sandbox_secret_key",
+    "WebhookSecret": "your_plaid_webhook_secret",
+    "ClientName": "BuoyAI Development",
+    "CountryCodes": ["US"],
+    "Products": ["transactions", "accounts", "identity"],
+    "RateLimits": {
+      "BalanceRequestsPerDay": 5,
+      "RefreshRequestsPerDay": 3,
+      "EnableRateLimiting": true
+    }
+  },
+  "Encryption": {
+    "Key": "your-32-character-encryption-key"
+  },
+  "Resend": {
+    "ApiKey": "your_resend_api_key_here",
+    "FromEmail": "noreply@yourdomain.com",
+    "FromName": "BuoyAI"
+  },
+  "WebAuthn": {
+    "RelyingPartyId": "localhost",
+    "RelyingPartyName": "BuoyAI Development",
+    "Origin": "http://localhost:3000"
+    // Optional settings (will use library defaults if not specified):
+    // "AttestationConveyancePreference": "none",
+    // "AuthenticatorAttachment": "platform", 
+    // "RequireResidentKey": false,
+    // "UserVerification": "preferred",
+    // "Timeout": 60000
+  },
+  "App": {
+    "BaseUrl": "https://yourdomain.com"
+  }
+}

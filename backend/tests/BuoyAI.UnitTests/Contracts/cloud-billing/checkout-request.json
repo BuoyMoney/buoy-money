@@ -1,0 +1,21 @@
+{
+  "customerId": "cus_1",
+  "userId": 42,
+  "environment": "production",
+  "interval": "yearly",
+  "founding": true,
+  "products": [
+    {
+      "product": "bank_sync",
+      "quantity": 1
+    },
+    {
+      "product": "extra_logins",
+      "quantity": 3
+    }
+  ],
+  "successUrl": "https://buoy-ai.com/#/billing?checkout=success",
+  "cancelUrl": "https://buoy-ai.com/#/billing?checkout=cancel",
+  "idempotencyKey": "idem-1",
+  "foundingCreditCents": 100
+}

@@ -1,0 +1,346 @@
+---
+import { SITE, TRIAL_OFFER } from '../consts';
+
+/*
+  Email-capture modal offering a longer free trial.
+
+  Rendered on every page but inert until `/trial-offer.js` decides to show it. All the
+  behaviour (timing, exit intent, frequency capping, dismissal memory) lives in that
+  external script: CSP is `script-src 'self'` with no 'unsafe-inline', so nothing here
+  can be an inline handler.
+
+  Three copy variants are baked into the markup and swapped by class, so switching
+  between them costs no request and cannot flash the wrong headline:
+    .is-primary   first ask, shortly after arrival
+    .is-second    "are you sure" after the first was dismissed
+    .is-calc      calculator exit, offering to save the numbers on screen
+*/
+const { standardDays, extendedDays } = TRIAL_OFFER;
+---
+
+<div
+  class="offer"
+  id="trial-offer"
+  data-standard-days={String(standardDays)}
+  data-extended-days={String(extendedDays)}
+  data-register={SITE.appRegister}
+  hidden
+>
+  <div class="offer-backdrop" data-offer-close></div>
+
+  <div
+    class="offer-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="offer-title"
+    aria-describedby="offer-body"
+  >
+    <button class="offer-x" type="button" data-offer-close aria-label="Close">&times;</button>
+
+    <div class="offer-body" data-offer-form>
+      <p class="offer-kicker">
+        <span class="v-primary">Welcome offer</span>
+        <span class="v-second">Before you go</span>
+        <span class="v-calc">Don’t lose your numbers</span>
+      </p>
+
+      <h2 id="offer-title">
+        <span class="v-primary">Want a month free instead of two weeks?</span>
+        <span class="v-second">Sure you want two weeks instead of a month?</span>
+        <span class="v-calc">Save these numbers and get a month free?</span>
+      </h2>
+
+      <p id="offer-body" class="offer-lead">
+        <span class="v-primary">
+          Drop your email and I’ll reserve <strong>a month free</strong> instead of the usual
+          two weeks. No card needed to start.
+        </span>
+        <span class="v-second">
+          It’s still <strong>a month free</strong> instead of two weeks, and it takes one field.
+          I’ll only email you about your trial.
+        </span>
+        <span class="v-calc">
+          I’ll email you this breakdown so it’s there when you want it, and reserve
+          <strong>a month free</strong> instead of two weeks.
+        </span>
+      </p>
+
+      <form class="offer-form" data-offer-submit novalidate>
+        <label class="sr-only" for="offer-email">Email address</label>
+        <div class="offer-row">
+          <input
+            id="offer-email"
+            type="email"
+            name="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+          />
+          <button type="submit" class="btn btn-primary" data-offer-cta>
+            Reserve my free month
+          </button>
+        </div>
+        <p class="offer-error" data-offer-error role="alert" hidden></p>
+      </form>
+
+      <button class="offer-decline" type="button" data-offer-close>
+        <span class="v-primary">No thanks, two weeks is enough</span>
+        <span class="v-second">No thanks, two weeks is fine</span>
+        <span class="v-calc">No thanks, I’ll retype them later</span>
+      </button>
+
+      <!--
+        This used to promise "one email about your trial. No spam, unsubscribe any time."
+        Both halves were wrong: a nurture sequence breaks "one email" the moment it sends a
+        second, and there was no unsubscribe mechanism at all for an address with no account.
+        Say what actually happens instead, and only promise what the footer link can deliver.
+      -->
+      <p class="offer-fine">
+        I'll email your trial details, then occasional tips and product news. Unsubscribe in
+        one click from any of them. See my <a href="/privacy-policy">privacy policy</a>.
+      </p>
+    </div>
+
+    <div class="offer-success" data-offer-success hidden>
+      <div class="offer-check" aria-hidden="true">✓</div>
+      <h2>Your free month is reserved</h2>
+      <p class="offer-lead">
+        Check your inbox for the details. Sign up with that same address and the longer
+        trial applies automatically.
+      </p>
+      <a class="btn btn-primary" href={SITE.appRegister} data-offer-register>
+        Create my account
+      </a>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/trial-offer.js"></script>
+
+<style>
+  .offer[hidden] {
+    display: none;
+  }
+
+  .offer {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+  }
+
+  .offer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 42, 95, 0.55);
+    backdrop-filter: blur(3px);
+    animation: offer-fade 0.2s ease-out;
+  }
+
+  .offer-card {
+    position: relative;
+    width: min(520px, 100%);
+    max-height: calc(100dvh - 40px);
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 34px 30px 26px;
+    animation: offer-rise 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes offer-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes offer-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
+    }
+  }
+
+  /* Respect a reduced-motion preference: an unexpected modal is jarring enough. */
+  @media (prefers-reduced-motion: reduce) {
+    .offer-backdrop,
+    .offer-card {
+      animation: none;
+    }
+  }
+
+  .offer-x {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: 0;
+    background: none;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--ink-faint);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+  .offer-x:hover {
+    color: var(--ink);
+    background: var(--surface-tint);
+  }
+
+  .offer-kicker {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-text);
+  }
+
+  .offer-card h2 {
+    margin: 0 0 10px;
+    font-size: clamp(22px, 4.4vw, 27px);
+    line-height: 1.22;
+    color: var(--ink);
+  }
+
+  .offer-lead {
+    margin: 0 0 18px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .offer-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .offer-row input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 13px 14px;
+    font: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .offer-row input:focus-visible {
+    outline: 2px solid var(--blue-bright);
+    outline-offset: 1px;
+    border-color: var(--blue-bright);
+  }
+
+  .offer-row .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .offer-row .btn[disabled] {
+    opacity: 0.6;
+    cursor: progress;
+  }
+
+  .offer-error {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: #b42318;
+  }
+  .offer-error[hidden] {
+    display: none;
+  }
+
+  .offer-decline {
+    display: block;
+    margin: 14px auto 0;
+    border: 0;
+    background: none;
+    padding: 6px;
+    font: inherit;
+    font-size: 13px;
+    color: var(--ink-faint);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .offer-decline:hover {
+    color: var(--ink-soft);
+  }
+
+  .offer-fine {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  .offer-fine a {
+    color: inherit;
+  }
+
+  .offer-success {
+    text-align: center;
+    padding: 8px 0 4px;
+  }
+  .offer-success[hidden] {
+    display: none;
+  }
+  .offer-success h2 {
+    margin-bottom: 8px;
+  }
+  .offer-check {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 14px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    color: #fff;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /*
+    Variant switching. Every variant span is hidden by default; the active variant class
+    on the root reveals exactly one. Doing it in CSS means no layout thrash and no
+    possibility of two headlines rendering at once.
+  */
+  .offer .v-primary,
+  .offer .v-second,
+  .offer .v-calc {
+    display: none;
+  }
+  .offer.is-primary .v-primary,
+  .offer.is-second .v-second,
+  .offer.is-calc .v-calc {
+    display: inline;
+  }
+
+  @media (max-width: 520px) {
+    .offer-card {
+      padding: 30px 20px 22px;
+    }
+    .offer-row {
+      flex-direction: column;
+    }
+    .offer-row .btn {
+      width: 100%;
+    }
+  }
+</style>

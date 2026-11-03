@@ -1,0 +1,20 @@
+---
+// Starlight's footer plus the site-wide analytics consent banner, so /docs asks (or reads
+// the existing buoy_consent cookie) the same way every other page on buoy-ai.com does.
+import Default from '@astrojs/starlight/components/Footer.astro';
+import ConsentBanner from '../ConsentBanner.astro';
+---
+
+<Default><slot /></Default>
+<p class="docs-foot">
+  Free trial, no card: <a href="/app/register">start here</a>. Something on this page wrong or missing? <a href="mailto:contact@buoy-ai.com">Email the founder</a>.
+</p>
+<ConsentBanner />
+
+<style>
+  .docs-foot {
+    margin-top: 1.5rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+</style>

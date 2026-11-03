@@ -1,0 +1,145 @@
+---
+import { SITE, FOOTER, NAV } from '../consts';
+import StoreBadges from './StoreBadges.astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-lead">
+      <a href="/" class="brand" aria-label={`${SITE.name} home`}>
+        <img src="/logo-mark.png" alt="" width="40" height="40" class="footer-mark" loading="lazy" decoding="async" />
+        <span class="brand-name">Buoy<span class="ai">AI</span></span>
+      </a>
+      <p class="footer-blurb">{FOOTER.blurb}</p>
+      <StoreBadges tone="dark" note={false} />
+    </div>
+
+    <nav class="footer-cols" aria-label="Footer">
+      <div>
+        <h3>Product</h3>
+        {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href="/calculator">Calculator</a>
+        <a href={SITE.appLogin}>Log in</a>
+        <a href={SITE.playStore} rel="noopener">Android app</a>
+      </div>
+      <div>
+        <h3>Learn</h3>
+        <a href="/count-up-budgeting">What is count-up budgeting?</a>
+        <a href="/zero-based-budgeting">Zero-based budgeting</a>
+        <a href="/envelope-budgeting">Envelope budgeting</a>
+        <a href="/pay-yourself-first">Pay yourself first</a>
+        <a href="/mint-alternatives">Mint alternatives</a>
+        <a href="/budgeting-for-couples">Budgeting for couples</a>
+        <a href="/budgeting-on-irregular-income">Budgeting on irregular income</a>
+        <a href="/budgeting-when-you-hate-budgeting">When you hate budgeting</a>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <a href="/our-story">My story</a>
+        <a href="/roadmap">Roadmap</a>
+        <a href="/about">About</a>
+        <a href="/security">Security &amp; privacy</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/delete-account">Delete account</a>
+        <!--
+          Withdrawing consent has to be as easy as giving it. Without this, a visitor
+          who declined could only change their mind through the in-app Settings toggle,
+          which needs an account. /consent.js turns this into a button that reopens the
+          banner; it stays a plain link if that script never loads.
+        -->
+        <a href="/privacy-policy" data-consent-reopen>Analytics preferences</a>
+      </div>
+      <div>
+        <h3>Trust</h3>
+        <span>{FOOTER.security}</span>
+        <span>Read-only bank access</span>
+        <span>Powered by Plaid</span>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container footer-base">
+    <span>© {year} BuoyAI LLC. All rights reserved.</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink); /* deep-water navy grounds the page */
+    color: rgba(255, 255, 255, 0.72);
+    padding: 72px 0 32px;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 2.6fr;
+    gap: 44px;
+  }
+  .footer-lead {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  .brand-name {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .ai {
+    color: var(--green-on-dark);
+  }
+  .footer-blurb {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    max-width: 26ch;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .footer-cols h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 16px;
+  }
+  .footer-cols a,
+  .footer-cols span {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 7px 0; /* ≥44px tap targets on mobile */
+  }
+  .footer-cols a:hover {
+    color: #fff;
+  }
+  .footer-base {
+    margin-top: 52px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+  }
+  @media (max-width: 760px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .footer-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

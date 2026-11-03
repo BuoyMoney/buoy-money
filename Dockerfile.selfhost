@@ -1,0 +1,125 @@
+# Buoy Money self-host image: the API and the Flutter web app in ONE process (Kestrel serves both).
+#
+# No nginx, no Node, no marketing site, no Qdrant. Build it for a PC or a Raspberry Pi:
+#
+#   docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile.selfhost -t buoy-money .
+#
+# The Flutter and .NET builds run once on the build machine (their output does not depend on the
+# CPU), and only the small runtime stage is built per architecture, so a multi-arch build does not
+# emulate the compilers. Run it with selfhost/compose.yaml (it also starts Postgres).
+# check=skip=SecretsUsedInArgOrEnv
+
+# =============================================================================
+# Stage 1: Flutter web build (once, on the build machine)
+# =============================================================================
+# flutter 3.44.0, pinned by digest
+FROM --platform=$BUILDPLATFORM ghcr.io/cirruslabs/flutter:3.44.0@sha256:46691e311715845de03a3ba4753a475476936805b29431b1f00f1816981033f8 AS flutter-build
+
+WORKDIR /app
+ARG APP_VERSION=dev
+
+COPY flutter/pubspec.yaml flutter/pubspec.lock* flutter/analysis_options.yaml ./flutter/
+COPY legal/ ./legal/
+WORKDIR /app/flutter
+RUN flutter pub get
+COPY flutter/ ./
+RUN mkdir -p assets/legal && cp ../legal/*.md assets/legal/
+
+# --base-href=/app/            the same base the hosted build uses (the API redirects / to /app/)
+# --no-web-resources-cdn       bundle CanvasKit instead of loading it from gstatic.com
+# API_BASE_URL=same-origin     talk to whichever address served this page, under /api
+# No GOOGLE/APPLE/STRIPE/POSTHOG/SENTRY defines: those features stay off in a self-hosted build.
+RUN flutter build web --release --no-wasm-dry-run --no-web-resources-cdn --base-href=/app/ \
+  --dart-define=ENVIRONMENT=production \
+  --dart-define=API_BASE_URL=same-origin \
+  --dart-define=APP_VERSION=${APP_VERSION}
+
+# A self-hosted page loads no scripts from outside its own origin (the content security policy
+# forbids them; only the Roboto fallback font may come from Google Fonts). Drop the hosted
+# build's third-party scripts, then pre-compress the text
+# files so a Raspberry Pi never compresses main.dart.js per request.
+RUN cd build/web && \
+    sed -i \
+      -e '/accounts.google.com\/gsi\/client/d' \
+      -e '/appleid.cdn-apple.com/d' \
+      -e '/cdn.plaid.com/d' \
+      -e '/us-assets.i.posthog.com/d' \
+      -e '/posthog_init.js/d' \
+      -e '/google-signin-client_id/d' \
+      index.html && \
+    rm -f posthog_init.js && \
+    find . -type f \( -name '*.js' -o -name '*.json' -o -name '*.html' -o -name '*.wasm' -o -name '*.css' \
+        -o -name '*.svg' -o -name '*.otf' -o -name '*.ttf' -o -name '*.map' \) -size +1k \
+        -exec gzip -9 -k {} \;
+
+# =============================================================================
+# Stage 2: backend build (once, on the build machine; the output is portable)
+# =============================================================================
+# dotnet/sdk:10.0, pinned by digest
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0@sha256:e70cdb7f80b0348f5cb85f19a8f670fca061f033d57eed12fa003d58b0e06317 AS backend-build
+WORKDIR /src
+COPY backend/src/BuoyAI.API/BuoyAI.API.csproj backend/src/BuoyAI.API/
+COPY backend/src/BuoyAI.Core/BuoyAI.Core.csproj backend/src/BuoyAI.Core/
+COPY backend/src/BuoyAI.Infrastructure/BuoyAI.Infrastructure.csproj backend/src/BuoyAI.Infrastructure/
+COPY backend/src/BuoyAI.ServiceDefaults/BuoyAI.ServiceDefaults.csproj backend/src/BuoyAI.ServiceDefaults/
+COPY backend/Directory.Packages.props backend/
+RUN dotnet restore "backend/src/BuoyAI.API/BuoyAI.API.csproj"
+COPY backend/ ./backend/
+WORKDIR /src/backend/src/BuoyAI.API
+RUN dotnet publish "BuoyAI.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+# The hosted service's settings (its admin email, its Stripe price ids, its domain) are not for
+# other people's servers. Self-host ships its own baseline instead.
+RUN rm -f /app/publish/appsettings.*.json /app/publish/*.example
+
+# =============================================================================
+# Stage 3: runtime (the only per-architecture stage)
+# =============================================================================
+# dotnet/aspnet:10.0 (multi-arch index digest: amd64, arm64)
+FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:222759b391a1aaf241166672c8f99b2d4ada452e7b5319f3c6e8f265a37b5ad4 AS final
+WORKDIR /app
+
+# postgresql-client provides pg_dump / pg_restore for the backup taken before every database
+# upgrade. No curl: the health check below needs only bash.
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends postgresql-client && \
+    rm -rf /var/lib/apt/lists/* && \
+    groupadd -r -g 10001 buoy && \
+    useradd -r -u 10001 -g buoy -d /tmp -s /usr/sbin/nologin buoy && \
+    mkdir -p /data/backups /secrets && \
+    chown -R 10001:10001 /data /secrets
+
+COPY --from=backend-build /app/publish ./
+COPY selfhost/appsettings.json ./appsettings.json
+COPY --from=flutter-build /app/flutter/build/web ./web
+COPY --chmod=0755 selfhost/init-secrets.sh /usr/local/bin/buoy-init-secrets
+
+# Edition and paths. Everything here can be overridden from the compose file.
+#  gcServer=0 gcConcurrent=0 GCConserveMemory=5   workstation GC tuned for a 4 GB board; with a
+#                                                 container memory limit .NET also caps its heap
+#                                                 at 75% of it by default
+#  EnableDiagnostics=0                            no diagnostic IPC sockets in /tmp
+ENV BuoyMoney__Edition=selfhost \
+    BuoyMoney__SecretsDirectory=/secrets \
+    Migrations__BackupDirectory=/data/backups \
+    ASPNETCORE_ENVIRONMENT=Production \
+    ASPNETCORE_HTTP_PORTS=8080 \
+    DOTNET_gcServer=0 \
+    DOTNET_gcConcurrent=0 \
+    DOTNET_GCConserveMemory=5 \
+    DOTNET_EnableDiagnostics=0 \
+    DOTNET_TieredPGO=0 \
+    HOME=/tmp
+
+LABEL org.opencontainers.image.title="Buoy Money" \
+      org.opencontainers.image.description="Self-hosted personal finance: the API and web app in one container" \
+      org.opencontainers.image.source="https://github.com/BuoyMoney/buoy-money"
+
+USER 10001:10001
+VOLUME ["/data"]
+EXPOSE 8080
+
+# Needs the API itself, not just the process: /api/alive is answered by the .NET app.
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080 && printf "GET /api/alive HTTP/1.0\r\nHost: localhost\r\n\r\n" >&3 && head -n1 <&3 | grep -q " 200 "' || exit 1
+
+ENTRYPOINT ["dotnet", "BuoyAI.API.dll"]

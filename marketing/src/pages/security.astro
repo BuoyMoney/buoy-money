@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Security', item: `${SITE.url}/security` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Security & Privacy"
+  description="How Buoy Money keeps your financial data safe: read-only bank connections through Plaid, encryption in transit and at rest, and a promise never to sell your data."
+  path="/security"
+  jsonLd={jsonLd}
+>
+  <header class="page-hero">
+    <div class="container">
+      <p class="kicker" style="justify-content:center">SECURITY &amp; PRIVACY</p>
+      <h1>Your money data, handled with care</h1>
+      <p class="lead" style="margin-inline:auto">
+        Linking a bank should feel safe because it is, when it’s done right. Here’s exactly
+        how Buoy protects your information.
+      </p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:clamp(28px,4vw,48px)">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="card trust">
+          <span class="t-icon" aria-hidden="true">🔒</span>
+          <h2>Read-only access</h2>
+          <p>Buoy connects through Plaid and can <strong>only read</strong> transactions and balances. It can never move money, make payments, or change anything in your accounts.</p>
+        </div>
+        <div class="card trust">
+          <span class="t-icon" aria-hidden="true">🛡️</span>
+          <h2>I never see your password</h2>
+          <p>You log in to your bank through Plaid, your credentials go to your bank, not to me. Buoy never sees or stores your bank login.</p>
+        </div>
+        <div class="card trust">
+          <span class="t-icon" aria-hidden="true">🔐</span>
+          <h2>Encrypted end to end</h2>
+          <p>Your account data is encrypted both in transit and at rest. On your phone, data cached for offline use is protected by your device's built-in encryption and is deleted when you sign out. You can disconnect any institution at any time, which cuts off access immediately.</p>
+        </div>
+        <div class="card trust">
+          <span class="t-icon" aria-hidden="true">🚫</span>
+          <h2>You’re the customer, not the product</h2>
+          <p>I make money one way: your subscription. No ads, no commissions for pushing financial products, and I never sell or share your financial information. The specifics are in the <a href="/privacy-policy">Privacy Policy</a>.</p>
+        </div>
+        <div class="card trust">
+          <span class="t-icon" aria-hidden="true">🔗</span>
+          <h2>Powered by Plaid</h2>
+          <p>Buoy links accounts through Plaid, the same connection layer behind apps like Venmo, Robinhood, and Coinbase, used by thousands of banks and finance apps.</p>
+        </div>
+        <div class="card trust">
+          <span class="t-icon" aria-hidden="true">🧭</span>
+          <h2>Architected, not bolted on</h2>
+          <p>Security wasn’t left for later, it was designed in from day one. It’s the one part of Buoy I’d never put up for a vote.</p>
+        </div>
+      </div>
+
+      <div class="prose security-faq">
+        <h2>Common questions</h2>
+        <h3>Is Plaid safe?</h3>
+        <p>Plaid is the connection layer thousands of banks and finance apps already rely on to link accounts securely. Using Plaid means Buoy never handles your bank credentials directly.</p>
+        <h3>Can Buoy move my money?</h3>
+        <p>No. The connection is read-only by design, there is no pathway for Buoy to make a payment or transfer.</p>
+        <h3>What happens if I cancel?</h3>
+        <p>You can disconnect your accounts and close your account at any time. There’s no lock-in.</p>
+      </div>
+
+      <aside class="sec-cta card">
+        <h2>Budget with peace of mind</h2>
+        <div class="cta-row">
+          <a href={SITE.appRegister} class="btn btn-primary">Start your free trial</a>
+          <a href="/about" class="btn btn-ghost">About Buoy Money</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(180deg, var(--sky-top), var(--surface));
+    padding: clamp(48px, 8vw, 88px) 0 clamp(24px, 4vw, 40px);
+    text-align: center;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    margin-bottom: 16px;
+  }
+  .page-hero .lead {
+    max-width: 56ch;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 56px;
+  }
+  .trust {
+    padding: 30px 32px;
+  }
+  .t-icon {
+    font-size: 1.8rem;
+  }
+  .trust h2 {
+    font-size: 1.3rem;
+    margin: 14px 0 8px;
+  }
+  .trust p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .trust a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .security-faq {
+    max-width: 760px;
+    margin: 0 auto 48px;
+  }
+  .sec-cta {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px;
+    text-align: center;
+  }
+  .sec-cta h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 720px) {
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

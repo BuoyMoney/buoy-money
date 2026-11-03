@@ -1,0 +1,54 @@
+{
+  "version": "2026-10",
+  "founding": true,
+  "currency": "usd",
+  "products": [
+    {
+      "name": "bank_sync",
+      "displayName": "Bank sync",
+      "entitlements": [
+        "bank_sync"
+      ],
+      "requires": [],
+      "bundleOf": [],
+      "minQuantity": null,
+      "maxQuantity": null,
+      "includedLogins": 3,
+      "includedRefreshesPerMonth": null,
+      "monthly": {
+        "lookupKey": "bank_sync_monthly_founding",
+        "amountCents": 279,
+        "currency": "usd",
+        "version": 1
+      },
+      "yearly": {
+        "lookupKey": "bank_sync_yearly_founding",
+        "amountCents": 2399,
+        "currency": "usd",
+        "version": 1
+      }
+    },
+    {
+      "name": "extra_logins",
+      "displayName": "Extra bank logins",
+      "entitlements": [
+        "extra_logins"
+      ],
+      "requires": [
+        "bank_sync"
+      ],
+      "bundleOf": [],
+      "minQuantity": 1,
+      "maxQuantity": 20,
+      "includedLogins": null,
+      "includedRefreshesPerMonth": null,
+      "monthly": {
+        "lookupKey": "extra_logins_monthly_founding",
+        "amountCents": 50,
+        "currency": "usd",
+        "version": 1
+      },
+      "yearly": null
+    }
+  ]
+}

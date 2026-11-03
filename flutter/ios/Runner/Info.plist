@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<key>CFBundleDisplayName</key>
+		<string>Buoy Money</string>
+		<key>NSFaceIDUsageDescription</key>
+		<string>Buoy Money uses Face ID to securely unlock the app and protect your financial data.</string>
+		<!-- Plaid's iOS Link SDK can present a camera-backed screen (document / ID
+		     verification, paystub capture) for some institutions. iOS terminates the
+		     process on camera access if this string is absent. The receipt scanner also
+		     uses the camera. -->
+		<key>NSCameraUsageDescription</key>
+		<string>Buoy Money uses the camera when you scan a receipt, and when your bank asks to verify a document while you connect an account.</string>
+		<!-- image_picker (profile picture from the photo library). App Store Connect rejects the upload
+		     (ITMS-90683) without this purpose string. -->
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Buoy Money opens your photo library when you choose a profile picture. It only uses the photo you pick.</string>
+		<!-- Self-hosted servers: the sign-in screen can point the app at a server on the home
+		     network (a LAN IP or a .local name, sometimes over http). NSAllowsLocalNetworking opens
+		     only local addresses to http; everything else still needs https. -->
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsLocalNetworking</key>
+			<true/>
+		</dict>
+		<key>NSLocalNetworkUsageDescription</key>
+		<string>Buoy Money connects to your own Buoy Money server when you run one on your home network.</string>
+		<key>CFBundleExecutable</key>
+		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundleName</key>
+		<string>buoy_ai</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleShortVersionString</key>
+		<string>$(FLUTTER_BUILD_NAME)</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleVersion</key>
+		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>LSRequiresIPhoneOS</key>
+		<true/>
+		<!-- Export compliance: Buoy Money uses only standard encryption exempt under the OS
+		     (HTTPS/TLS, Keychain, Face ID) — no proprietary or bundled crypto. Declaring
+		     exemption here stops the per-build export-compliance prompt. -->
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false/>
+		<!-- Google Sign-In iOS client ID (forward form of the reversed URL scheme below).
+		     google_sign_in 7.x reads this at initialize() on iOS; without it the native SDK
+		     has no client ID (Dart passes clientId:null on iOS, serverClientId is only the
+		     backend token audience) and every "Continue with Google" tap fails on device. -->
+		<key>GIDClientID</key>
+		<string>841207882659-hioovd4rgi0s6cr869ajqnrl1rnsnnfu.apps.googleusercontent.com</string>
+		<!-- Google Sign-In URL Schemes -->
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<!-- Google Sign-In iOS Client ID (reversed) -->
+					<string>com.googleusercontent.apps.841207882659-hioovd4rgi0s6cr869ajqnrl1rnsnnfu</string>
+				</array>
+			</dict>
+			<dict>
+				<!-- Single sign-on on a self-hosted server returns to com.buoyai.buoymoney://oidc -->
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>com.buoyai.buoymoney.oidc</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>com.buoyai.buoymoney</string>
+				</array>
+			</dict>
+		</array>
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIMainStoryboardFile</key>
+		<string>Main</string>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<true/>
+		<key>UIApplicationSupportsIndirectInputEvents</key>
+		<true/>
+		<key>UIStatusBarHidden</key>
+		<false/>
+		<!-- Offline background sync (#493): workmanager on iOS uses BGTaskScheduler.
+		     The permitted identifier below must match the id registered in
+		     AppDelegate.swift and the Dart registerPeriodicTask call
+		     (kBuoyaiSyncTask = "com.buoyai.buoyAi.sync"). -->
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>processing</string>
+			<!-- Push notifications (#190): wake for background FCM/APNs delivery. -->
+			<string>remote-notification</string>
+		</array>
+		<key>BGTaskSchedulerPermittedIdentifiers</key>
+		<array>
+			<string>com.buoyai.buoyAi.sync</string>
+		</array>
+		<key>FlutterDeepLinkingEnabled</key>
+	<false/>
+</dict>
+</plist>

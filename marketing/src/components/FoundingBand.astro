@@ -1,0 +1,80 @@
+---
+import { SITE } from '../consts';
+import { FOUNDING_BAND } from '../data/story';
+import StoreBadges from './StoreBadges.astro';
+---
+
+<section class="founding" id="founding">
+  <div class="container">
+    <p class="f-label">{FOUNDING_BAND.label}</p>
+    <h2>{FOUNDING_BAND.headline}</h2>
+    <p class="f-sub">{FOUNDING_BAND.sub}</p>
+    <div class="f-cta">
+      <a href={SITE.appRegister} class="btn btn-white">Start your free trial</a>
+      <a href="/our-story" class="btn btn-outline">Read my story</a>
+    </div>
+    <div class="f-badges">
+      <StoreBadges tone="dark" align="center" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .founding {
+    background: linear-gradient(135deg, var(--blue) 0%, #0b3f96 100%);
+    color: #fff;
+    padding: clamp(56px, 9vw, 96px) 0;
+    text-align: center;
+  }
+  .founding .container {
+    max-width: 760px;
+  }
+  .f-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9fd0ff;
+    margin: 0 0 16px;
+  }
+  .founding h2 {
+    color: #fff;
+    font-size: clamp(1.9rem, 4.4vw, 2.8rem);
+    margin-bottom: 18px;
+  }
+  .f-sub {
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.1rem;
+    line-height: 1.55;
+    max-width: 62ch;
+    margin: 0 auto 30px;
+  }
+  .f-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .f-badges {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+  }
+  .btn-white {
+    background: #fff;
+    color: var(--blue);
+  }
+  .btn-white:hover {
+    background: #eef5fc;
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+  }
+  .btn-outline:hover {
+    border-color: #fff;
+    transform: translateY(-2px);
+  }
+</style>

@@ -1,0 +1,165 @@
+---
+// Mobile-app download section. Android is LIVE on Google Play (2026-08-26): the card links
+// to the official listing via SITE.playStore (carries a Play install referrer). iOS stays a
+// request-by-email TestFlight CTA until the App Store listing is approved; swap that card
+// for the App Store URL at approval.
+import { SITE } from '../consts';
+
+const BETA_EMAIL = 'contact@buoy-ai.com';
+const iosMailto = `mailto:${BETA_EMAIL}?subject=${encodeURIComponent('Buoy Money iOS beta invite')}&body=${encodeURIComponent('Hi! I would like to join the Buoy Money iOS TestFlight beta. My Apple ID email is: ')}`;
+---
+
+<section class="mobile-apps" id="mobile-apps">
+  <div class="container">
+    <p class="m-label">iOS &amp; Android</p>
+    <h2>Buoy Money in your pocket</h2>
+    <p class="m-sub">
+      The full app — count-up budgets, cash flow, AI insights, and push alerts before bills
+      hit — is built for iPhone and Android. It is live on Google Play today, with iOS in App Store review.
+    </p>
+
+    <div class="store-row">
+      <a class="store-card" href={SITE.playStore} rel="noopener" target="_blank">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="store-icon">
+          <path
+            fill="currentColor"
+            d="M3.6 2.3 13.8 12 3.6 21.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1Zm11.6 8.3 2.6-2.5 3.6 2c.8.5.8 1.6 0 2l-3.6 2-2.6-2.5-.5-.5.5-.5ZM5.3 2.1l9.4 5.4-2.3 2.2L5.3 2.1Zm7.1 12.2 2.3 2.2-9.4 5.4 7.1-7.6Z"
+          />
+        </svg>
+        <span class="store-text">
+          <span class="store-state">Live now</span>
+          <span class="store-name">Google Play</span>
+        </span>
+        <span class="store-cta">Get the app</span>
+      </a>
+
+      <a class="store-card" href={iosMailto}>
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="store-icon">
+          <path
+            fill="currentColor"
+            d="M16.7 12.9c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.2-.9-1.7 0-3.2 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.5 1.2 0 1.7-.8 3.2-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-3.9ZM14.4 5.6c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4Z"
+          />
+        </svg>
+        <span class="store-text">
+          <span class="store-state">TestFlight beta</span>
+          <span class="store-name">App Store</span>
+        </span>
+        <span class="store-cta">Request invite</span>
+      </a>
+    </div>
+
+    <p class="m-foot">
+      Don't want to wait? The full app is
+      <a href={SITE.appRegister}>live on the web today</a> — your account carries straight
+      into the mobile apps.
+    </p>
+  </div>
+</section>
+
+<style>
+  .mobile-apps {
+    background: var(--surface);
+    padding: clamp(56px, 9vw, 96px) 0;
+    text-align: center;
+  }
+  .mobile-apps .container {
+    max-width: 760px;
+  }
+  .m-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-text);
+    margin: 0 0 16px;
+  }
+  .mobile-apps h2 {
+    font-size: clamp(1.9rem, 4.4vw, 2.8rem);
+    margin-bottom: 18px;
+  }
+  .m-sub {
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    line-height: 1.55;
+    max-width: 62ch;
+    margin: 0 auto 34px;
+  }
+  .store-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+  .store-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    border: 1.5px solid var(--blue);
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .store-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(9, 74, 170, 0.16);
+  }
+  .store-icon {
+    width: 30px;
+    height: 30px;
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+  .store-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+  .store-state {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-text);
+  }
+  .store-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .store-cta {
+    margin-left: 10px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .m-note {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 56ch;
+    margin: 0 auto 18px;
+  }
+  .m-note a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .m-foot {
+    color: var(--ink-faint);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .m-foot a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+</style>

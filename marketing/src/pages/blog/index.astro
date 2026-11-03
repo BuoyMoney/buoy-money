@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime() || a.id.localeCompare(b.id)
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Blog"
+  description="Notes on personal finance, count-up budgeting, and building Buoy."
+  path="/blog"
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">THE BLOG</p>
+        <h1 class="blog-h1">Field notes.</h1>
+      </div>
+
+      {posts.length === 0 && <p class="lead">No posts yet, check back soon.</p>}
+
+      <ul class="post-list">
+        {
+          posts.map((post) => (
+            <li class="card post-card">
+              <a href={`/blog/${post.id}`}>
+                <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+                <span class="read">Read article →</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+  }
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 20px;
+  }
+  .post-card {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .post-card a {
+    display: block;
+    padding: 30px 32px;
+  }
+  .post-card time {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+  .post-card h2 {
+    font-size: 1.55rem;
+    margin: 10px 0 8px;
+  }
+  .post-card p {
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+  .read {
+    color: var(--green-deep);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .post-card a:hover .read {
+    text-decoration: underline;
+  }
+</style>

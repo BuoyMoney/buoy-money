@@ -1,0 +1,26 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["62F9QFZ3UM.com.buoyai.buoyAi"],
+        "components": [
+          {
+            "/": "/app/billing",
+            "comment": "Return into the iOS app from hosted Stripe Checkout (?checkout=success|cancel) and billing deep links"
+          },
+          {
+            "/": "/app/billing/*",
+            "comment": "Billing subpaths"
+          },
+          {
+            "/": "/app/plaid-oauth",
+            "comment": "Plaid OAuth return (iOS redirect_uri): back into the app after a bank login such as Chase"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["62F9QFZ3UM.com.buoyai.buoyAi"]
+  }
+}

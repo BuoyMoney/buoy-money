@@ -1,0 +1,44 @@
+---
+// Replaces Starlight's social-icons slot in the docs header with the way back to the
+// main site and into the app. Starlight still renders search and the theme picker.
+import { SITE } from '../../consts';
+---
+
+<nav class="docs-links" aria-label="Buoy">
+  <a href="/">buoy-ai.com</a>
+  <a href="/blog">Blog</a>
+  <a class="open-app" href={SITE.appLogin}>Open the app</a>
+</nav>
+
+<style>
+  .docs-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--sl-text-sm);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .docs-links a {
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+  }
+  .docs-links a:hover {
+    color: var(--sl-color-white);
+  }
+  .docs-links .open-app {
+    color: var(--sl-color-black);
+    background: var(--sl-color-accent);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+  }
+  .docs-links .open-app:hover {
+    color: var(--sl-color-black);
+    background: var(--sl-color-accent-high);
+  }
+  @media (max-width: 50rem) {
+    .docs-links a:not(.open-app) {
+      display: none;
+    }
+  }
+</style>

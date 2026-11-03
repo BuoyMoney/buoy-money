@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPETITORS } from '../data/seo';
+import { SITE } from '../consts';
+
+const title = 'Best Mint Alternatives in 2026';
+const description =
+  'Mint shut down in 2024. Here are the best budgeting apps to replace it, YNAB, Monarch, Copilot, Rocket Money, and Buoy, compared on price, approach, and who they suit.';
+const url = `${SITE.url}/mint-alternatives`;
+
+// Buoy's own row, shown first and highlighted.
+const buoy = {
+  name: 'Buoy',
+  status: 'Active',
+  pricing: '$10/mo or $100/yr (Premium $15/$150)',
+  approach: 'Count-up budgeting + gamification',
+  bestFor: 'People who want saving to feel rewarding, not restrictive',
+};
+
+const jsonLd = [
+  {
+    '@type': 'Article',
+    headline: `${title}: Free & Paid Budgeting Apps`,
+    description,
+    mainEntityOfPage: url,
+    // Named human author (see Seo.astro's Person node) — the E-E-A-T signal that carries
+    // weight in YMYL finance. Organization stays as publisher.
+    author: { '@id': `${SITE.url}/#founder` },
+    publisher: { '@id': `${SITE.url}/#org` },
+    publisher: { '@id': `${SITE.url}/#org` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Mint alternatives', item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} path="/mint-alternatives" ogType="article" jsonLd={jsonLd}>
+  <header class="cmp-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Mint alternatives</span>
+      </nav>
+      <p class="kicker">COMPARISON</p>
+      <h1>The best Mint alternatives in 2026</h1>
+      <p class="answer-first">{COMPETITORS.intro}</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:clamp(32px,5vw,56px)">
+    <div class="container">
+      <div class="table-wrap">
+        <table class="cmp-table">
+          <thead>
+            <tr>
+              <th>App</th><th>Status</th><th>Pricing</th><th>Approach</th><th>Best for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="is-buoy">
+              <td><strong>{buoy.name}</strong></td>
+              <td>{buoy.status}</td>
+              <td>{buoy.pricing}</td>
+              <td>{buoy.approach}</td>
+              <td>{buoy.bestFor}</td>
+            </tr>
+            {
+              COMPETITORS.competitors.map((c) => (
+                <tr>
+                  <td><strong>{c.name}</strong></td>
+                  <td>{c.status}</td>
+                  <td>{c.pricing}</td>
+                  <td>{c.approach}</td>
+                  <td>{c.bestFor}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cmp-list">
+        {
+          COMPETITORS.competitors.map((c) => (
+            <article class="card cmp-card">
+              <div class="cmp-card-head">
+                <h2>{c.name}</h2>
+                <span class="cmp-price">{c.pricing}</span>
+              </div>
+              <p class="cmp-meta">
+                <span>{c.status}</span> · <span>{c.approach}</span>
+              </p>
+              <p><strong>Best for:</strong> {c.bestFor}</p>
+              <p><strong>vs. Buoy:</strong> {c.vsBuoy}</p>
+              {c.sources?.length > 0 && (
+                <p class="cmp-sources">
+                  Sources:{' '}
+                  {c.sources.map((s, i) => (
+                    <>
+                      {i > 0 && ', '}
+                      <a href={s} rel="nofollow noopener" target="_blank">{new URL(s).hostname.replace('www.', '')}</a>
+                    </>
+                  ))}
+                </p>
+              )}
+            </article>
+          ))
+        }
+      </div>
+
+      <aside class="cmp-cta card">
+        <h2>Why budgeters are switching to Buoy</h2>
+        <p>
+          Most apps make budgeting a balance that counts down to zero. Buoy flips it:
+          your categories <a href="/count-up-budgeting">count up</a> as you save, with
+          streaks, badges, and levels that make staying on track feel like winning.
+        </p>
+        <div class="cta-row">
+          <a href={SITE.appRegister} class="btn btn-primary">Start your free trial</a>
+          <a href="/count-up-budgeting" class="btn btn-ghost">How count-up works</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cmp-hero {
+    background: linear-gradient(180deg, var(--sky-top), var(--surface));
+    padding: clamp(48px, 8vw, 88px) 0 clamp(24px, 4vw, 40px);
+  }
+  .cmp-hero .container {
+    max-width: 860px;
+  }
+  .crumbs {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    margin-bottom: 18px;
+  }
+  .crumbs a:hover {
+    color: var(--blue);
+  }
+  .cmp-hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    margin-bottom: 22px;
+  }
+  .answer-first {
+    font-size: 1.12rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 640px;
+  }
+  .cmp-table th,
+  .cmp-table td {
+    padding: 13px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .cmp-table th {
+    background: var(--ink);
+    color: #fff;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .cmp-table tr.is-buoy {
+    background: rgba(9, 74, 170, 0.06);
+  }
+  .cmp-table tr.is-buoy td {
+    border-bottom: 2px solid var(--blue);
+  }
+  .cmp-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-top: 40px;
+  }
+  .cmp-card {
+    padding: 28px 30px;
+  }
+  .cmp-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .cmp-card-head h2 {
+    font-size: 1.4rem;
+  }
+  .cmp-price {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 0.9rem;
+    text-align: right;
+  }
+  .cmp-meta {
+    color: var(--ink-faint);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin: 6px 0 16px;
+  }
+  .cmp-card p {
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+  }
+  .cmp-sources {
+    font-size: 0.82rem !important;
+    color: var(--ink-faint) !important;
+  }
+  .cmp-sources a {
+    color: var(--ink-faint);
+    text-decoration: underline;
+  }
+  .cmp-cta {
+    margin-top: 40px;
+    padding: 34px 36px;
+    text-align: center;
+  }
+  .cmp-cta h2 {
+    font-size: 1.6rem;
+  }
+  .cmp-cta p {
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 12px auto 22px;
+  }
+  .cmp-cta a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-row a {
+    color: inherit;
+  }
+  @media (max-width: 760px) {
+    .cmp-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

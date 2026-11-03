@@ -1,0 +1,48 @@
+{
+  "subscriptionId": "sub_1",
+  "status": "active",
+  "interval": "yearly",
+  "founding": true,
+  "cancelAtPeriodEnd": false,
+  "nextInvoiceAt": "2027-01-15T00:00:00Z",
+  "currency": "usd",
+  "totalCents": 3149,
+  "lines": [
+    {
+      "kind": "product",
+      "product": "bank_sync",
+      "description": "Bank sync",
+      "quantity": 1,
+      "unitAmountCents": 2399,
+      "amountCents": 2399,
+      "proration": false
+    },
+    {
+      "kind": "product",
+      "product": "extra_logins",
+      "description": "Extra bank logins",
+      "quantity": 2,
+      "unitAmountCents": 75,
+      "amountCents": 150,
+      "proration": false
+    },
+    {
+      "kind": "ai_overage",
+      "product": "ai_overage",
+      "description": "AI pay-as-you-go",
+      "quantity": 1,
+      "unitAmountCents": 0,
+      "amountCents": 275,
+      "proration": false
+    },
+    {
+      "kind": "refresh_overage",
+      "product": null,
+      "description": "Extra instant refresh x3",
+      "quantity": 1,
+      "unitAmountCents": 0,
+      "amountCents": 48,
+      "proration": false
+    }
+  ]
+}

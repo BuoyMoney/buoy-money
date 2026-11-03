@@ -1,0 +1,21 @@
+{
+  "_comment": "License policy for the dependency scan (scripts/license/license_scan.py). allow: no action. review: compatible with AGPL-3.0 or conditionally so, needs a human look the first time. deny: incompatible with an AGPL app or not open source. Unknown or missing licenses are treated as deny in --enforce mode.",
+  "allow": [
+    "MIT", "MIT-0", "ISC", "BSD-2-Clause", "BSD-3-Clause", "Apache-2.0", "0BSD", "Zlib",
+    "Unlicense", "CC0-1.0", "MS-PL", "PostgreSQL", "OFL-1.1", "BlueOak-1.0.0", "Python-2.0",
+    "CC-BY-4.0", "BSL-1.0", "X11", "Artistic-2.0"
+  ],
+  "review": [
+    "MPL-2.0", "LGPL-2.1-only", "LGPL-2.1-or-later", "LGPL-3.0-only", "LGPL-3.0-or-later",
+    "EPL-1.0", "EPL-2.0", "GPL-2.0-or-later", "GPL-3.0-only", "GPL-3.0-or-later",
+    "AGPL-3.0-only", "AGPL-3.0-or-later", "CC-BY-SA-4.0", "MS-RL"
+  ],
+  "deny": [
+    "SSPL-1.0", "BUSL-1.1", "Commons-Clause", "Elastic-2.0", "GPL-2.0-only", "GPL-2.0",
+    "CC-BY-NC-4.0", "CC-BY-NC-SA-4.0", "CC-BY-NC-ND-4.0", "CC-BY-ND-4.0", "Proprietary"
+  ],
+  "package_overrides": {
+    "_comment": "Exact 'ecosystem:name' -> SPDX expression, for packages whose metadata is missing or wrong. Record the reason in the PR that adds an entry.",
+    "dotnet:xunit.abstractions": "Apache-2.0"
+  }
+}

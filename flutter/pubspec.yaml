@@ -1,0 +1,291 @@
+name: buoy_ai
+description: "Buoy Money, personal finance and budgeting"
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.5.37+1
+
+environment:
+  sdk: ^3.3.0
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  # Provides usePathUrlStrategy() so web URLs are clean paths (no #) under the
+  # /app/ base-href. Part of the Flutter SDK; no-op on mobile via conditional export.
+  flutter_web_plugins:
+    sdk: flutter
+
+  # gen_l10n localization scaffold (#941 international). English-only today;
+  # new user-facing strings go in lib/l10n/app_en.arb from now on.
+  flutter_localizations:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.9
+  
+  # HTTP client with interceptors (like Axios)
+  dio: ^5.11.0
+  
+  # HTTP for streaming requests
+  http: ^1.2.0
+  
+  # Secure storage for JWT tokens
+  flutter_secure_storage: ^10.3.1
+  
+  # State management
+  provider: ^6.1.2
+  
+  # Routing
+  go_router: ^17.5.0
+  
+  # Internationalization / formatting
+  intl: ^0.20.2  # flutter_localizations pins intl; keep the constraint compatible
+  
+  # JSON serialization
+  json_annotation: ^4.12.0
+  
+  # Markdown rendering for AI chat
+  flutter_markdown: ^0.7.4+3
+  markdown: ^7.3.1
+  
+  # Environment configuration
+  flutter_dotenv: ^6.0.1
+  
+  # Persistent storage for preferences
+  shared_preferences: ^2.5.5
+
+  # Browser APIs (document.cookie) for the analytics-consent cookie shared with the
+  # marketing site. Already in the tree transitively; declared because we import it
+  # directly from consent_store_web.dart.
+  web: ^1.1.1
+
+  # Biometric authentication (fingerprint, Face ID)
+  local_auth: ^3.0.2
+  
+  # Plaid Link SDK for bank account connections
+  plaid_flutter: ^5.2.1
+  
+  # Calendar widget for subscription due dates
+  table_calendar: ^3.2.1
+  
+  # URL launcher for opening web links (subscription portal)
+  url_launcher: ^6.2.5
+
+  # QR code of the Cloud approve page on the self-host "Link with BuoyAI Cloud" card (pure Dart, web + mobile)
+  qr_flutter: ^4.1.0
+
+  # Profile-picture picking (gallery/camera) on web + mobile; resizes before upload
+  image_picker: ^1.1.2
+
+  # Decode/resize/re-encode the picked avatar client-side (image_picker doesn't
+  # resize on web) so uploads are always small (~256px JPEG).
+  image: ^4.9.2
+
+  # Pure-Dart pan/zoom crop UI for the avatar (works on web + mobile, no native
+  # config or CSP script needed — unlike image_cropper).
+  crop_your_image: ^2.0.0
+  
+  # Google Sign-In for OAuth authentication
+  google_sign_in: ^7.0.0
+  
+  # Explicit dependency for web-only renderButton widget
+  google_sign_in_web: ^1.1.3
+  
+  # Apple Sign-In for iOS authentication
+  sign_in_with_apple: ^8.1.0
+  device_info_plus: ^13.2.0  # Sentry context for Apple sign-in failures (already resolved transitively)
+  
+  # Crypto for Apple Sign-In nonce generation
+  crypto: ^3.0.3
+  
+  # Google Fonts for cinematic theme typography
+  google_fonts: ^8.2.1
+  posthog_flutter: ^5.34.2
+  sentry_flutter: 9.26.0  # EXACT pin: 9.27.0's Android plugin class fails to land on the app compile classpath (cannot find symbol SentryFlutterPlugin, assembleProfile/Release); re-test on the next sentry major or AGP/Kotlin bump
+  sentry_dio: 9.26.0  # lockstep with sentry_flutter
+  passkeys: ^2.22.3
+  passkeys_platform_interface: ^2.6.0
+
+  # AI visualizations (#388)
+  # Phase 1: structured charts (fl_chart renders the UserVisualization pipeline).
+  # Phase 2: model-authored SVG rendered natively + safely (flutter_svg runs no JS),
+  # cross-platform (web + mobile) without a WebView/iframe.
+  fl_chart: ^1.2.0
+  # Celebration chime (badge/challenge unlock) — see utils/celebration_fx.dart.
+  audioplayers: ^6.1.0
+  flutter_svg: ^2.0.10
+
+  # Share achievement cards to the OS-native share sheet (Web Share API on web). #571
+  share_plus: ^13.3.0
+
+  # Push notifications (#190): FCM delivery on Android + iOS (APNs via FCM).
+  # Initialized Dart-only from lib/firebase_options.dart (no google-services.json
+  # needed for Messaging); the service no-ops on web and when the options file
+  # still holds its committed placeholder values.
+  firebase_core: ^4.13.0
+  firebase_messaging: ^16.5.0
+
+  # Universal Links / App Links — handles the return into the app from hosted
+  # Stripe Checkout on iOS (digital-goods link-out). Mobile-only; web uses the URL.
+  app_links: ^7.2.1
+
+  # Native store review prompts (SKStoreReviewController / Play In-App Review). Mobile-only;
+  # gated by ReviewPromptService so it fires only after earned wins, never on demand.
+  in_app_review: ^2.0.12
+
+  # ── Offline-first mobile architecture (#493) ────────────────────────────────
+  # Local cache + write outbox live in a Drift (SQLite) database on mobile. Web
+  # keeps today's network-only behaviour via a NoopOfflineStore, so these are
+  # imported everywhere but only exercised off-web. drift core + drift_flutter are
+  # web-safe to import (conditional exports internally); we never import
+  # package:drift/native.dart in lib/. No sqlite3_flutter_libs — drift_flutter
+  # bundles the native library itself (and sqlite3_flutter_libs is EOL).
+  drift: ^2.34.3
+  drift_flutter: ^0.3.1
+  # Real request outcomes + interface state drive the offline banner and sync.
+  connectivity_plus: ^7.3.1
+  # Periodic background outbox drain + cache warm (Android WorkManager / iOS
+  # BGTaskScheduler). Wired mobile-only behind a conditional import.
+  workmanager: ^0.10.9
+  # Idempotency keys for outbox operations (uuid v4).
+  uuid: ^4.6.0
+  flutter_timezone: ^5.1.0
+  purchases_flutter: ^10.12.0
+  file_picker: ^13.1.0
+  receive_sharing_intent: ^1.9.0
+  pointycastle: ^4.0.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Live-binding integration tests (the renderer-proof overflow sweep runs here).
+  # Runs the REAL app against a live fleet slot via `flutter drive` — see
+  # integration_test/overflow_sweep_test.dart and scripts/dev/overflow-sweep.sh.
+  integration_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+  
+  # Mocking framework for unit tests
+  mockito: ^5.7.0  # 5.8 needs meta ^1.18.3; blocked by flutter_test pin until next Flutter SDK bump
+  build_runner: ^2.15.1
+
+  # Drift code generation for the offline database (#493).
+  drift_dev: ^2.34.5
+  
+  # Code generation for JSON serialization
+  json_serializable: ^6.14.1
+  
+  # App icon generator
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.8
+
+# App Icon Configuration
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  adaptive_icon_background: "#FAF3E6"  # Warm cream — makes the blue+green buoy pop
+  adaptive_icon_foreground: "assets/icons/app_icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  background_color_ios: "#FAF3E6"  # iOS flattens alpha onto this (was defaulting to white)
+  web:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+    background_color: "#FAF3E6"
+  windows:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+  macos:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+
+# Native splash screen (shown during app launch, before Flutter renders).
+# Cinematic design language: deep background (#04040A) with the centered logo.
+# Regenerate after edits:  dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#04040A"
+  image: "assets/icons/splash_logo.png"
+  # Android 12+ uses the OS splash API (centered icon on a solid background).
+  android_12:
+    color: "#04040A"
+    image: "assets/icons/splash_logo.png"
+  android: true
+  ios: true
+  web: false
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # Run gen_l10n on pub get / build (config in l10n.yaml; ARBs in lib/l10n/).
+  generate: true
+
+  # App assets
+  assets:
+    - assets/icons/
+    - assets/legal/
+    - assets/achievements/
+    - assets/streaks/
+    - assets/sounds/
+    - assets/levels/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package

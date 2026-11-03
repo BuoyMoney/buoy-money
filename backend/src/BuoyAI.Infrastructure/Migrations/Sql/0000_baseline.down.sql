@@ -1,0 +1,8 @@
+-- 0000_baseline (DOWN)
+--
+-- There is intentionally no automated rollback for the baseline: "down" here would mean
+-- dropping the entire application schema, which is never something to run unattended.
+-- The baseline exists only to stand up a brand-new database; it is marked already-applied
+-- (never executed) on existing EF-managed databases during the cutover (see SqlMigrationRunner).
+--
+-- To tear a throwaway/dev database all the way down, just drop and recreate the database.

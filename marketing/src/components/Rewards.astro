@@ -1,0 +1,151 @@
+---
+import { REWARDS } from '../consts';
+const icons = ['🔥', '🏅', '📈'];
+---
+
+<section class="section section-tint rewards" id="rewards">
+  <div class="container">
+    <div class="section-head" style="text-align:center; margin-inline:auto">
+      <p class="kicker" style="justify-content:center">{REWARDS.kicker}</p>
+      <h2>{REWARDS.title}</h2>
+      <p class="lead" style="margin:16px auto 0">{REWARDS.subtitle}</p>
+    </div>
+
+    <div class="pillars">
+      {
+        REWARDS.pillars.map((p, i) => (
+          <div class="card pillar">
+            <span class="pillar-icon" aria-hidden="true">{icons[i]}</span>
+            <h3 class="pillar-title">{p.title}</h3>
+            <p class="pillar-desc">{p.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Level progression: Beginner → Legend -->
+    <div class="levels card" role="img" aria-label={`Seven levels from ${REWARDS.levels[0]} to ${REWARDS.levels[REWARDS.levels.length - 1]}`}>
+      <ol class="levels-track">
+        {
+          REWARDS.levels.map((lvl, i) => (
+            <li class:list={['level', { last: i === REWARDS.levels.length - 1 }]}>
+              <span class="dot" aria-hidden="true" />
+              <span class="level-name">{lvl}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <p class="challenge-note">{REWARDS.challengeNote}</p>
+  </div>
+</section>
+
+<style>
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .pillar {
+    padding: 32px 30px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .pillar-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--surface-tint);
+    font-size: 1.35rem;
+    margin-bottom: 18px;
+  }
+  .pillar-title {
+    font-size: 1.45rem;
+    margin-bottom: 10px;
+  }
+  .pillar-desc {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* level progression strip */
+  .levels {
+    margin-top: 28px;
+    padding: 26px 30px;
+  }
+  .levels-track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .level {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  /* connecting line */
+  .level:not(.last)::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    z-index: 0;
+  }
+  .dot {
+    position: relative;
+    z-index: 1;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    box-shadow: 0 0 0 4px #fff;
+  }
+  .level.last .level-name {
+    color: var(--green-text);
+  }
+
+  .challenge-note {
+    text-align: center;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin: 30px auto 0;
+    max-width: 56ch;
+  }
+
+  @media (max-width: 860px) {
+    .pillars {
+      grid-template-columns: 1fr;
+    }
+    .levels-track {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px 18px;
+    }
+    .level {
+      flex: 0 0 auto;
+      flex-direction: row;
+    }
+    .level:not(.last)::after {
+      display: none;
+    }
+  }
+</style>

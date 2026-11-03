@@ -1,0 +1,93 @@
+---
+import { FAQ } from '../consts';
+
+// FAQPage structured data for rich results — built from the same content.
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
+---
+
+<section class="section section-tint faq" id="faq">
+  <div class="container">
+    <div class="section-head" style="text-align:center; margin-inline:auto">
+      <p class="kicker" style="justify-content:center">{FAQ.kicker}</p>
+      <h2>{FAQ.title}</h2>
+    </div>
+
+    <ul class="faq-list">
+      {
+        FAQ.items.map((item, i) => (
+          <li>
+            <details open={i === 0}>
+              <summary>
+                <span>{item.q}</span>
+                <svg class="chev" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <p>{item.a}</p>
+            </details>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+<style>
+  .faq .container {
+    max-width: 760px;
+  }
+  .faq-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  details {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--ink);
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .chev {
+    width: 20px;
+    height: 20px;
+    color: var(--blue);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  details[open] .chev {
+    transform: rotate(180deg);
+  }
+  details p {
+    margin: 0;
+    padding: 0 24px 22px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ROADMAP } from '../data/roadmap';
+import { SITE } from '../consts';
+
+const url = `${SITE.url}/roadmap`;
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Roadmap', item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Roadmap"
+  description="What's live, what I'm building, and what I'm exploring next in Buoy Money, and how to help shape it. I build in the open."
+  path="/roadmap"
+  jsonLd={jsonLd}
+>
+  <header class="rm-hero">
+    <div class="container">
+      <p class="kicker" style="justify-content:center">BUILDING IN THE OPEN</p>
+      <h1>The roadmap</h1>
+      <p class="lead" style="margin-inline:auto">
+        I’m early, and I build with my users. Here’s what’s live, what I’m building,
+        and what I’m weighing next.
+      </p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:clamp(28px,4vw,48px)">
+    <div class="container">
+      <div class="rm-grid">
+        {
+          ROADMAP.columns.map((col) => (
+            <div class:list={['rm-col', `is-${col.key}`]}>
+              <div class="rm-col-head">
+                <h2>{col.title}</h2>
+                <p>{col.blurb}</p>
+              </div>
+              <ul>
+                {col.items.map((it) => (
+                  <li class="card rm-item">
+                    <h3>{it.title}</h3>
+                    <p>{it.desc}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+
+      <aside class="rm-cta card">
+        <h2>Have an idea? Help me prioritize.</h2>
+        <p>
+          Founding members shape what I build next. Vote on what’s here, or suggest
+          something new on my public feedback board.
+        </p>
+        <div class="cta-row">
+          <a href={SITE.feedbackUrl} class="btn btn-primary" rel="noopener">Vote &amp; suggest features</a>
+          <a href="/our-story" class="btn btn-ghost">Read my story</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .rm-hero {
+    background: linear-gradient(180deg, var(--sky-top), var(--surface));
+    padding: clamp(48px, 8vw, 88px) 0 clamp(24px, 4vw, 40px);
+    text-align: center;
+  }
+  .rm-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin-bottom: 16px;
+  }
+  .rm-hero .lead {
+    max-width: 60ch;
+  }
+  .rm-hero a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .rm-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .rm-col-head {
+    margin-bottom: 18px;
+  }
+  .rm-col-head h2 {
+    font-size: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .rm-col-head h2::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .is-live .rm-col-head h2::before {
+    background: var(--green);
+  }
+  .is-building .rm-col-head h2::before {
+    background: var(--blue);
+  }
+  .is-exploring .rm-col-head h2::before {
+    background: var(--ink-faint);
+  }
+  .rm-col-head p {
+    color: var(--ink-faint);
+    font-size: 0.92rem;
+    margin: 4px 0 0;
+  }
+  .rm-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .rm-item {
+    padding: 18px 20px;
+  }
+  .rm-item h3 {
+    font-size: 1.05rem;
+    margin: 0 0 4px;
+  }
+  .rm-item p {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+  .rm-cta {
+    margin-top: 44px;
+    padding: 34px 36px;
+    text-align: center;
+  }
+  .rm-cta h2 {
+    font-size: 1.5rem;
+  }
+  .rm-cta p {
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 10px auto 22px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 860px) {
+    .rm-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>

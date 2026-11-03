@@ -1,0 +1,11 @@
+<Project>
+  <!--
+    One product version for the whole backend (see /VERSIONING.md). Keep this equal
+    to flutter/pubspec.yaml's X.Y.Z and the release tag vX.Y.Z. All backend projects
+    under backend/src inherit it, so a running container reports it at GET /api/version.
+    A CI check fails the release if this drifts from the tag.
+  -->
+  <PropertyGroup>
+    <Version>1.5.37</Version>
+  </PropertyGroup>
+</Project>

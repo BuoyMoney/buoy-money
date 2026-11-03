@@ -1,0 +1,201 @@
+---
+import { SITE, HERO } from '../consts';
+import StoreBadges from './StoreBadges.astro';
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">{HERO.kicker}</p>
+      <h1 class="hero-title">
+        Your budget <span class="text-blue">counts up</span>,<br />
+        so saving feels like winning.
+      </h1>
+      <p class="lead hero-body">{HERO.body}</p>
+      <div class="hero-actions">
+        <a href={SITE.appRegister} class="btn btn-primary">{HERO.primaryCta}</a>
+        <a href="/#how-it-works" class="btn btn-ghost">{HERO.secondaryCta}</a>
+      </div>
+      <p class="hero-trust">
+        <span class="check" aria-hidden="true">✓</span> No card required ·
+        <span class="check" aria-hidden="true">✓</span> Read-only bank access via Plaid ·
+        <span class="check" aria-hidden="true">✓</span> I never sell your data
+      </p>
+      <div class="hero-badges">
+        <StoreBadges />
+      </div>
+    </div>
+
+    <!-- Product concept: a budget category earning a daily allowance (counts up) -->
+    <div class="hero-card-wrap" aria-hidden="true">
+      <div class="hero-card card">
+        <div class="hc-head">
+          <span class="hc-cat">Dining out</span>
+          <span class="hc-pill">On track</span>
+        </div>
+        <div class="hc-amount">$128.40<small>available</small></div>
+        <div class="hc-bar"><span></span></div>
+        <div class="hc-foot">
+          <span class="hc-grow">▲ +$6.00 / day</span>
+          <span class="hc-muted">resets in 12 days</span>
+        </div>
+      </div>
+      <img src="/logo-mark.png" alt="" width="64" height="64" class="hero-buoy" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--surface) 78%);
+    padding: clamp(56px, 8vw, 104px) 0 clamp(64px, 9vw, 120px);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  /* allow grid children to shrink below their min-content (prevents the
+     product card from forcing horizontal overflow on narrow screens) */
+  .hero-copy,
+  .hero-card-wrap {
+    min-width: 0;
+  }
+  .hero-title {
+    font-size: clamp(2.4rem, 5.4vw, 4rem);
+    margin-bottom: 22px;
+  }
+  .hero-body {
+    font-size: clamp(1.05rem, 2vw, 1.22rem);
+    margin-bottom: 32px;
+    max-width: 40ch;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .hero-trust {
+    font-size: 0.92rem;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+  .hero-trust .check {
+    color: var(--green);
+    font-weight: 800;
+  }
+  .hero-badges {
+    margin-top: 20px;
+  }
+
+  /* ---- product card ---- */
+  .hero-card-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-card {
+    padding: 26px 28px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: var(--shadow-lg); /* believable cast shadow for the floating focal card */
+    animation: float 7s ease-in-out infinite;
+  }
+  .hc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .hc-cat {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .hc-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    background: rgba(30, 180, 66, 0.12);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .hc-amount {
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--blue);
+    line-height: 1;
+  }
+  .hc-amount small {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-left: 4px;
+  }
+  .hc-bar {
+    height: 10px;
+    border-radius: 999px;
+    background: var(--surface-tint);
+    margin: 18px 0 14px;
+    overflow: hidden;
+  }
+  .hc-bar span {
+    display: block;
+    height: 100%;
+    width: 68%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+  }
+  .hc-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 14px; /* keeps a gap between "/day" and "resets…" even when tight */
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .hc-grow {
+    color: var(--green-deep);
+  }
+  .hc-muted {
+    color: var(--ink-faint);
+  }
+  .hero-buoy {
+    position: absolute;
+    top: -30px;
+    right: -6px;
+    filter: drop-shadow(0 10px 20px rgba(9, 74, 170, 0.25));
+    animation: float 7s ease-in-out infinite 0.3s;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
+  }
+
+  @media (max-width: 880px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+    .hero-card-wrap {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+  }
+  /* Tuck the buoy into the corner once the hero stacks to one column. */
+  @media (max-width: 880px) {
+    .hero-buoy {
+      right: 2px;
+      width: 52px;
+      height: 52px;
+    }
+  }
+</style>

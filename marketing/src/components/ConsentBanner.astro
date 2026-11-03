@@ -1,0 +1,99 @@
+---
+/*
+  Analytics consent banner for the marketing site.
+
+  ONE prompt covers this site and the Flutter app. Both are served from buoy-ai.com
+  (the app under /app/), so the choice lives in a first-party `buoy_consent` cookie
+  that either surface can read. Whichever the visitor reaches first does the asking;
+  the other reads the cookie and stays silent. The app half of the contract is
+  flutter/lib/services/consent_store_web.dart — the cookie name and the `granted` /
+  `denied` values must stay identical in both places.
+
+  Inert markup only. All behaviour lives in the external /consent.js, because CSP is
+  `script-src 'self'` with no 'unsafe-inline' — no inline handlers are possible here.
+  The PostHog key rides in a data attribute rather than the script so that a static,
+  cacheable file can stay static (same reason TrialOffer passes its config this way).
+  That key is the public `phc_` ingestion key, which ships to the browser by design.
+*/
+const posthogKey = process.env.POSTHOG_KEY ?? '';
+---
+
+<div class="consent" id="consent-banner" data-posthog-key={posthogKey} hidden>
+  <p class="consent-text">
+    I use privacy-friendly analytics to understand what's working on this site. No
+    session recording, no ads, and I never track you across other sites or apps or
+    share this data with anyone. You can change this any time.
+    <a href="/privacy-policy">Privacy Policy</a>
+  </p>
+  <div class="consent-actions">
+    <button type="button" class="btn btn-ghost" data-consent-decline>Decline</button>
+    <button type="button" class="btn btn-primary" data-consent-accept>Accept</button>
+  </div>
+</div>
+
+<script type="module" src="/consent.js"></script>
+
+<style>
+  .consent {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    z-index: 60;
+    width: min(720px, calc(100vw - 32px));
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+  }
+  .consent[hidden] {
+    display: none;
+  }
+  .consent-text {
+    flex: 1 1 320px;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .consent-text a {
+    color: var(--blue);
+    text-decoration: underline;
+  }
+  .consent-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+  }
+  .consent-actions .btn {
+    padding: 9px 18px;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-soft);
+    border-color: var(--line);
+  }
+
+  @media (max-width: 560px) {
+    .consent-actions {
+      width: 100%;
+      margin-left: 0;
+    }
+    .consent-actions .btn {
+      flex: 1;
+    }
+  }
+</style>

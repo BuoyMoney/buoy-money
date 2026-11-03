@@ -1,0 +1,5 @@
+# This file exists to keep `flutter/assets/legal/` in version control so the
+# `assets: - assets/legal/` declaration in pubspec.yaml resolves cleanly even
+# before `scripts/sync-legal.sh` has been run. The actual content files
+# (PRIVACY_POLICY.md, TERMS_OF_SERVICE.md) are gitignored and synced from
+# the canonical copies under `/legal/` at build time.

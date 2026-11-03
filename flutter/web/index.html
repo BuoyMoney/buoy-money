@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Buoy Money, personal finance and budgeting">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Buoy Money">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Sign-In client ID for google_sign_in_web -->
+  <meta name="google-signin-client_id" content="841207882659-kink79fsnp2rvtt44cmur4ss7cuuoibm.apps.googleusercontent.com">
+
+  <!-- Google Identity Services. No crossorigin attribute: Google's gsi/client
+       endpoint doesn't return Access-Control-Allow-Origin, so crossorigin="anonymous"
+       makes the browser block the script under CORS (per Google's own docs). -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- Sign in with Apple (Web) JS SDK — provides the `AppleID` global used by
+       sign_in_with_apple_web's popup flow. Loaded on every build; harmless when
+       the web Apple button is hidden (no Services ID configured). -->
+  <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js" defer></script>
+
+  <title>Buoy Money</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Passkeys Web SDK — required by passkeys_web plugin (must load before Flutter) -->
+  <script src="passkeys_bundle.js"></script>
+
+  <!-- Plaid Link SDK — required by plaid_flutter plugin for web -->
+  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+
+  <!-- PostHog product analytics (web). Loaded as external scripts because the CSP has
+       no 'unsafe-inline'; us-assets.i.posthog.com (script-src) + us.i.posthog.com
+       (connect-src) are allowlisted. array.full.js registers window.posthog; the init
+       call and opt-in/consent handling live in the self-hosted posthog_init.js. The
+       posthog_flutter plugin hooks into this same instance. -->
+  <script src="https://us-assets.i.posthog.com/static/array.full.js"></script>
+  <script src="posthog_init.js"></script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

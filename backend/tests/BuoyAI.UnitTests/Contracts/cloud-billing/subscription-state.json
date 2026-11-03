@@ -1,0 +1,60 @@
+{
+  "subscriptionId": "sub_1",
+  "status": "active",
+  "interval": "yearly",
+  "founding": true,
+  "currentPeriodEnd": "2027-01-15T00:00:00Z",
+  "cancelAtPeriodEnd": false,
+  "products": [
+    {
+      "product": "bank_sync",
+      "quantity": 1,
+      "entitlements": [
+        "bank_sync"
+      ],
+      "endsAt": null,
+      "quantityAfterPeriodEnd": null
+    },
+    {
+      "product": "ai",
+      "quantity": 1,
+      "entitlements": [
+        "ai"
+      ],
+      "endsAt": "2027-01-15T00:00:00Z",
+      "quantityAfterPeriodEnd": null
+    },
+    {
+      "product": "extra_logins",
+      "quantity": 5,
+      "entitlements": [
+        "extra_logins"
+      ],
+      "endsAt": null,
+      "quantityAfterPeriodEnd": 2
+    }
+  ],
+  "items": [
+    {
+      "product": "bank_sync",
+      "lookupKey": "bank_sync_yearly_founding",
+      "quantity": 1,
+      "unitAmountCents": 2399,
+      "currency": "usd"
+    }
+  ],
+  "pending": [
+    {
+      "product": "ai",
+      "kind": "remove",
+      "quantityAfter": null,
+      "at": "2027-01-15T00:00:00Z"
+    },
+    {
+      "product": "extra_logins",
+      "kind": "quantity",
+      "quantityAfter": 2,
+      "at": "2027-01-15T00:00:00Z"
+    }
+  ]
+}

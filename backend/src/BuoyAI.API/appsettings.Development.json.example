@@ -1,0 +1,47 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=BuoyAI_Dev;Username=postgres;Password=your_postgres_password_here"
+  },
+  "Jwt": {
+    "Key": "your-secure-jwt-signing-key-must-be-at-least-32-characters-long-for-security",
+    "Issuer": "BuoyAI",
+    "Audience": "BuoyAI-Users",
+    "ExpiryInMinutes": 60
+  },
+  "Google": {
+    "ClientId": "your-google-oauth-client-id.apps.googleusercontent.com",
+    "ClientSecret": "your-google-oauth-client-secret"
+  },
+  "Plaid": {
+    "Environment": "sandbox",
+    "ClientId": "your_plaid_sandbox_client_id",
+    "SecretKey": "your_plaid_sandbox_secret_key",
+    "WebhookSecret": "your_plaid_webhook_secret",
+    "ClientName": "BuoyAI Development",
+    "CountryCodes": ["US"],
+    "Products": ["transactions"],
+    "RateLimits": {
+      "BalanceRequestsPerDay": 5,
+      "RefreshRequestsPerDay": 3,
+      "EnableRateLimiting": true
+    }
+  },
+  "Encryption": {
+    "Key": "your-32-character-encryption-key"
+  },
+  "Resend": {
+    "ApiKey": "your_resend_api_key_here",
+    "FromEmail": "noreply@buoy-ai.com",
+    "FromName": "BuoyAI Development"
+  },
+  "App": {
+    "BaseUrl": "https://localhost:3000"
+  }
+}

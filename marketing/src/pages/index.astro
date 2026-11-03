@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Manifesto from '../components/Manifesto.astro';
+import FeaturedIn from '../components/FeaturedIn.astro';
+import ProtocolStack from '../components/ProtocolStack.astro';
+import Rewards from '../components/Rewards.astro';
+import Pricing from '../components/Pricing.astro';
+import MobileApps from '../components/MobileApps.astro';
+import Faq from '../components/Faq.astro';
+import FoundingBand from '../components/FoundingBand.astro';
+import WaveDivider from '../components/WaveDivider.astro';
+import { SITE } from '../consts';
+---
+
+<BaseLayout
+  title="Budget Smarter with AI-Powered Insights"
+  description={SITE.description}
+  path="/"
+>
+  <Hero />
+  <Manifesto />
+  <FeaturedIn />
+  <WaveDivider top="var(--surface)" bottom="var(--surface-tint)" />
+  <ProtocolStack />
+  <Rewards />
+  <WaveDivider top="var(--surface-tint)" bottom="var(--surface)" flip />
+  <Pricing />
+  <MobileApps />
+  <WaveDivider top="var(--surface)" bottom="var(--surface-tint)" />
+  <Faq />
+  <FoundingBand />
+</BaseLayout>

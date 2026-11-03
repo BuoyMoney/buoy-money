@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { renderLegal } from '../lib/legal';
+
+const html = renderLegal('TERMS_OF_SERVICE.md');
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="The terms for the hosted Buoy Money app, the self-hosted edition and BuoyAI Cloud."
+  path="/terms"
+>
+  <article class="section">
+    <div class="container prose" set:html={html} />
+  </article>
+</BaseLayout>

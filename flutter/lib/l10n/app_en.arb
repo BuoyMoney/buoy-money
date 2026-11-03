@@ -1,0 +1,3108 @@
+{
+  "@@locale": "en",
+  "appTitle": "Buoy Money",
+  "profileCurrencyLabel": "Currency",
+  "@profileCurrencyLabel": {
+    "description": "Label for the primary display currency row/picker on the profile page"
+  },
+  "accountsForeignCurrencyNote": "Not in totals: {amounts} ({count, plural, =1{1 account} other{{count} accounts}} in another currency)",
+  "@accountsForeignCurrencyNote": {
+    "description": "Note under the accounts summary cards when foreign-currency accounts are excluded from the totals",
+    "placeholders": {
+      "amounts": {
+        "type": "String",
+        "example": "CA$523.10 · €88.00"
+      },
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "netWorthSubtitle": "Total cash minus what you owe",
+  "@netWorthSubtitle": {
+    "description": "Subtitle under the dashboard net worth number"
+  },
+  "netWorthSubtitleExcluded": "Total cash minus what you owe · excludes {codes} accounts",
+  "@netWorthSubtitleExcluded": {
+    "description": "Net worth subtitle when foreign-currency accounts are excluded",
+    "placeholders": {
+      "codes": {
+        "type": "String",
+        "example": "CAD, EUR"
+      }
+    }
+  },
+  "loginWelcome": "Welcome back.",
+  "loginSubtitle": "Sign in to continue",
+  "back": "Back",
+  "emailLabel": "Email",
+  "emailRequired": "Email is required",
+  "emailInvalid": "Enter a valid email",
+  "passwordLabel": "Password",
+  "passwordRequired": "Password is required",
+  "forgotPassword": "Forgot password?",
+  "signIn": "Sign In",
+  "signInWithBiometric": "Sign in with {biometricType}",
+  "@signInWithBiometric": {
+    "placeholders": {
+      "biometricType": {
+        "type": "String",
+        "example": "Face ID"
+      }
+    }
+  },
+  "noAccountPrompt": "Don't have an account? ",
+  "getStartedFree": "Get started free",
+  "createAccountLink": "Create an account",
+  "continueWithGoogle": "Continue with Google",
+  "continueWithApple": "Continue with Apple",
+  "sessionExpired": "Your session expired. Please sign in again.",
+  "appleSignInFailed": "Apple sign-in failed",
+  "appleSignInUnavailable": "Sign in with Apple isn't available on this device right now. Check that you're signed in to iCloud in Settings, or continue with email.",
+  "appleSignInFailedDetail": "Apple sign-in failed: {error}",
+  "@appleSignInFailedDetail": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "googleSignInFailedDetail": "Google sign-in failed: {error}",
+  "@googleSignInFailedDetail": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "verificationRequired": "Verification Required",
+  "usePasskeyToFinish": "Use your passkey to finish signing in",
+  "enterCodeFrom": "Enter the code from your {method}",
+  "@enterCodeFrom": {
+    "placeholders": {
+      "method": {
+        "type": "String",
+        "example": "authenticator app"
+      }
+    }
+  },
+  "verificationCodeLabel": "Verification Code",
+  "rememberThisDevice": "Remember this device",
+  "skipVerificationThirtyDays": "Skip verification for 30 days",
+  "usePasskey": "Use passkey",
+  "verify": "Verify",
+  "useEmailCodeInstead": "Use an email code instead",
+  "resendCode": "Resend code",
+  "useDifferentMethod": "Use different method",
+  "chooseMethod": "Choose Method",
+  "authenticatorApp": "Authenticator App",
+  "emailCode": "Email Code",
+  "passkey": "Passkey",
+  "couldntEnableLogin": "Couldn't enable {loginType} login",
+  "@couldntEnableLogin": {
+    "placeholders": {
+      "loginType": {
+        "type": "String",
+        "example": "Face ID"
+      }
+    }
+  },
+  "profileWeekStartLabel": "Week starts on",
+  "@profileWeekStartLabel": {
+    "description": "Label for the first-day-of-week picker on the profile page"
+  },
+  "quickLoginEnabled": "{loginType} quick login enabled",
+  "@quickLoginEnabled": {
+    "placeholders": {
+      "loginType": {
+        "type": "String",
+        "example": "Face ID"
+      }
+    }
+  },
+  "acctLoadingAccounts": "Loading accounts…",
+  "acctNoBanksConnected": "No banks connected",
+  "regFirstAccountNotice": "This server has no accounts yet. The account you create now will be its administrator, and sign-up closes after it unless you open it or send invites.",
+  "acctEmptySubtitle": "Connect your bank accounts to start\ntracking your finances automatically.",
+  "acctPageTitle": "Accounts",
+  "acctAutoRefresh": "Auto-refresh: {mode}",
+  "@acctAutoRefresh": {
+    "description": "Header line showing the current auto-refresh cadence on the accounts page",
+    "placeholders": {
+      "mode": {
+        "type": "String",
+        "example": "Active (30s)"
+      }
+    }
+  },
+  "acctBankLinkingEnds": "Bank linking on email code ends {when}",
+  "@acctBankLinkingEnds": {
+    "description": "MFA email-window nudge title; {when} is a relative time phrase",
+    "placeholders": {
+      "when": {
+        "type": "String",
+        "example": "in 3 days"
+      }
+    }
+  },
+  "acctAddPasskeyNudge": "Add a passkey (5 seconds) to keep linking banks. Synced accounts are unaffected.",
+  "acctAdd": "Add",
+  "acctConnectionsNeedAttention": "{count, plural, =1{Connection needs attention} other{{count} connections need attention}}",
+  "@acctConnectionsNeedAttention": {
+    "description": "Status banner title for inactive bank connections",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "acctInstitutionDisconnected": "{name} is disconnected",
+  "acctInstitutionNeedsLogin": "{name} needs you to sign in again. Tap to update the connection.",
+  "@acctInstitutionNeedsLogin": {"placeholders": {"name": {"type": "String"}}},
+  "@acctInstitutionDisconnected": {
+    "description": "Status banner subtitle for a single disconnected institution",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Chase"
+      }
+    }
+  },
+  "acctSomeBanksRequireReconnection": "Some banks require reconnection",
+  "acctAccountCountLastSync": "{count, plural, =1{1 account} other{{count} accounts}} · {lastSync}",
+  "@acctAccountCountLastSync": {
+    "description": "Connection card subtitle: account count plus last sync time",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "lastSync": {
+        "type": "String",
+        "example": "5m ago"
+      }
+    }
+  },
+  "acctOwnedBy": "Owned by {name}",
+  "@acctOwnedBy": {
+    "description": "Family context line under a connection owned by another member",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "acctImportPending": "Import pending…",
+  "acctImportingTransactions": "Importing transactions…",
+  "acctQuickSyncComplete": "✓ Quick sync complete (30 days) · Full import in background",
+  "acctAvailBalance": "Avail: {amount}",
+  "@acctAvailBalance": {
+    "description": "Available balance line under an account balance",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$1,234.56"
+      }
+    }
+  },
+  "acctFeeds": "Feeds",
+  "acctFamilyBudget": "Family budget",
+  "acctMemberYou": "{name} (you)",
+  "@acctMemberYou": {
+    "description": "Dropdown item marking the current user in the family member list",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "acctConnectAnotherBank": "Connect Another Bank",
+  "acctConnectYourBankTitle": "Connect Your Bank",
+  "acctConnectBankSubtitle": "Securely link your bank accounts to automatically\ntrack transactions and balances.",
+  "acctPlaidConsent": "By connecting, you authorize Buoy Money to securely access your account and transaction information through Plaid. Your bank login goes directly to your bank via Plaid; we never see or store your credentials.",
+  "acctConnectBank": "Connect Bank",
+  "acctPoweredBy": "Powered by ",
+  "acctDisconnectTitle": "Disconnect {name}?",
+  "@acctDisconnectTitle": {
+    "description": "Disconnect confirmation sheet title",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Chase"
+      }
+    }
+  },
+  "acctReconnectLaterNote": "You can reconnect later, but transaction history will need to be imported again.",
+  "acctCancel": "Cancel",
+  "acctDisconnect": "Disconnect",
+  "acctBankRequestTitle": "Can't find your bank?",
+  "acctBankRequestBody": "Tell us which bank you were looking for. Jonathan, who built Buoy Money, reads every one and will email you about it.",
+  "acctBankRequestHint": "Bank or credit union name",
+  "acctBankRequestSend": "Send",
+  "acctBankRequestSkip": "Not now",
+  "acctBankRequestThanks": "Thanks. We'll email you about it.",
+  "acctBankRequestFailed": "Couldn't send that. Please try again.",
+  "dashLoading": "Loading your dashboard...",
+  "dashLoadFailed": "Failed to load dashboard",
+  "dashUnknownError": "Unknown error",
+  "dashRetry": "Retry",
+  "dashGreetingComma": "{greeting},",
+  "@dashGreetingComma": {
+    "description": "First line of the welcome header; {greeting} is a time-of-day greeting",
+    "placeholders": {
+      "greeting": {
+        "type": "String",
+        "example": "Good morning"
+      }
+    }
+  },
+  "dashDisplayNamePeriod": "{name}.",
+  "@dashDisplayNamePeriod": {
+    "description": "Second line of the welcome header: the user's name with closing punctuation",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "dashAiInsightsOff": "AI insights are off. Turn them on to get a few observations about your month.",
+  "dashTurnOn": "Turn on",
+  "dashGeneratingInsights": "Generating insights...",
+  "dashNoInsightsYet": "No insights yet. Connect accounts and add transactions to get personalized insights.",
+  "dashViewAll": "View All",
+  "dashBudgetFallback": "Budget",
+  "dashPercentUsed": "{percent}% used",
+  "@dashPercentUsed": {
+    "description": "Budget usage badge",
+    "placeholders": {
+      "percent": {
+        "type": "String",
+        "example": "72"
+      }
+    }
+  },
+  "dashSpent": "Spent",
+  "dashRemaining": "Remaining",
+  "dashTopCategories": "TOP CATEGORIES",
+  "dashNotificationsTitle": "Notifications",
+  "dashMarkAllRead": "Mark all read",
+  "dashLoadNotificationsFailed": "Failed to load notifications",
+  "dashNoNotifications": "No notifications",
+  "dashInvitedToJoin": "You're invited to join {familyName}",
+  "@dashInvitedToJoin": {
+    "description": "Family invitation banner title",
+    "placeholders": {
+      "familyName": {
+        "type": "String",
+        "example": "The Smiths"
+      }
+    }
+  },
+  "dashInvitationFrom": "From {name} • {role}",
+  "@dashInvitationFrom": {
+    "description": "Family invitation banner subtitle",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      },
+      "role": {
+        "type": "String",
+        "example": "Member"
+      }
+    }
+  },
+  "dashView": "View",
+  "dashVerifyEmailTitle": "Verify your email",
+  "dashVerifyEmailSubtitle": "Confirm your email to connect a bank account and secure account recovery.",
+  "dashVerify": "Verify",
+  "aiChatTitle": "AI Financial Chat",
+  "aiChatProBadge": "PRO",
+  "aiChatSaved": "Saved",
+  "aiChatThinking": "Thinking...",
+  "aiChatFailedToSend": "Failed to send",
+  "aiChatRetrying": "Retrying...",
+  "aiChatRetry": "Retry",
+  "aiChatTryAsking": "Try asking",
+  "aiChatIdeas": "Ideas",
+  "aiChatDisclaimer": "Answers come from Google Gemini. For information only, not financial advice.",
+  "aiChatActionsTaken": "ACTIONS TAKEN",
+  "aiChatComplete": "Complete",
+  "aiChatConfirmAction": "Confirm Action",
+  "aiChatAiWouldLikeTo": "The AI would like to: {action}",
+  "@aiChatAiWouldLikeTo": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "aiChatHideDetails": "Hide Details",
+  "aiChatShowDetails": "Show Details",
+  "aiChatCancel": "Cancel",
+  "aiChatConfirm": "Confirm",
+  "aiChatHistoryTitle": "Chat History",
+  "aiChatNewChat": "New Chat",
+  "aiChatNoPreviousConversations": "No previous conversations",
+  "aiChatUntitledConversation": "Untitled conversation",
+  "aiChatConversationSubtitle": "{date} • {count, plural, =1{1 message} other{{count} messages}}",
+  "@aiChatConversationSubtitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "aiChatMemoriesTitle": "AI Memories",
+  "aiChatDeleteAll": "Delete All",
+  "aiChatSaving": "Saving...",
+  "aiChatSave": "Save",
+  "aiChatEdited": "Edited",
+  "aiChatLearnedDate": "Learned: {date}",
+  "@aiChatLearnedDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "aiChatUsedCount": "Used {count}x",
+  "@aiChatUsedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aiChatConfidencePercent": "{percent}% confidence",
+  "@aiChatConfidencePercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "aiChatDeleteMemoryTitle": "Delete Memory",
+  "aiChatDeleteMemoryConfirm": "Are you sure you want to permanently delete this memory?",
+  "aiChatDelete": "Delete",
+  "aiChatDeleteAllMemoriesTitle": "Delete All Memories",
+  "aiChatDeleteAllConfirm": "This will permanently delete all your AI memories. This cannot be undone.",
+  "insAiFeaturesOff": "AI features are off",
+  "insAiConsentBody": "Insights, charts, and chat use Google Gemini. Nothing is sent until you turn this on.",
+  "insTurnOnAiFeatures": "Turn on AI features",
+  "insTitle": "Insights",
+  "insSubtitle": "Your money, keeping score.",
+  "insNoProgressData": "No Progress Data Yet",
+  "insTopOfLadder": "Top of the ladder",
+  "insPtsToLevel": "pts to {level}",
+  "@insPtsToLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "insLifetimePoints": "{points} lifetime points",
+  "@insLifetimePoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "insActiveStreaks": "Active Streaks",
+  "insDailyChallenges": "Daily Challenges",
+  "insToGo": "{count} to go!",
+  "@insToGo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "insEndsToday": "ends today",
+  "insEndsInDays": "ends in {days}d",
+  "@insEndsInDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "insRecentBadges": "Recent Badges",
+  "insMoneyWrapped": "Money Wrapped",
+  "insWrappedSubtitle": "Your money as a story: 30 seconds, big numbers, wins.",
+  "insUnlockAiTitle": "Unlock AI-Powered Insights",
+  "insUnlockAiBody": "Get personalized financial insights, AI-generated visualizations, and smart recommendations.",
+  "insFreeUsersNote": "Free users can still earn achievements and track progress.",
+  "insPersonalizedInsights": "Personalized Insights",
+  "insCharts": "Charts",
+  "insGenerating": "Generating",
+  "insNewChart": "New chart",
+  "insThisMonthByCategory": "This month by category",
+  "insEndsAtMidnight": "Ends at midnight",
+  "insBestDays": "{days, plural, =1{Best: 1 day} other{Best: {days} days}}",
+  "@insBestDays": {
+    "placeholders": {
+      "days": {
+        "type": "num"
+      }
+    }
+  },
+  "insSaveIt": "Save it: {action}",
+  "@insSaveIt": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "insDayStreak": "day streak",
+  "budMakePersonalBudget": "Make a Personal Budget",
+  "budSpawnExplainer": "\"{categoryName}\" becomes a personal budget funded by your family. The member decides how to spend it; you set the allocation.",
+  "@budSpawnExplainer": {
+    "placeholders": {
+      "categoryName": {
+        "type": "String",
+        "example": "Groceries"
+      }
+    }
+  },
+  "budFor": "For",
+  "budMemberYou": "{name} (you)",
+  "@budMemberYou": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "budDefaultsToCurrentAllocation": "Defaults to this category's current allocation.",
+  "budCreateBudget": "Create Budget",
+  "budPeriod": "Period",
+  "budType": "Type",
+  "budReplacePersonalWarning": "Creating a new personal budget will replace your existing one.",
+  "budReplaceFamilyWarning": "Creating a new family budget will replace your existing one.",
+  "budAllocateCategories": "Allocate Categories",
+  "budFundFromFamily": "Fund from your family",
+  "budFundFromFamilyManagerHint": "Optionally back this personal budget with a family allocation.",
+  "budFundFromFamilyMemberHint": "Only a family owner or budget admin can add a family allocation. You can still create a standalone personal budget.",
+  "budIncome": "Income",
+  "budExpenses": "Expenses",
+  "budCreateNewCategory": "Create New Category",
+  "budNewCategory": "New Category",
+  "budIcon": "Icon",
+  "budColor": "Color",
+  "budIncomeCategory": "Income category",
+  "budPercentUsed": "{percent}% used",
+  "@budPercentUsed": {
+    "placeholders": {
+      "percent": {
+        "type": "String",
+        "example": "42"
+      }
+    }
+  },
+  "budRemainingToAllocate": "Remaining to Allocate",
+  "budAtPeriodEnd": "At Period End",
+  "budCreateSavingsGoalFirst": "Create a savings goal first",
+  "budMaxRollover": "Max Rollover",
+  "budMaxRolloverAmount": "Max rollover: {amount}",
+  "@budMaxRolloverAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$150.00"
+      }
+    }
+  },
+  "budOverflowTo": "Overflow To",
+  "budOverflowHint": "When rollover exceeds the max, surplus goes here",
+  "budOverflowNudgeNoGoals": "Heads up: surplus beyond this cap won’t be tracked. Create a savings goal to send it to, so the money keeps counting.",
+  "budOverflowNudgePickGoal": "Heads up: pick an overflow savings goal above, or surplus beyond this cap won’t be tracked.",
+  "budCurrentRollover": "Current Rollover",
+  "budSelectSourceCategory": "Select Source Category",
+  "budNoCategoriesWithFunds": "No categories with available funds.",
+  "budTransferFunds": "Transfer Funds",
+  "budCategoryOverBy": "{name} is over by {amount}",
+  "@budCategoryOverBy": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Groceries"
+      },
+      "amount": {
+        "type": "String",
+        "example": "$25.00"
+      }
+    }
+  },
+  "budFromLabel": "FROM",
+  "budToLabel": "TO",
+  "budSourceCategory": "Source Category",
+  "budCountUpDailyAllowance": "Count-up category — daily allowance: {amount}",
+  "@budCountUpDailyAllowance": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$5.00"
+      }
+    }
+  },
+  "budFillExactDeficit": "Fill exact deficit ({amount})",
+  "@budFillExactDeficit": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$25.00"
+      }
+    }
+  },
+  "budResetRollover": "Reset Rollover",
+  "budResetAllRollovers": "Reset All Rollovers",
+  "budResetWarning": "This action cannot be undone. Rollover balances will be permanently cleared.",
+  "budAffectedCategories": "Affected Categories",
+  "budTotalToClear": "Total to Clear",
+  "budNoRolloversToReset": "No rollover balances to reset.",
+  "budResetting": "Resetting...",
+  "budResetRollovers": "Reset Rollovers",
+  "budEditBudget": "Edit Budget",
+  "budCategories": "Categories",
+  "budTransferToSavings": "Transfer to Savings",
+  "budAvailableToTransfer": "Available to transfer",
+  "budSavingsGoal": "Savings Goal",
+  "budNoActiveSavingsGoals": "No active savings goals. Create one first.",
+  "budTransferMax": "Transfer max ({amount})",
+  "@budTransferMax": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$50.00"
+      }
+    }
+  },
+  "budFamilyFunding": "Family Funding",
+  "budChooseCategories": "Choose Categories",
+  "budReview": "Review",
+  "budBack": "Back",
+  "budFamilyAllocationsAssigned": "{count, plural, =1{1 family allocation assigned} other{{count} family allocations assigned}}",
+  "@budFamilyAllocationsAssigned": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "budPerMonth": "per month",
+  "budYourFamilyAllocations": "Your Family Allocations",
+  "budAllowanceWizardIntro": "Create a personal budget to decide how to spend the money your family set aside for you. You'll choose categories and allocate amounts.",
+  "budFailedToLoadCategories": "Failed to load categories",
+  "budAutoDistribute": "Auto-distribute",
+  "budTotalFunding": "Total Funding",
+  "budTotalAllocated": "Total Allocated",
+  "budUnallocated": "Unallocated",
+  "budOverAllocatedBy": "Over-allocated by {amount}. Go back to adjust.",
+  "@budOverAllocatedBy": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$10.00"
+      }
+    }
+  },
+  "budNewCategoryGroup": "New Category Group",
+  "budCancel": "Cancel",
+  "budRetry": "Retry",
+  "budFamilyFundedYou": "Your Family Funded You!",
+  "budAllocatedFromFamily": "You've been allocated {amount} from your family budget. Set up your personal budget to start tracking.",
+  "@budAllocatedFromFamily": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$100.00"
+      }
+    }
+  },
+  "budSetUpPersonalBudget": "Set Up Personal Budget",
+  "budNoBudgetYet": "No Budget Yet",
+  "budCreateFirstBudgetHint": "Create your first budget to start tracking",
+  "budViewingPeriod": "Viewing {period} — tap amounts to edit allocations",
+  "@budViewingPeriod": {
+    "placeholders": {
+      "period": {
+        "type": "String",
+        "example": "Jan 1 – Jan 31"
+      }
+    }
+  },
+  "budBackToCurrent": "Back to Current",
+  "budPercentUsedOverflow": "900+% used",
+  "budCompletedPeriod": "Completed period",
+  "budSetUpPersonalBudgetPrompt": "Set up your personal budget",
+  "budAllocateFamilySetAside": "Allocate the {amount} your family set aside",
+  "@budAllocateFamilySetAside": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$100.00"
+      }
+    }
+  },
+  "budChildBudgets": "CHILD BUDGETS",
+  "budFamilyBadge": "Family",
+  "budDaysLeft": "{days}d left",
+  "@budDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "12"
+      }
+    }
+  },
+  "budFundedByFamily": "Funded by your family",
+  "budFundedByFamilyWithAmount": "Funded by your family: {amount}",
+  "@budFundedByFamilyWithAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$200.00"
+      }
+    }
+  },
+  "budLastPeriodSaved": "Last period: saved {amount}",
+  "@budLastPeriodSaved": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$50.00"
+      }
+    }
+  },
+  "budDaysElapsedOfTotal": "{elapsed}/{total} days",
+  "@budDaysElapsedOfTotal": {
+    "placeholders": {
+      "elapsed": {
+        "type": "String",
+        "example": "10"
+      },
+      "total": {
+        "type": "String",
+        "example": "30"
+      }
+    }
+  },
+  "budAmountUnallocated": "{amount} unallocated",
+  "@budAmountUnallocated": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$25.00"
+      }
+    }
+  },
+  "budAmountOver": "{amount} over",
+  "@budAmountOver": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$25.00"
+      }
+    }
+  },
+  "budSavingsIn": "+{amount} in",
+  "@budSavingsIn": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$40.00"
+      }
+    }
+  },
+  "budSavingsOut": "-{amount} out",
+  "@budSavingsOut": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$15.00"
+      }
+    }
+  },
+  "budNoCountUpCategories": "No Count-Up Categories",
+  "budEnableCountUpHint": "Enable count-up on a category to track daily allowances",
+  "budTodaysCountUpSummary": "Today's Count-Up Summary",
+  "budCategoriesTracked": "{count, plural, =1{1 category tracked} other{{count} categories tracked}}",
+  "@budCategoriesTracked": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "budDailyEarning": "daily earning",
+  "budPerMinuteRate": "+{amount}/min",
+  "@budPerMinuteRate": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$0.02"
+      }
+    }
+  },
+  "budAvailableLabel": "available",
+  "budExpectedSeparator": " expected  ·  ",
+  "budBudgetedSeparator": " budgeted  ·  ",
+  "budEarnedSuffix": " earned",
+  "budSpentSuffix": " spent",
+  "budAmountSpent": "{amount} spent",
+  "@budAmountSpent": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$30.00"
+      }
+    }
+  },
+  "budAmountRemaining": "{amount} remaining",
+  "@budAmountRemaining": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$70.00"
+      }
+    }
+  },
+  "budPerDayRate": "{amount}/day",
+  "@budPerDayRate": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$5.00"
+      }
+    }
+  },
+  "budDayOf": "Day {day} of {total}",
+  "@budDayOf": {
+    "placeholders": {
+      "day": {
+        "type": "String",
+        "example": "10"
+      },
+      "total": {
+        "type": "String",
+        "example": "30"
+      }
+    }
+  },
+  "budAvailableBalance": "Available Balance",
+  "budBudgetAmount": "Budget Amount",
+  "budSave": "Save",
+  "budDeposit": "deposit",
+  "budWithdrawal": "withdrawal",
+  "budEarned": "Earned",
+  "budSpent": "Spent",
+  "budEarnedLabel": "Earned: {amount}",
+  "@budEarnedLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$60.00"
+      }
+    }
+  },
+  "budBudgetLabel": "Budget: {amount}",
+  "@budBudgetLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$180.00"
+      }
+    }
+  },
+  "devRevokeDeviceTitle": "Revoke Device?",
+  "devRevokeCurrentDeviceWarning": "This is your current device. Revoking it will sign you out.",
+  "devRevokeDeviceConfirm": "Remove trust from \"{name}\"? They will need to verify again on next login.",
+  "@devRevokeDeviceConfirm": {
+    "description": "Confirmation body when revoking another trusted device",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Chrome on Windows"
+      }
+    }
+  },
+  "devCancel": "Cancel",
+  "devRevoke": "Revoke",
+  "devSignOutEverywhereTitle": "Sign Out Everywhere?",
+  "devSignOutEverywhereBody": "This will revoke trust from all devices and sign you out everywhere, including this device. You will need to sign in again.",
+  "devSignOutEverywhere": "Sign Out Everywhere",
+  "devTrustedDevicesTitle": "Trusted Devices",
+  "devSignOutAll": "Sign Out All",
+  "devInfoBanner": "Devices you've signed in from. Remove any you don't recognize.",
+  "devThisDevice": "This Device",
+  "devLastUsed": "Last used: {time}",
+  "@devLastUsed": {
+    "description": "Relative last-used time on a device card",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2 hours ago"
+      }
+    }
+  },
+  "devExpiresInDays": "{count, plural, =1{Expires in 1 day} other{Expires in {count} days}}",
+  "@devExpiresInDays": {
+    "description": "Trust expiration countdown on a device card",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+  "devExpired": "Expired",
+  "devNoTrustedDevices": "No trusted devices",
+  "devEmptyStateHint": "Devices will appear here after signing in",
+  "devErrorOccurred": "An error occurred",
+  "devRetry": "Retry",
+  "famTitle": "Family",
+  "famEditFamilyName": "Edit Family Name",
+  "famDeleteFamily": "Delete Family",
+  "famInviteMember": "Invite Member",
+  "famRetry": "Retry",
+  "famNoFamilyYet": "No Family Yet",
+  "famCreateFamilyBlurb": "Create a family to share budgets, savings goals,\nand financial insights with your loved ones.",
+  "famCreateFamily": "Create Family",
+  "famMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+  "@famMemberCount": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "famMembers": "Members",
+  "famPendingInvitations": "Pending Invitations",
+  "famCancel": "Cancel",
+  "famSave": "Save",
+  "famDeleteFamilyTitle": "Delete Family?",
+  "famDeleteFamilyWarning": "This will permanently delete the family and all shared data. All members will be removed. This action cannot be undone.",
+  "famDelete": "Delete",
+  "famLeaveFamilyTitle": "Leave Family?",
+  "famLeaveFamilyWarning": "You will lose access to shared budgets, savings goals, and family data. You can be re-invited later.",
+  "famLeave": "Leave",
+  "famRemoveMemberTitle": "Remove Member?",
+  "famRemoveMemberConfirm": "Remove {name} from the family?",
+  "@famRemoveMemberConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "famRemove": "Remove",
+  "famYouBadge": "You",
+  "famChangeRole": "Change Role",
+  "famInvitedAs": "Invited as {role}",
+  "@famInvitedAs": {
+    "placeholders": {
+      "role": {
+        "type": "String",
+        "example": "Member"
+      }
+    }
+  },
+  "famExpired": "Expired",
+  "famExpiresIn": "Expires in {timeRemaining}",
+  "@famExpiresIn": {
+    "placeholders": {
+      "timeRemaining": {
+        "type": "String",
+        "example": "3 days"
+      }
+    }
+  },
+  "famPremiumRequired": "Premium required",
+  "famPremiumUpsell": "{message}\n\nUpgrade to Premium to create a family and share budgets, savings goals, and insights.",
+  "@famPremiumUpsell": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "famNotNow": "Not now",
+  "famViewPlans": "View plans",
+  "famOwnerBlurb": "You'll be the owner of this family and can invite members to share financial data.",
+  "famInviteBlurb": "They'll receive an email invitation to join your family.",
+  "famSendInvitation": "Send Invitation",
+  "invLoadingInvitation": "Loading invitation...",
+  "invJoiningFamily": "Joining family...",
+  "invInvitationError": "Invitation Error",
+  "invContactInviter": "Please contact the person who invited you for a new invitation link.",
+  "invGoBack": "Go Back",
+  "invFamilyInvitation": "Family Invitation",
+  "invYouveBeenInvited": "You've been invited to join",
+  "invAFamilyFallback": "a family",
+  "invInvitedByLine": "by {name}",
+  "@invInvitedByLine": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "invFamilyOwnerFallback": "the family owner",
+  "invSignInPrompt": "Please sign in or create an account to accept this invitation.",
+  "invCreateAccount": "Create Account",
+  "invInvitedBy": "Invited by {name}",
+  "@invInvitedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "invRoleLabel": "Role:",
+  "invMemberFallback": "Member",
+  "invBudgetReplaceWarning": "When you join, your accounts, bank connections and savings goals become visible to everyone in the family. If the family already has a budget, yours stays yours and is linked under it. If not, your budgets become the family's budgets.",
+  "invJoining": "Joining...",
+  "invAcceptInvitation": "Accept Invitation",
+  "invDecline": "Decline",
+  "invLeaveAnytime": "You can leave the family anytime from Settings",
+  "regGetStarted": "Get started.",
+  "regCreateYourAccount": "Create your account",
+  "regTermsOfService": "Terms of Service",
+  "regPrivacyPolicy": "Privacy Policy",
+  "regAlreadyHaveAccount": "Already have an account? ",
+  "regSignInLink": "Sign in",
+  "regLoadingInvitationDetails": "Loading invitation details...",
+  "regJoinFamilyAs": "Join {familyName} as {role}",
+  "@regJoinFamilyAs": {
+    "placeholders": {
+      "familyName": {
+        "type": "String",
+        "example": "The Smiths"
+      },
+      "role": {
+        "type": "String",
+        "example": "Member"
+      }
+    }
+  },
+  "regInviteCodeApplied": "Invite code {code} applied",
+  "@regInviteCodeApplied": {
+    "placeholders": {
+      "code": {
+        "type": "String",
+        "example": "ABC123"
+      }
+    }
+  },
+  "regReferralReward": "You'll both get {amount} once you connect an account.",
+  "@regReferralReward": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$10"
+      }
+    }
+  },
+  "regOrContinueWithEmail": "or continue with email",
+  "regGoogleNoAccountBanner": "We couldn't find an account for that Google email. Sign up below to get started.",
+  "profRedeemCodeTitle": "Redeem a code",
+  "profRedeemCodeHint": "Applies to your current plan. Codes are single-use and may expire.",
+  "profApply": "Apply",
+  "profAddAnotherMethod": "Add Another Method",
+  "profChooseMfaMethod": "Choose MFA Method",
+  "profMfaRecommendation": "Authenticator app and passkey are recommended for connecting bank accounts.",
+  "profMemberSince": "Member since {date}",
+  "@profMemberSince": {
+    "description": "Profile header line showing the account creation date",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Jan 5, 2026"
+      }
+    }
+  },
+  "profChooseAPhoto": "Choose a photo",
+  "profRemovePhoto": "Remove photo",
+  "profPositionYourPhoto": "Position your photo",
+  "profCropInstructions": "Drag to move · pinch or scroll to zoom",
+  "profCancel": "Cancel",
+  "profUsePhoto": "Use photo",
+  "profCurrentPlan": "Current Plan",
+  "profStatusLabel": "Status",
+  "profTotpStep1": "Scan QR code with your authenticator app",
+  "profRecommendedApps": "Recommended Apps",
+  "profEnterKeyManually": "Or enter this key manually:",
+  "profTotpStep2": "Enter the 6-digit code from your app",
+  "profNoTrustedDevices": "No trusted devices found.",
+  "profMemberCount": "{count, plural, =1{1 member} other{{count} members}}",
+  "@profMemberCount": {
+    "description": "Member count under the family name",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "profPendingInvitations": "Pending Invitations",
+  "profInvitedByLine": "Invited by {name} • {role}",
+  "@profInvitedByLine": {
+    "description": "Subtitle on an inbound family invitation card",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Jane"
+      },
+      "role": {
+        "type": "String",
+        "example": "Member"
+      }
+    }
+  },
+  "profFamilyShareSubtitle": "Share budgets and financial data with your household.",
+  "profCreateFamily": "Create Family",
+  "profCreateFamilyOwnerNote": "You will be the owner of this family account.",
+  "profPremiumRequired": "Premium required",
+  "profPremiumRequiredBody": "{message}\n\nUpgrade to Premium to create a family and share budgets, savings goals, and insights.",
+  "@profPremiumRequiredBody": {
+    "description": "Body of the premium-required dialog; message comes from the server",
+    "placeholders": {
+      "message": {
+        "type": "String",
+        "example": "Family sharing is a Premium feature."
+      }
+    }
+  },
+  "profNotNow": "Not now",
+  "profSeePlans": "See plans",
+  "profEditFamily": "Edit Family",
+  "profInviteMember": "Invite Member",
+  "profInviteMemberNote": "They will receive an email to join your family.",
+  "profRoleLabel": "Role",
+  "profChangeRole": "Change Role",
+  "profUpdateRoleFor": "Update role for {name}",
+  "@profUpdateRoleFor": {
+    "description": "Subtitle of the change-role sheet",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Jane"
+      }
+    }
+  },
+  "profInvitationExpired": "Expired",
+  "profInvitationPending": "Pending",
+  "profDeleteAccountTitle": "Delete Account",
+  "profDeleteConfirmEmailPrompt": "Type your email address to confirm:",
+  "profDeleteEnterPassword": "Enter your password:",
+  "pwdForgotPasswordTitle": "Forgot Password",
+  "pwdCheckYourEmail": "Check Your Email",
+  "pwdResetLinkSent": "If an account exists with that email, you'll receive a password reset link shortly.",
+  "pwdCheckSpam": "Check your spam folder if you don't see it.",
+  "pwdBackToLogin": "Back to Login",
+  "pwdTryDifferentEmail": "Try a different email",
+  "pwdResetPassword": "Reset Password",
+  "pwdEnterEmailForReset": "Enter your email address and we'll send you a link to reset your password.",
+  "pwdSendResetLink": "Send Reset Link",
+  "pwdRememberPassword": "Remember your password? ",
+  "pwdPasswordResetDone": "Password Reset!",
+  "pwdResetSuccessBody": "Your password has been successfully reset. You can now log in with your new password.",
+  "pwdGoToLogin": "Go to Login",
+  "pwdCreateNewPassword": "Create New Password",
+  "pwdEnterNewPassword": "Enter your new password below. Make sure it's strong and secure.",
+  "billPageTitle": "Subscription & Billing",
+  "billPageSubtitle": "Manage your Buoy Money subscription and billing information",
+  "billCurrentPlan": "Current Plan",
+  "billPerYear": "/ year",
+  "billPerMonth": "/ month",
+  "billWillCancelOn": "Will cancel on {date}",
+  "@billWillCancelOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billPastDueNotice": "Your last payment didn't go through. Update your payment method to keep your subscription.",
+  "billPremiumTrial": "Premium Trial",
+  "billDaysRemaining": "{count, plural, =1{day remaining} other{days remaining}}",
+  "@billDaysRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "billSubscribeToKeepAccess": "Subscribe to a plan below to keep access after your trial ends.",
+  "billTrialEnded": "Your Trial Has Ended",
+  "billNoActiveSubscription": "No Active Subscription",
+  "billTrialEndedSubtitle": "Choose a plan below to continue using Buoy Money's premium features.",
+  "billNoSubSubtitle": "Start a free trial or choose a plan below to unlock all Buoy Money features.",
+  "billStartTrialTitle": "Start Your 14-Day Free Trial",
+  "billTrialDescription": "Try Buoy Money Premium features free for 14 days. You won't be charged until after your trial ends.",
+  "billChooseAPlan": "Choose a Plan",
+  "billMostPopular": "MOST POPULAR",
+  "billPerMonthSuffix": "/month",
+  "billYearlyAlt": "or {price}/year (save {percent}%)",
+  "@billYearlyAlt": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "wrapNothingToWrapYet": "Nothing to wrap yet",
+  "wrapEmptyBody": "Once there is activity in this period, the story lives here.",
+  "wrapBackToDashboard": "Back to dashboard",
+  "wrapTapToContinue": "tap to continue",
+  "wrapKickerMoneyWrapped": "money wrapped",
+  "wrapYourPeriod": "Your {period},",
+  "@wrapYourPeriod": {
+    "placeholders": {
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "wrapWrapped": "wrapped.",
+  "wrapKickerTheDamage": "the damage",
+  "wrapYouSpent": "You spent",
+  "wrapLessThan": "{percent}% less than {month}",
+  "@wrapLessThan": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "wrapMoreThan": "{percent}% more than {month}",
+  "@wrapMoreThan": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "wrapCameInTransactions": "{amount} came in · {count} transactions",
+  "@wrapCameInTransactions": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wrapKickerWhereItWent": "where it went",
+  "wrapShareOfSpending": "{percent}% of everything you spent",
+  "@wrapShareOfSpending": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "wrapAndYouVisited": "And you visited",
+  "wrapTimes": "{count, plural, =1{once} other{{count} times}}",
+  "@wrapTimes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wrapKickerTheWins": "the wins",
+  "wrapZeroSpendDays": "zero-spend days",
+  "wrapDayStreakGoing": "day streak going",
+  "wrapBadgesEarnedLabel": "{count, plural, =1{badge earned} other{badges earned}}",
+  "@wrapBadgesEarnedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wrapKickerPaidYourself": "paid yourself",
+  "wrapYouMoved": "You moved",
+  "wrapIntoSavingsGoals": "into your savings goals",
+  "wrapNextMonth": "Next month,",
+  "wrapPayYourselfFirst": "pay yourself first.",
+  "wrapThatWasPeriod": "that was {period}",
+  "@wrapThatWasPeriod": {
+    "placeholders": {
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "wrapSeeYouNext": "See you next",
+  "wrapMonthDot": "month.",
+  "uiPaywallTitle": "Choose a plan to continue",
+  "uiPaywallBody": "You've already used your free trial on this email. To keep using Buoy Money, pick a Standard or Premium plan. You'll be back in a moment.",
+  "uiChooseYourPlan": "Choose Your Plan",
+  "uiCompletedPaymentRefresh": "I've completed payment — refresh",
+  "uiSignOut": "Sign out",
+  "savNoSavingsGoals": "No Savings Goals",
+  "savEmptyStateSubtitle": "Start saving for your dreams.\nCreate your first savings goal.",
+  "savNoPersonalGoalsYet": "No personal goals yet",
+  "savSavingsGoalsTitle": "Savings Goals",
+  "savTrackYourFinancialDreams": "Track your financial dreams",
+  "savUnallocatedBudget": "Unallocated Budget",
+  "savPersonal": "Personal",
+  "savFamily": "Family",
+  "savIncomeMinusBudgetAllocations": "Income minus budget allocations",
+  "savAvailableForGoals": "Available for Goals",
+  "savNotYetAssignedToGoals": "Not yet assigned to goals",
+  "savFullyAllocated": "Fully allocated ✓",
+  "savRecentAchievements": "Recent Achievements",
+  "savLinkedAccount": "Linked account",
+  "savSync": "Sync",
+  "savReconcile": "Reconcile",
+  "savByOwner": "by {name}",
+  "@savByOwner": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "savComplete": "Complete",
+  "savDaysLeft": "{days}d left",
+  "@savDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "savOfTarget": "of {amount}",
+  "@savOfTarget": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$1,000.00"
+      }
+    }
+  },
+  "savPercentAllocation": "{percent}% allocation",
+  "@savPercentAllocation": {
+    "placeholders": {
+      "percent": {
+        "type": "String",
+        "example": "25"
+      }
+    }
+  },
+  "savEdit": "Edit",
+  "savResetToZero": "Reset to {symbol}0",
+  "@savResetToZero": {
+    "placeholders": {
+      "symbol": {
+        "type": "String",
+        "example": "$"
+      }
+    }
+  },
+  "savDelete": "Delete",
+  "savPercentComplete": "{percent}% complete",
+  "@savPercentComplete": {
+    "placeholders": {
+      "percent": {
+        "type": "String",
+        "example": "62.5"
+      }
+    }
+  },
+  "savGoalAchieved": "Goal Achieved!",
+  "savGoalAchievedCongrats": "Congratulations on reaching your savings goal.",
+  "savCountWithdrawalsTowardBudget": "Count withdrawals toward budget",
+  "savCountWithdrawalsSubtitle": "When enabled, money pulled from this goal counts as spending in your budget",
+  "savHeldInAccountOptional": "Held in account (optional)",
+  "savAccountFlagHint": "We'll flag it when this account's balance and your goals disagree",
+  "savNotLinked": "Not linked",
+  "savCancel": "Cancel",
+  "savEditGoal": "Edit Goal",
+  "savNewSavingsGoal": "New Savings Goal",
+  "savSave": "Save",
+  "savCreate": "Create",
+  "savCurrentProgress": "Current Progress",
+  "savGoalType": "Goal Type",
+  "savAmountAvailable": "{amount} available",
+  "@savAmountAvailable": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$150.00"
+      }
+    }
+  },
+  "savMonthlyAllocation": "Monthly Allocation",
+  "savAvailableLeftoverMax": "Available: {amount} leftover  ·  Max {percent}%",
+  "@savAvailableLeftoverMax": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$150.00"
+      },
+      "percent": {
+        "type": "String",
+        "example": "75"
+      }
+    }
+  },
+  "savTargetDate": "Target Date",
+  "savOptionalOpenEnded": "Optional — open-ended",
+  "savIcon": "Icon",
+  "savColorTheme": "Color Theme",
+  "savTargetDateTip": "Setting a target date helps track progress and calculate required monthly contributions.",
+  "savAddFunds": "Add Funds",
+  "savToGoalName": "to \"{name}\"",
+  "@savToGoalName": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Emergency Fund"
+      }
+    }
+  },
+  "savRemainingAmount": "Remaining: {amount}",
+  "@savRemainingAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "$500.00"
+      }
+    }
+  },
+  "savNewBalance": "New balance:",
+  "savSetWhatEachGoalHolds": "Set what each goal holds in this account",
+  "savDistributeProportionally": "Distribute proportionally",
+  "savSaving": "Saving...",
+  "savApply": "Apply",
+  "savBelongsTo": "Belongs to {name}",
+  "@savBelongsTo": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Alex"
+      }
+    }
+  },
+  "subFailedToLoad": "Failed to load subscriptions",
+  "subTitle": "Subscriptions",
+  "subSubtitle": "Track and manage recurring subscriptions",
+  "subPossiblyCancelledCount": "{count} Possibly Cancelled",
+  "@subPossiblyCancelledCount": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "subNoChargesTapReview": "No charges in 2+ billing cycles · Tap to review",
+  "subReview": "Review",
+  "subSuggestionsCount": "{count} Subscription Suggestions",
+  "@subSuggestionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "subHighConfidenceTapReview": "{count} high confidence · Tap to review",
+  "@subHighConfidenceTapReview": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "subTapToReviewPatterns": "Tap to review detected patterns",
+  "subToday": "Today",
+  "subMoreEvents": "+{count} more",
+  "@subMoreEvents": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "subNoBillingEventsDay": "No billing events on this day",
+  "subEventCountTotal": "{count, plural, =1 {1 event} other {{count} events}} · {total}",
+  "@subEventCountTotal": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      },
+      "total": {
+        "type": "String",
+        "example": "$24.99"
+      }
+    }
+  },
+  "subNoneDueThisMonth": "No subscriptions due this month — {count} total",
+  "@subNoneDueThisMonth": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "subNoSubscriptionsFound": "No subscriptions found",
+  "subFrequencyDue": "{frequency} · Due {date}",
+  "@subFrequencyDue": {
+    "placeholders": {
+      "frequency": {
+        "type": "String",
+        "example": "Monthly"
+      },
+      "date": {
+        "type": "String",
+        "example": "Sep 12"
+      }
+    }
+  },
+  "subAddSubscription": "Add Subscription",
+  "subSearchTransactions": "Search Transactions",
+  "subNewSubscription": "New Subscription",
+  "subSearchAbovePrompt": "Search for transactions above",
+  "subNoExpenseTransactions": "No expense transactions found",
+  "subEditName": "Edit {name}",
+  "@subEditName": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Netflix"
+      }
+    }
+  },
+  "subAutoDetectedReview": "Auto-detected subscription — review details for accuracy",
+  "subDetectedSubscriptions": "Detected Subscriptions",
+  "subReviewConfirmPatterns": "Review and confirm automatically detected patterns",
+  "subAnalyzingTransactions": "Analyzing transactions for subscription patterns...",
+  "subNoPatternsDetected": "No subscription patterns detected",
+  "subFoundPotential": "Found {count} potential subscriptions ({highCount} high confidence)",
+  "@subFoundPotential": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "6"
+      },
+      "highCount": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "subSelectAll": "Select All",
+  "subSelectedOf": "{selected} of {total} selected",
+  "@subSelectedOf": {
+    "placeholders": {
+      "selected": {
+        "type": "int",
+        "example": "3"
+      },
+      "total": {
+        "type": "int",
+        "example": "6"
+      }
+    }
+  },
+  "subReviewSuggestions": "Review Suggestions",
+  "subOfRemaining": "{current} of {total} remaining",
+  "@subOfRemaining": {
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "subNeverSuggestAgain": "Never suggest this merchant again",
+  "subPossiblyCancelledTitle": "Possibly Cancelled",
+  "subNoChargesDetected": "No charges detected in {count} billing cycles. This subscription may have been cancelled.",
+  "@subNoChargesDetected": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "subSnoozeMerchant": "Snooze \"{name}\"",
+  "@subSnoozeMerchant": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Netflix"
+      }
+    }
+  },
+  "subChooseHowLong": "Choose how long to hide this suggestion",
+  "subUntilDate": "until {date}",
+  "@subUntilDate": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Sep 28, 2026"
+      }
+    }
+  },
+  "subDeleteName": "Delete {name}?",
+  "@subDeleteName": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Netflix"
+      }
+    }
+  },
+  "subChooseHowToHandle": "Choose how to handle this subscription",
+  "subOptionalSuffix": " (optional)",
+  "setSignOut": "Sign Out",
+  "setSignOutConfirm": "Are you sure you want to sign out?",
+  "setTitle": "Settings",
+  "setAiControl": "AI Control",
+  "setAiControlSubtitle": "Choose how proactive Buoy Money is: your money, your way.",
+  "setInteractionMode": "Interaction Mode",
+  "setAiModeQuickDesc": "Quick responses, minimal questions",
+  "setAiModeClarifyingDesc": "Asks clarifying questions for context",
+  "setAiProfileQuiz": "AI Profile Quiz",
+  "setQuizCompletedDesc": "Your answers are saved — retake to update them",
+  "setQuizTakeDesc": "Personalize your financial insights",
+  "setBackgroundBubbles": "Background bubbles",
+  "setBackgroundBubblesDesc": "How many particles drift up behind the app. Lower it for a calmer look or smoother performance.",
+  "setSubTrackingHint": "Select categories to prompt for when detecting new subscriptions:",
+  "setPushSectionDesc": "Alerts on this device for bills, budgets, and account issues.",
+  "setEmailSectionDesc": "Manage which email notifications you receive.",
+  "setEmailPreferences": "Email Preferences",
+  "setFailedLoadPreferences": "Failed to load preferences",
+  "setPushNotifications": "Push Notifications",
+  "setOsBlockingNotifications": "Your phone is blocking notifications from Buoy Money, so none of the alerts below can be delivered. Tap Save to allow them.",
+  "setAlwaysOn": "Always On",
+  "setConfirmYourPassword": "Confirm your password",
+  "setEnterPasswordToEnable": "Enter your password to enable {typeName} quick login.",
+  "@setEnterPasswordToEnable": {
+    "description": "Body of the password-confirm dialog when enabling biometric quick login",
+    "placeholders": {
+      "typeName": {
+        "type": "String",
+        "example": "Face ID"
+      }
+    }
+  },
+  "txnAdd": "Add",
+  "txnRetry": "Retry",
+  "txnPageTitle": "Transactions",
+  "txnTotalCount": "{count} total",
+  "@txnTotalCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnDeleteTransactionTitle": "Delete Transaction",
+  "txnDeleteConfirmBody": "{prompt}\nThis cannot be undone.",
+  "@txnDeleteConfirmBody": {
+    "placeholders": {
+      "prompt": {
+        "type": "String"
+      }
+    }
+  },
+  "txnDeleteNamedPrompt": "Delete \"{name}\"?",
+  "@txnDeleteNamedPrompt": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "txnDeleteGenericPrompt": "Delete this transaction?",
+  "txnCancel": "Cancel",
+  "txnDelete": "Delete",
+  "txnNeedReviewCount": "{count, plural, one{{count} transaction needs review} other{{count} transactions need review}}",
+  "@txnNeedReviewCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnReadyForReviewCount": "{count, plural, one{{count} transaction ready for review} other{{count} transactions ready for review}}",
+  "@txnReadyForReviewCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnThisMonthVsOlder": "{thisMonthCount} this month · {olderCount} from earlier months",
+  "@txnThisMonthVsOlder": {
+    "placeholders": {
+      "thisMonthCount": {
+        "type": "int"
+      },
+      "olderCount": {
+        "type": "int"
+      }
+    }
+  },
+  "txnUncategorizedHint": "{count} of these are uncategorized — auto-categorize to let AI sort them",
+  "@txnUncategorizedHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnAiEligibleHint": "{count} from this month and last can be auto-categorized by AI (it knows your rules and preferences)",
+  "@txnAiEligibleHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnAiCategorizingNew": "{count, plural, one{AI is categorizing {count} new transaction...} other{AI is categorizing {count} new transactions...}}",
+  "@txnAiCategorizingNew": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnAlwaysCategorizeTitle": "Always file {merchant} as {category}?",
+  "@txnAlwaysCategorizeTitle": {
+    "placeholders": {
+      "merchant": {
+        "type": "String"
+      },
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "txnAlwaysCategorizeBody": "New {merchant} transactions will get this category automatically, ahead of Plaid and AI. You can pause or delete the rule in Settings, under Categorization Rules.",
+  "@txnAlwaysCategorizeBody": {
+    "placeholders": {
+      "merchant": {
+        "type": "String"
+      }
+    }
+  },
+  "txnAlwaysCategorizeYes": "Always",
+  "txnAlwaysCategorizeNo": "Just this one",
+  "txnRuleSaved": "Rule saved: {merchant} will file as {category} from now on.",
+  "@txnRuleSaved": {
+    "placeholders": {
+      "merchant": {
+        "type": "String"
+      },
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "txnRuleSaveFailed": "Couldn't save the rule",
+  "txnCategorizingProgress": "Categorizing {completed} of {total}...",
+  "@txnCategorizingProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "txnCategorizing": "Categorizing...",
+  "txnAutoCategorize": "Auto-Categorize",
+  "txnReview": "Review",
+  "txnReviewTransactions": "Review Transactions",
+  "txnForgetOlderLink": "Forget the {count} from earlier months",
+  "@txnForgetOlderLink": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnForgetOlderTitle": "{count, plural, one{Forget {count} transaction?} other{Forget {count} transactions?}}",
+  "@txnForgetOlderTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnForgetOlderBody": "These are from earlier months. They stay in your transaction list and keep the categories they already have — they just stop being suggested for review. This month is not affected. There is no undo.",
+  "txnForgetThem": "Forget them",
+  "txnPossibleTransfersCount": "{count, plural, one{1 possible transfer counted as spending} other{{count} possible transfers counted as spending}}",
+  "@txnPossibleTransfersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnResultsCount": "{count, plural, one{{count} result} other{{count} results}}",
+  "@txnResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnClearAll": "Clear all",
+  "txnNoMatchFilters": "No transactions match your filters",
+  "txnNoTransactionsYet": "No transactions yet",
+  "txnTryAdjustingFilters": "Try adjusting your filters",
+  "txnConnectBankToStart": "Connect a bank account to get started",
+  "txnSavingsGoalFallback": "Savings Goal",
+  "txnEarmarkDepositTitle": "Deposit {amount} into {goalName}?",
+  "@txnEarmarkDepositTitle": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "goalName": {
+        "type": "String"
+      }
+    }
+  },
+  "txnEarmarkPayTitle": "Pay {amount} from {goalName}?",
+  "@txnEarmarkPayTitle": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "goalName": {
+        "type": "String"
+      }
+    }
+  },
+  "txnEarmarkDepositBody": "This moves it out of your income and into {goalName}.",
+  "@txnEarmarkDepositBody": {
+    "placeholders": {
+      "goalName": {
+        "type": "String"
+      }
+    }
+  },
+  "txnEarmarkPayBody": "This removes it from your {categoryName} budget and applies it to {goalName}.",
+  "@txnEarmarkPayBody": {
+    "placeholders": {
+      "categoryName": {
+        "type": "String"
+      },
+      "goalName": {
+        "type": "String"
+      }
+    }
+  },
+  "txnDeposit": "Deposit",
+  "txnPay": "Pay",
+  "txnMonthCaughtUp": "This month is all caught up! 🎉",
+  "txnOlderStillNeedReview": "{count, plural, one{{count} older transaction from earlier months still needs review.} other{{count} older transactions from earlier months still need review.}}",
+  "@txnOlderStillNeedReview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnReviewOlderButton": "Review {count} older",
+  "@txnReviewOlderButton": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnDoneForNow": "Done for now",
+  "txnReviewAiCategories": "Review AI Categories",
+  "txnPositionOfTotal": "{current} of {total}",
+  "@txnPositionOfTotal": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "txnReviewedCount": "✓ {count} reviewed",
+  "@txnReviewedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnRemainingCount": "• {count} remaining",
+  "@txnRemainingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnAiAnalyzing": "AI is analyzing transactions...",
+  "txnConfirmTransfers": "Confirm transfers",
+  "txnTransfersLeft": "{count} left",
+  "@txnTransfersLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnTransfersExplainer": "These look like money moving between your own accounts. Confirming keeps them out of your spending totals.",
+  "txnSkipContinueCategorize": "Skip — continue to categorize →",
+  "txnDone": "Done",
+  "txnNotATransfer": "Not a transfer",
+  "txnMarkAsTransfer": "Mark as transfer",
+  "txnAllCaughtUp": "All Caught Up!",
+  "txnAiCategorizedEverything": "AI categorized everything — nothing needs your review.",
+  "txnAiAnalyzingYours": "AI is analyzing your transactions…",
+  "txnSuggestionsWillAppear": "Suggestions will appear here as they're ready — no need to wait.",
+  "txnAmazingWork": "🎉 Amazing Work! 🎉",
+  "txnYouReviewedAll": "{count, plural, one{You reviewed {count} transaction!} other{You reviewed all {count} transactions!}}",
+  "@txnYouReviewedAll": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "txnClosingAutomatically": "Closing automatically...",
+  "txnAiConfidence": "AI Confidence:",
+  "txnQuickSelect": "Quick Select:",
+  "txnAiBadge": "AI",
+  "txnOrChooseFromAll": "Or choose from all:",
+  "txnModified": "Modified",
+  "txnSavingsGoalsGroup": "🏦 Savings Goals",
+  "txnClose": "Close",
+  "txnRenameTransaction": "Rename transaction",
+  "txnBankCallsThis": "Your bank calls this \"{bankName}\". Clear the field to use that again.",
+  "@txnBankCallsThis": {
+    "placeholders": {
+      "bankName": {
+        "type": "String"
+      }
+    }
+  },
+  "txnBankSentNoName": "Your bank sent no name for this one.",
+  "txnSave": "Save",
+  "txnCategory": "Category",
+  "txnChange": "Change",
+  "txnSavingsGoalNumber": "Savings Goal #{id}",
+  "@txnSavingsGoalNumber": {
+    "placeholders": {
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+  "txnDepositedIntoGoal": "Deposited into this goal. Excluded from spendable income.",
+  "txnPaidFromGoal": "Paid from this goal. Excluded from budget spend.",
+  "txnAiSuggested": "AI suggested: {categoryName}",
+  "@txnAiSuggested": {
+    "placeholders": {
+      "categoryName": {
+        "type": "String"
+      }
+    }
+  },
+  "txnUnknown": "Unknown",
+  "txnSemanticTags": "Semantic Tags",
+  "txnNoTags": "No tags",
+  "txnNotes": "Notes",
+  "txnNoNotes": "No notes",
+  "txnSplitDetails": "Split Details",
+  "txnMerchant": "Merchant",
+  "txnEditCategory": "Edit Category",
+  "txnCreateNewCategory": "Create New Category",
+  "txnNewCategory": "New Category",
+  "txnColor": "Color",
+  "txnIncomeCategory": "Income category",
+  "txnPersonalSubcategory": "Personal sub-category (private)",
+  "txnPersonalSubcategoryHint": "Only you see this. It buckets the spend on your personal budget.",
+  "txnAdvancedFilters": "Advanced Filters",
+  "txnClearAllFilters": "Clear All",
+  "txnAmountRange": "Amount Range",
+  "txnCustomDateRange": "Custom Date Range",
+  "txnClearDates": "Clear dates",
+  "txnAccount": "Account",
+  "txnAllAccounts": "All Accounts",
+  "txnAllCategories": "All Categories",
+  "txnSplitTransaction": "Split Transaction",
+  "txnAddSplit": "Add Split",
+  "txnDistributeEvenly": "Distribute Evenly",
+  "txnUnsplitTransaction": "Unsplit Transaction",
+  "txnPartNumber": "Part {number}",
+  "@txnPartNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "txnUncategorized": "Uncategorized",
+  "txnSplitMatch": "Match!",
+  "txnSplitRemaining": "{amount} remaining",
+  "@txnSplitRemaining": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "txnSplitOver": "{amount} over",
+  "@txnSplitOver": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "txnSplitTotal": "Split Total",
+  "txnOriginal": "Original",
+  "txnAddTransaction": "Add transaction",
+  "txnAddTransactionSubtitle": "Record something your bank didn't import.",
+  "txnCashNoAccount": "Cash (no account)",
+  "txnCouldNotLoadAccounts": "Could not load your accounts.",
+  "txnEnterDescription": "Please enter a description.",
+  "txnEnterAmountGreaterZero": "Please enter an amount greater than zero.",
+  "txnCouldNotSaveTransaction": "Could not save the transaction. Please try again.",
+  "uiCustomizeQuickAccess": "Customize Quick Access",
+  "uiMore": "More",
+  "uiEdit": "Edit",
+  "uiQuickAccess": "QUICK ACCESS",
+  "uiQuickAccessInstructions": "Select up to 4 pages for quick access. Use arrows to reorder.",
+  "uiSelectedCount": "Selected: {count}/4",
+  "@uiSelectedCount": {
+    "description": "Count of selected quick-access pages out of 4",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "uiCancel": "Cancel",
+  "uiSave": "Save",
+  "uiBadgePro": "PRO",
+  "uiBadgeDev": "DEV",
+  "uiYourArchetype": "YOUR ARCHETYPE",
+  "uiInviteAFriend": "Invite a friend",
+  "uiInviteSubtitle": "Share Buoy Money and earn the Recruiter badge",
+  "uiInvite": "Invite",
+  "uiAchievementsTitle": "Achievements",
+  "uiAchievementsSubtitle": "Milestones to chase — and a couple to avoid.",
+  "uiWatchOutsNote": "The ones you don't want. Shown up front so you know what to steer clear of.",
+  "uiPointsToNextLevel": "{count, plural, =1{1 point to the next level} other{{count} points to the next level}}",
+  "@uiPointsToNextLevel": {
+    "description": "Progress note under the achievements summary bar",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "uiTopLevelReached": "Top level reached",
+  "uiRetry": "Retry",
+  "uiPasskeys": "Passkeys",
+  "uiRecommended": "Recommended",
+  "uiPasskeysDescription": "Phishing-resistant passwordless authentication using biometrics or security keys.",
+  "uiActiveBadge": "Active",
+  "uiLastUsed": "Last used: {lastUsed}",
+  "@uiLastUsed": {
+    "description": "When a passkey was last used, e.g. 'Today' or '3 days ago'",
+    "placeholders": {
+      "lastUsed": {
+        "type": "String",
+        "example": "Today"
+      }
+    }
+  },
+  "uiCreatingEllipsis": "Creating...",
+  "uiRenamePasskey": "Rename Passkey",
+  "uiFooterTagline": "Budget Smarter with AI-Powered\nFinancial Insights.",
+  "uiFooterLegal": "Legal",
+  "uiPrivacyPolicy": "Privacy Policy",
+  "uiTermsOfService": "Terms of Service",
+  "uiCopyright": "© 2026 BuoyAI LLC. All rights reserved.",
+  "uiBankLevelSecurity": "Bank-level security",
+  "uiMfaPreferences": "MFA Preferences",
+  "uiMfaPreferencesSubtitle": "Configure how multi-factor authentication works for your account.",
+  "uiMfaSetupMoreNote": "Set up additional MFA methods in your profile to unlock preferences here.",
+  "uiSavePreferences": "Save Preferences",
+  "uiNone": "None",
+  "uiNotificationsTitle": "Notifications",
+  "uiActiveTab": "Active",
+  "uiArchivedTab": "Archived",
+  "uiNoArchivedNotifications": "No archived notifications",
+  "uiAllCaughtUp": "You're all caught up!",
+  "uiArchivedEmptyHint": "Archived notifications will appear here",
+  "uiNoNewNotifications": "No new notifications right now",
+  "uiSomethingWentWrong": "Something went wrong",
+  "uiBankMfaTitle": "One quick step first",
+  "uiBankMfaTotpTitle": "Set up your authenticator",
+  "uiBankMfaIntro": "Banks require two-factor security before we can link an account. Pick one below (about 30 seconds) and we will open your bank right away.",
+  "uiBankMfaTotpIntro": "Scan the code with your authenticator app, then enter the 6-digit code it shows.",
+  "uiNotNow": "Not now",
+  "uiEnterKeyManually": "Or enter this key manually:",
+  "uiVerifyAndConnectBank": "Verify and connect bank",
+  "uiQrFailedToLoad": "QR failed to load",
+  "uiAdditionalVerification": "Additional Verification",
+  "uiUsePasskeyFor": "Use your passkey for {operation}",
+  "@uiUsePasskeyFor": {
+    "description": "Step-up MFA subtitle; operation is a lowercase phrase like 'connecting a bank account'",
+    "placeholders": {
+      "operation": {
+        "type": "String",
+        "example": "connecting a bank account"
+      }
+    }
+  },
+  "uiEnterCodeFor": "Enter a verification code for {operation}",
+  "@uiEnterCodeFor": {
+    "description": "Step-up MFA subtitle; operation is a lowercase phrase like 'connecting a bank account'",
+    "placeholders": {
+      "operation": {
+        "type": "String",
+        "example": "connecting a bank account"
+      }
+    }
+  },
+  "uiVerifyingEllipsis": "Verifying...",
+  "uiVerifyWithPasskey": "Verify with Passkey",
+  "uiSendVerificationCode": "Send Verification Code",
+  "connUpdateConnection": "Update Connection",
+  "connLoadingConnection": "Loading connection...",
+  "connUpdatingConnection": "Updating connection...",
+  "connPleaseWaitReconnect": "Please wait while we reconnect your account.",
+  "connConnecting": "Connecting...",
+  "connRequiresUpdate": "Requires Update",
+  "connAccountsAffected": "{count, plural, one{1 account affected} other{{count} accounts affected}}",
+  "@connAccountsAffected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "connWhyNeeded": "Why is this needed?",
+  "connReauthExplainer": "Your bank requires you to re-authenticate your connection. This can happen for several reasons:",
+  "connReasonCredentialsChanged": "Your bank login credentials changed",
+  "connReasonMfaChanged": "Multi-factor authentication settings changed",
+  "connReasonInactive": "The connection has been inactive",
+  "connReasonBankSecurity": "Your bank updated their security",
+  "connCredentialsSecure": "Your credentials are securely transmitted directly to your bank through Plaid.",
+  "dashCashFlowThisMonth": "Cash Flow · This Month",
+  "dashNoActivityThisMonth": "No activity yet this month.",
+  "dashFlowIn": "In",
+  "dashFlowOut": "Out",
+  "dashNet": "Net",
+  "dashTransfersExcluded": "{amount} in transfers & card payments excluded",
+  "@dashTransfersExcluded": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dashUpcomingBills": "Upcoming Bills",
+  "dashPerMonthAbbrev": "/mo",
+  "dashNoUpcomingBills": "No upcoming bills.",
+  "dashDueToday": "Due today",
+  "dashDueTomorrow": "Due tomorrow",
+  "dashDueInDays": "Due in {days} days",
+  "@dashDueInDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "dashSavings": "Savings",
+  "dashSavingsUnavailable": "Savings data unavailable.",
+  "dashFreeToSave": "Free to save this period",
+  "dashNoGoalsYet": "No goals yet",
+  "dashCreate": "Create",
+  "dashTotalSavedActive": "Total saved {amount} · {count} active",
+  "@dashTotalSavedActive": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "uiGoToDashboard": "Go to dashboard",
+  "uiPageNotFound": "Page not found",
+  "uiCouldntFindPath": "We couldn't find “{path}”.",
+  "@uiCouldntFindPath": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "uiComingSoon": "Coming soon",
+  "welcomeWhatShouldWeCallYou": "What should we call you?",
+  "welcomeAddNameBody": "Your sign-in didn't share a name. Add it so Buoy Money can greet you properly.",
+  "welcomeContinue": "Continue",
+  "uiLocked": "Locked",
+  "uiLogOut": "Log out",
+  "uiUnlock": "Unlock",
+  "uiVerifyYourEmail": "Verify your email",
+  "uiVerify": "Verify",
+  "uiCancel2": "Cancel",
+  "uiDecline": "Decline",
+  "uiAccept": "Accept",
+  "uiBack": "Back",
+  "authBackToSignIn": "← Back to sign in",
+  "authOr": "or",
+  "authQuickLoginOffer": "Log in with {biometricType} next time?",
+  "@authQuickLoginOffer": {
+    "placeholders": {
+      "biometricType": {
+        "type": "String"
+      }
+    }
+  },
+  "authQuickLoginBody": "Skip the password: your {biometricType} unlocks Buoy Money. Credentials are stored securely on this device only.",
+  "@authQuickLoginBody": {
+    "placeholders": {
+      "biometricType": {
+        "type": "String"
+      }
+    }
+  },
+  "quizProfileComplete": "Profile Complete!",
+  "quizProfileCompleteBody": "Your AI assistant will now personalize insights based on your financial profile.",
+  "quizTitle": "AI Profile Quiz",
+  "quizSubtitle": "Help us understand your financial goals for personalized insights",
+  "quizSelectUpTo": "Select up to {max} ({selected}/{max2})",
+  "@quizSelectUpTo": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      },
+      "selected": {
+        "type": "int"
+      },
+      "max2": {
+        "type": "int"
+      }
+    }
+  },
+  "quizSelectAllThatApply": "Select all that apply",
+  "quizQuestionOf": "Question {current} of {total}",
+  "@quizQuestionOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "consentTurnOnTitle": "Turn on AI features?",
+  "consentGeminiBody": "Buoy Money's AI features (chat, insights, charts and automatic categorization) are powered by Google's Gemini API. If you turn them on, Buoy Money sends Google the data each feature needs:",
+  "consentTurnOnButton": "Turn on AI features",
+  "consentNotNow": "Not now",
+  "consentPrivacyPolicy": "Privacy Policy",
+  "consentDataTransactions": "Transactions: merchant, description, amount, date and category, including your bank's description, check numbers, and transfer names and memos",
+  "consentDataAccounts": "Accounts: names, balances and account holder names",
+  "consentDataPlans": "Your budgets, savings goals, subscriptions and income",
+  "consentDataPersonal": "Your first name, your onboarding answers, what you type or attach in chat, and facts the assistant remembers",
+  "consentDataBackground": "In the background: new transactions after each bank sync, to categorize them, and your corrections, to learn from",
+  "consentNeverSent": "Never sent: your bank login, full account numbers, your email or your password.",
+  "consentGoogleUse": "Google processes this only to produce the result, under the Gemini API terms. It is never sold or used for ads.",
+  "consentWithdraw": "Turn this off any time in Settings > AI Assistant. Without it, Buoy Money still works; AI features stay off.",
+  "consentWhatIsSent": "What is sent",
+  "setRuleOffersTitle": "Offer to create rules after corrections",
+  "setRuleOffersSubtitle": "When you change a category the AI or your bank picked, ask whether to always file that merchant the same way. Off by default. See and manage your rules under Categorization Rules below.",
+  "connLoadingRequest": "Loading connection request…",
+  "connConnectClientTitle": "Connect {client} to Buoy Money",
+  "@connConnectClientTitle": {
+    "placeholders": {
+      "client": {
+        "type": "String"
+      }
+    }
+  },
+  "connClientWantsTo": "{client} wants to:",
+  "@connClientWantsTo": {
+    "placeholders": {
+      "client": {
+        "type": "String"
+      }
+    }
+  },
+  "connRevokeNote": "You can revoke access anytime from the assistant's settings. {client} never sees your Buoy Money password.",
+  "@connRevokeNote": {
+    "placeholders": {
+      "client": {
+        "type": "String"
+      }
+    }
+  },
+  "uiPushPromptTitle": "Stay on top of your money",
+  "uiPushPromptBody": "Get a heads-up before bills hit, when a budget is running hot, or when a bank connection needs attention. You choose which alerts — and quiet hours — in Settings.",
+  "uiEnableNotifications": "Enable notifications",
+  "uiOfflineSyncNote": "Changes you make are saved on this device and will sync automatically the next time you're online.",
+  "uiCouldNotRenderVisualization": "Could not render this visualization.",
+  "uiChartTotal": "total",
+  "billBillingHistory": "Billing History",
+  "billNoHistoryYet": "No billing history yet.",
+  "billPlanReplacedProrated": "Your current plan will be replaced. You'll be charged a prorated amount.",
+  "billCurrentLabel": "Current: ",
+  "billNewPlanLabel": "New plan: ",
+  "billPerYearWord": "/ year",
+  "billPerMonthWord": "/ month",
+  "billPromoCode": "Promo Code",
+  "profReferralBothFreeMonth": "They get a free month when they connect an account. So do you.",
+  "profDeleteAccountBody": "Permanently delete your account and all associated data. Active subscriptions will be cancelled. This action cannot be undone.",
+  "profLastUsed": "Last used {time}",
+  "@profLastUsed": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "profRecommended": "Recommended",
+  "setOauthQuickLoginNote": "{biometricType} quick login is for accounts with an email and password. You sign in with Google or Apple, so just tap that button — and {biometricType2} unlock above still keeps the app itself locked.",
+  "@setOauthQuickLoginNote": {
+    "placeholders": {
+      "biometricType": {
+        "type": "String"
+      },
+      "biometricType2": {
+        "type": "String"
+      }
+    }
+  },
+  "connCloseWindow": "You can close this window.",
+  "connUnavailable": "Connection unavailable",
+  "connSignedInAs": "Signed in as",
+  "uiEmailPreferences": "Email Preferences",
+  "uiSecurityEmailsNote": "Security emails (login alerts, password changes) cannot be disabled.",
+  "uiRetry2": "Retry",
+  "wrapRarestCatch": "your rarest catch of {year}",
+  "@wrapRarestCatch": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "wrapShareIt": "Share it",
+  "wrapDone": "Done",
+  "uiShareTagline": "Building better money habits",
+  "uiShare": "Share",
+  "dashNetWorth": "Net Worth",
+  "uiEarnedOn": "Earned {date}",
+  "@uiEarnedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "uiTierLabel": "{tier} tier",
+  "@uiTierLabel": {
+    "placeholders": {
+      "tier": {
+        "type": "String"
+      }
+    }
+  },
+  "txnCoveredByTransfer": "Covered by a transfer from {account} on {date}",
+  "@txnCoveredByTransfer": {"placeholders": {"account": {"type": "String"}, "date": {"type": "String"}}},
+  "txnCoveredByTransferShort": "Covered by a transfer",
+  "txnWaitingForTransfer": "Waiting for the transfer from {goal}",
+  "@txnWaitingForTransfer": {"placeholders": {"goal": {"type": "String"}}},
+  "txnLinkTransfer": "Link transfer",
+  "txnUnlinkTransfer": "Unlink",
+  "txnCoverSheetTitle": "Which transfer covered this?",
+  "txnCoverSheetSubtitle": "Money that left {account} in the two weeks around this purchase.",
+  "@txnCoverSheetSubtitle": {"placeholders": {"account": {"type": "String"}}},
+  "txnCoverAlsoOthers": "Also cover the other {count} pending purchase(s) ({amount})",
+  "@txnCoverAlsoOthers": {"placeholders": {"count": {"type": "int"}, "amount": {"type": "String"}}},
+  "txnCoverMatchesTotal": "matches all pending",
+  "txnCoverMatchesThis": "matches",
+  "txnCoverNone": "Nothing has left {account} yet. Once the transfer syncs, come back here.",
+  "@txnCoverNone": {"placeholders": {"account": {"type": "String"}}},
+  "txnCoverLinked": "Linked to the transfer",
+  "txnCoverLinkFailed": "Could not link the transfer",
+  "savInFlight": "{amount} earmarked, not yet moved",
+  "@savInFlight": {"placeholders": {"amount": {"type": "String"}}},
+  "billBilledThroughStore": "Billed through the {store}",
+  "@billBilledThroughStore": {"placeholders": {"store": {"type": "String"}}},
+  "billManageInStore": "Manage in the {store}",
+  "@billManageInStore": {"placeholders": {"store": {"type": "String"}}},
+  "billRestorePurchases": "Restore purchases",
+  "billRestoreDone": "Purchases restored",
+  "billRestoreNone": "No purchases to restore for this Apple ID",
+  "billStorePriceLoading": "Price shown at checkout",
+  "billStorePurchaseDone": "You're all set. Your plan is active.",
+  "billStorePurchaseFailed": "The purchase didn't go through",
+  "billStoreUnavailable": "The store isn't available right now. Try again in a moment.",
+  "billSubscribeMonthly": "Subscribe monthly",
+  "billSubscribeYearly": "Subscribe yearly",
+  "billSwitchToMonthly": "Switch to monthly",
+  "billSwitchToYearly": "Switch to yearly",
+  "billAutoRenewNoticeStore": "Subscriptions renew automatically at the price shown unless cancelled at least 24 hours before the end of the current period. Payment is charged to your App Store account. Manage or cancel in your App Store subscription settings.",
+  "billAutoRenewNoticeWeb": "Subscriptions renew automatically at the price shown unless cancelled before the end of the current period. Cancel any time from this page.",
+  "rulesTitle": "Categorization Rules",
+  "rulesLinkSubtitle": "See, pause or delete the rules that file merchants automatically",
+  "rulesInfo": "Rules run before your bank's category and before AI on every new transaction. Pause a rule to let them decide again, or delete it. Past transactions keep their category either way.",
+  "rulesEmpty": "No rules yet. Turn on \"Offer to create rules after corrections\" in Settings, then change a transaction's category and Buoy will ask whether to always file that merchant the same way.",
+  "rulesLoadError": "Couldn't load your rules.",
+  "rulesRetry": "Try again",
+  "rulesFilesAs": "Files as {category}",
+  "@rulesFilesAs": {"placeholders": {"category": {"type": "String"}}},
+  "rulesTimesApplied": "{count, plural, =0{Not used yet} =1{Used once} other{Used {count} times}}",
+  "@rulesTimesApplied": {"placeholders": {"count": {"type": "int"}}},
+  "rulesShared": "Shared with family",
+  "rulesSharedByOther": "Shared by a family member",
+  "rulesPaused": "Paused",
+  "rulesPause": "Pause",
+  "rulesResume": "Resume",
+  "rulesDeleteTitle": "Delete this rule?",
+  "rulesDeleteBody": "New {merchant} transactions will go back to your bank's category or AI. Past transactions keep their category.",
+  "@rulesDeleteBody": {"placeholders": {"merchant": {"type": "String"}}},
+  "rulesDelete": "Delete",
+  "rulesCancel": "Cancel",
+  "rulesDeleted": "Rule deleted",
+  "rulesActionFailed": "Something went wrong. Please try again.",
+  "exportDownloadTitle": "Download my data",
+  "exportDownloadSubtitle": "Get a copy of everything Buoy Money holds about you",
+  "exportSheetDescription": "Includes your accounts, transactions, budgets, savings goals, categories, rules, subscriptions, AI chats and memories, and settings, plus family data you can already see. Passwords, login tokens and bank connection secrets are never included.",
+  "exportFormatJson": "JSON file",
+  "exportFormatJsonDesc": "One file with everything. Best for backups and other apps.",
+  "exportFormatCsv": "CSV spreadsheets (zip)",
+  "exportFormatCsvDesc": "One spreadsheet per table in a zip. Opens in Excel or Google Sheets.",
+  "exportDownloadButton": "Download",
+  "exportPreparing": "Preparing your export...",
+  "exportSuccess": "Your data export is ready",
+  "exportFailed": "Couldn't prepare your export. Please try again.",
+  "exportRateLimited": "You have requested a few exports recently. Please wait about 10 minutes and try again.",
+  "impTitle": "Import data",
+  "impSettingsSubtitle": "Bring in transactions from a bank file, Actual Budget or YNAB",
+  "impIntro": "Bring your history from another app or your bank. You will see exactly what will be added before anything is saved.",
+  "impChooseButton": "Choose file",
+  "impPrivacyNote": "Your file is read by your Buoy Money server and is not kept after you finish.",
+  "impWhereFrom": "Where is your file from?",
+  "impSourceBank": "Bank file (CSV, OFX or QFX)",
+  "impSourceBankHowTo": "Most banks let you download transactions from the account page as CSV, OFX or QFX. Pick the date range you want, then choose the file here. You can pick a spreadsheet saved as CSV too.",
+  "impSourceActual": "Actual Budget",
+  "impSourceActualHowTo": "In Actual, open Settings, go to the File tab and choose Export data. Choose the zip file it gives you. Accounts, categories, transactions and your latest budget amounts come across.",
+  "impSourceYnab": "YNAB",
+  "impSourceYnabHowTo": "In YNAB, click your plan name and choose Export Plan. Choose both files from the zip at once, or the zip itself. Include the Plan file to bring your budget amounts.",
+  "impReading": "Reading your file...",
+  "impReadFailed": "We could not read that file. Check that it is a bank file, an Actual Budget export or a YNAB export, and try again.",
+  "impFileTooLarge": "That file is larger than 25 MB, which is the limit.",
+  "impImportFailed": "The import did not finish and nothing was changed. Please try again.",
+  "impDateOrderTitle": "Which date order does this file use?",
+  "impDateOrderBody": "Every date in this file could be day first or month first (for example 03/04/2026). Pick the right one to continue.",
+  "impDateMonthFirst": "Month first (03/04 is March 4)",
+  "impDateDayFirst": "Day first (03/04 is April 3)",
+  "impDateYearFirst": "Year first (2026/03/04)",
+  "impWhereTitle": "Where it goes",
+  "impImportInto": "Import into",
+  "impNewAccount": "New account",
+  "impNewAccountNamed": "New account: {name}",
+  "@impNewAccountNamed": {"placeholders": {"name": {"type": "String"}}},
+  "impAccountCreate": "Create a new account",
+  "impAccountAddTo": "Add to {name}",
+  "@impAccountAddTo": {"placeholders": {"name": {"type": "String"}}},
+  "impAccountSkip": "Skip this account",
+  "impRowsCount": "{count, plural, =1{1 transaction} other{{count} transactions}}",
+  "@impRowsCount": {"placeholders": {"count": {"type": "int"}}},
+  "impSummaryTitle": "What will happen",
+  "impSummaryNew": "New",
+  "impSummaryAlready": "Already here",
+  "impSummaryLikely": "Likely duplicates",
+  "impSummaryPossible": "Possible duplicates",
+  "impSummaryProblems": "Problems",
+  "impSummaryRange": "{start} to {end}",
+  "@impSummaryRange": {"placeholders": {"start": {"type": "String"}, "end": {"type": "String"}}},
+  "impMoneyIn": "Money in",
+  "impMoneyOut": "Money out",
+  "impAlreadyHereNote": "Transactions marked Already here are in Buoy Money now and will be skipped.",
+  "impLikelyTitle": "Likely duplicates",
+  "impLikelyBody": "These look like transactions you already have, so they are skipped unless you turn them on.",
+  "impImportLikely": "Import likely duplicates too",
+  "impPossibleTitle": "Possible duplicates",
+  "impPossibleBody": "These have the same amount and about the same date as something you already have, but a different name. They are imported unless you turn them off.",
+  "impRowImport": "Import",
+  "impProblemsTitle": "Rows that could not be read",
+  "impProblemsBody": "These rows are left out of the import.",
+  "impCategoriesTitle": "Categories",
+  "impCategoriesBody": "Match each category in your file to one in Buoy Money, or create a new one.",
+  "impCategoryCreate": "Create \"{name}\"",
+  "@impCategoryCreate": {"placeholders": {"name": {"type": "String"}}},
+  "impCategoryNone": "Leave uncategorized",
+  "impBudgetTitle": "Budget",
+  "impBudgetBody": "Create a monthly budget from {month} in your file ({count} categories)",
+  "@impBudgetBody": {"placeholders": {"month": {"type": "String"}, "count": {"type": "int"}}},
+  "impBudgetNote": "Goals and targets are not imported. If you already have an active budget, it is left alone.",
+  "impReadingTitle": "How this file is read",
+  "impColumnNone": "None",
+  "impColumnNumber": "Column {index}",
+  "@impColumnNumber": {"placeholders": {"index": {"type": "int"}}},
+  "impColumnDate": "Date column",
+  "impColumnAmount": "Amount column",
+  "impColumnDebit": "Money out column",
+  "impColumnCredit": "Money in column",
+  "impColumnDescription": "Description column",
+  "impColumnMemo": "Memo column",
+  "impColumnCategory": "Category column",
+  "impDateOrderLabel": "Date order",
+  "impNumberFormatLabel": "Number format",
+  "impFlipSign": "Flip signs (use when charges show as positive)",
+  "impSampleRows": "First rows of the file",
+  "impStartOver": "Start over",
+  "impNothingToImport": "Nothing new to import",
+  "impImportButton": "{count, plural, =1{Import 1 transaction} other{Import {count} transactions}}",
+  "@impImportButton": {"placeholders": {"count": {"type": "int"}}},
+  "impImporting": "Importing...",
+  "impDoneTitle": "Import finished",
+  "impDoneImported": "{count, plural, =1{1 transaction imported} other{{count} transactions imported}}",
+  "@impDoneImported": {"placeholders": {"count": {"type": "int"}}},
+  "impDoneSkippedDupes": "{count, plural, =1{1 skipped as a duplicate} other{{count} skipped as duplicates}}",
+  "@impDoneSkippedDupes": {"placeholders": {"count": {"type": "int"}}},
+  "impDoneSkippedChoice": "{count, plural, =1{1 skipped by your choice} other{{count} skipped by your choice}}",
+  "@impDoneSkippedChoice": {"placeholders": {"count": {"type": "int"}}},
+  "impDoneSkippedInvalid": "{count, plural, =1{1 row could not be read} other{{count} rows could not be read}}",
+  "@impDoneSkippedInvalid": {"placeholders": {"count": {"type": "int"}}},
+  "impDoneAccounts": "{count, plural, =1{1 account created} other{{count} accounts created}}",
+  "@impDoneAccounts": {"placeholders": {"count": {"type": "int"}}},
+  "impDoneCategories": "{count, plural, =1{1 category created} other{{count} categories created}}",
+  "@impDoneCategories": {"placeholders": {"count": {"type": "int"}}},
+  "impDoneBudget": "Budget created",
+  "impDoneReviewNote": "Anything without a category is waiting in your review list.",
+  "impDoneReview": "Review transactions",
+  "impDoneUndo": "Undo this import",
+  "impUndoHint": "You can undo for 24 hours. Edits you make to these transactions will be lost.",
+  "impUndoneTitle": "Import undone",
+  "impUndone": "{count, plural, =1{1 transaction removed} other{{count} transactions removed}}",
+  "@impUndone": {"placeholders": {"count": {"type": "int"}}},
+  "impUndoFailed": "We could not undo the import. Please try again.",
+  "impAnother": "Import another file",
+  "exportBusy": "An export is already running. Please wait about a minute and try again.",
+  "rcptTitle": "Receipts",
+  "rcptLinkSubtitle": "Share a receipt screenshot and Buoy splits the charge by category",
+  "rcptIntro": "A Walmart or Amazon charge arrives from your bank as one number. Send Buoy the receipt and it reads the items, finds the matching charge and offers to split it by category.",
+  "rcptNeedsPremium": "Receipt scanning is part of Premium.",
+  "rcptSeePremium": "See Premium",
+  "rcptNeedsAi": "Receipts are read by Google Gemini, so AI features need to be on first.",
+  "rcptTurnOnAi": "Turn on AI features",
+  "rcptHowTitle": "Send a receipt",
+  "rcptHowStep1": "In the Walmart, Amazon or other store app, open the order. Or grab the paper receipt.",
+  "rcptHowStep2Share": "Take a screenshot, tap Share and choose Buoy. For a long order, select all of its screenshots and share them together. Share each order separately.",
+  "rcptHowStep2Upload": "Take a screenshot or a photo, then tap Scan a receipt below and choose it. For a long order, choose all of its screenshots.",
+  "rcptHowStep3": "Check the split Buoy suggests and tap Apply.",
+  "rcptScanButton": "Scan a receipt",
+  "rcptPrivacy": "Google Gemini reads what you send to find the store, items and prices. Buoy keeps those details and the split, not the image.",
+  "rcptTakePhoto": "Take a photo",
+  "rcptTakePhotoHint": "A paper receipt",
+  "rcptChooseScreenshots": "Choose screenshots",
+  "rcptChooseScreenshotsHint": "Up to 8 screenshots of one order",
+  "rcptSheetTitle": "Split this receipt",
+  "rcptSheetNotice": "Google Gemini reads this to find the store, items and prices. Buoy keeps those, not the image. Nothing is changed until you tap Apply.",
+  "rcptSend": "Send to Buoy",
+  "rcptReading": "Reading the receipt",
+  "rcptReadFailed": "The receipt couldn't be read right now. Try again in a minute.",
+  "rcptNotNow": "Not now",
+  "rcptOk": "OK",
+  "rcptRecent": "Recent receipts",
+  "rcptNone": "No receipts yet.",
+  "rcptApply": "Apply split",
+  "rcptDismiss": "Dismiss",
+  "rcptApplied": "Split applied",
+  "rcptActionFailed": "Something went wrong. Please try again.",
+  "rcptStatusReady": "{count, plural, =1{1 category ready} other{{count} categories ready}}",
+  "@rcptStatusReady": {"placeholders": {"count": {"type": "int"}}},
+  "rcptStatusApplied": "Split",
+  "rcptStatusWaiting": "Waiting for the charge",
+  "rcptStatusDismissed": "Dismissed",
+  "rcptStatusNotReceipt": "Not a receipt",
+  "rcptStatusExpired": "No matching charge",
+  "rcptStatusUnknown": "Unknown",
+  "rcptCancel": "Cancel",
+  "rcptLoadError": "Couldn't load your receipts.",
+  "rcptRetry": "Try again",
+  "rcptUnknownStore": "Receipt",
+  "rcptCategoryFallback": "Category",
+  "rcptCardTitle": "Receipt from {store}",
+  "@rcptCardTitle": {"placeholders": {"store": {"type": "String"}}},
+  "rcptCardHint": "Got the receipt? Scan it to split this charge by category.",
+  "rcptScanReceipt": "Scan receipt",
+  "rcptSplitFromReceipt": "Split from a {store} receipt",
+  "@rcptSplitFromReceipt": {"placeholders": {"store": {"type": "String"}}},
+  "rcptMultipleCharges": "This order was charged in {count} parts; each part is split the same way.",
+  "@rcptMultipleCharges": {"placeholders": {"count": {"type": "int"}}},
+  "rcptSheetMany": "{count} screenshots, read as one receipt. If they're from different orders, share each order separately.",
+  "@rcptSheetMany": {"placeholders": {"count": {"type": "int"}}},
+  "verServerTitle": "Your server needs an update",
+  "verServerBody": "This app needs server version {required} or newer. Your server is on {current}. Update the server, then check again.",
+  "@verServerBody": {"placeholders": {"required": {"type": "String"}, "current": {"type": "String"}}},
+  "verServerHow": "If you run Buoy Money with Docker Compose: docker compose pull, then docker compose up -d.",
+  "verAppTitle": "This app needs an update",
+  "verAppBody": "Your server needs app version {required} or newer. This app is {current}. Update the app, then check again.",
+  "@verAppBody": {"placeholders": {"required": {"type": "String"}, "current": {"type": "String"}}},
+  "verCheckAgain": "Check again",
+  "sfTitle": "Bank feed (SimpleFIN)",
+  "sfSettingsSubtitle": "Bring in bank transactions with a SimpleFIN setup token",
+  "sfIntro": "SimpleFIN is a service you pay for directly (about $15 a year). It reads your bank and hands the transactions to this server. Make a setup token there, then paste it here.",
+  "sfStep1": "1. Open SimpleFIN and make a setup token",
+  "sfOpenBridge": "Open SimpleFIN",
+  "sfStep2": "2. Paste the token here",
+  "sfTokenLabel": "Setup token",
+  "sfTokenHint": "A long line of letters and numbers",
+  "sfConnectButton": "Connect",
+  "sfConnecting": "Connecting...",
+  "sfTokenOnce": "A setup token works once. If it fails, make a new one.",
+  "sfConnected": "SimpleFIN is connected. Your transactions are on their way.",
+  "sfConnectFailed": "We could not connect with that token. Please try again.",
+  "sfYourConnections": "Your SimpleFIN connections",
+  "sfNoConnections": "Nothing connected yet.",
+  "sfAccountCount": "{count, plural, =1{1 account} other{{count} accounts}}",
+  "@sfAccountCount": {"placeholders": {"count": {"type": "int"}}},
+  "sfLastSync": "Last synced {when}",
+  "sfConnectionSummary": "{accounts}, {lastSync}",
+  "@sfConnectionSummary": {"placeholders": {"accounts": {"type": "String"}, "lastSync": {"type": "String"}}},
+  "@sfLastSync": {"placeholders": {"when": {"type": "String"}}},
+  "sfNeverSynced": "Not synced yet",
+  "sfStatusOk": "Working",
+  "sfStatusNeedsAttention": "Needs attention",
+  "sfStatusDisconnected": "Disconnected",
+  "sfNeedsTokenHint": "Make a new setup token and paste it above to fix this.",
+  "sfNeedsBridgeSignInHint": "Sign in at your SimpleFIN bridge to fix this. A new setup token adds another connection instead.",
+  "sfDisconnect": "Disconnect",
+  "sfDisconnectTitle": "Disconnect this connection?",
+  "sfDisconnectBody": "Buoy Money forgets the connection and stops syncing. Your existing transactions stay. To cut off access completely, also remove this app in SimpleFIN.",
+  "sfDisconnected": "Disconnected.",
+  "sfDisconnectFailed": "We could not disconnect. Please try again.",
+  "sfLoadFailed": "We could not load your connections.",
+  "sfCancel": "Cancel",
+  "aiSetTitle": "AI provider",
+  "aiSetLinkSubtitleOn": "Which AI this server uses, and what works with it.",
+  "aiSetLinkSubtitleOff": "AI is off on this server. See what to set to turn it on.",
+  "aiSetOn": "AI is on",
+  "aiSetOff": "AI is off",
+  "aiSetProviderLine": "Provider: {name}",
+  "@aiSetProviderLine": {"placeholders": {"name": {"type": "String"}}},
+  "aiSetWhatWorks": "What works",
+  "aiSetWhatWorksSub": "Based on what this server can do with its AI provider today.",
+  "aiSetWorks": "Works",
+  "aiSetLimited": "Limited",
+  "aiSetNo": "Off",
+  "aiSetConnection": "Connection",
+  "aiSetCheck": "Check the connection",
+  "aiSetChecking": "Checking...",
+  "aiSetCheckFailed": "The check could not run.",
+  "aiSetLoadFailed": "Could not load the AI settings. This server may be older than the app.",
+  "aiSetRetry": "Try again",
+  "aiSetOffSelfHost": "AI is off until you pick a provider in the server settings (the .env file next to compose.yaml), then restart the server.",
+  "aiSetOffHosted": "No AI provider is set up on this server.",
+  "aiSetHowTo": "To use a model on your own computer with Ollama:\n  Ai__Provider=ollama\n  Ai__Model=<a model you have pulled>\n  Ai__BaseUrl=http://host.docker.internal:11434/v1  (when the server runs in Docker)\nCategorization works well from about 7B parameters. Chat and receipt scanning still need Gemini.",
+  "aiSetDetailProvider": "Provider",
+  "aiSetDetailAddress": "Address",
+  "aiSetDetailModel": "Model",
+  "aiSetDetailEmbedding": "Embedding model",
+  "aiSetDetailKey": "API key",
+  "aiSetKeySet": "set",
+  "aiSetKeyNotSet": "not set",
+  "aiSetStepWithTime": "{detail}  ({ms} ms)",
+  "@aiSetStepWithTime": {"placeholders": {"detail": {"type": "String"}, "ms": {"type": "int"}}},
+  "acctNoAccountsYet": "No accounts yet",
+  "acctSelfHostEmptySubtitle": "This server does not connect to banks.\nImport a file from your bank to add\nyour accounts and transactions.",
+  "acctImportTransactions": "Import transactions",
+  "regInviteCodeLabel": "Invite code",
+  "regInviteCodeRequired": "Ask the person who runs this server for a code",
+  "txnImportToStart": "Import a file from your bank to get started.",
+  "acctBridgeSignInTitle": "Sign in to {bank}",
+  "@acctBridgeSignInTitle": {
+    "placeholders": {
+      "bank": {
+        "type": "String"
+      }
+    }
+  },
+  "acctBridgeSignInBody": "Finish signing in on the page that just opened, then come back and tap \"I'm done\".",
+  "acctBridgeSignInDone": "I'm done",
+  "acctAddBankTitle": "Add a bank",
+  "acctAddBankSubtitle": "Choose how to bring your accounts and transactions in.",
+  "acctSourcePlaidTitle": "Connect with Plaid",
+  "acctSourcePlaidSubtitle": "Sign in to your bank. Transactions sync on their own.",
+  "acctSourceCloudTitle": "BuoyAI Cloud bank feed",
+  "acctSourceCloudSubtitle": "Sign in to your bank through your paired BuoyAI Cloud account.",
+  "acctSourceCloudNeedsLink": "Link this server to BuoyAI Cloud first. It takes a minute.",
+  "acctCloudLinkTitle": "Link with BuoyAI Cloud first",
+  "acctCloudLinkBody": "This server is not linked to BuoyAI Cloud yet. Link it once, then come back here to connect your bank.",
+  "acctCloudLinkNotNow": "Not now",
+  "acctCloudLinkNudge": "Want your bank to sync on its own? Link with BuoyAI Cloud",
+  "acctSourceSimpleFinTitle": "SimpleFIN",
+  "acctSourceSimpleFinSubtitle": "Paste a setup token from SimpleFIN, a bank feed you pay for yourself.",
+  "acctSourceImportTitle": "Import a file",
+  "acctSourceImportSubtitle": "Bring in a CSV or OFX file from your bank.",
+  "acctSelfHostEmptyWithFeedsSubtitle": "Connect a bank feed, or import a file\nfrom your bank, to add your accounts\nand transactions.",
+  "acctCloudConnectFailed": "Could not start the Cloud bank feed. Please try again.",
+  "acctCloudSignInBank": "your bank",
+  "acctRefreshedFeeds": "Up to date. Bank feeds sync on their own schedule.",
+  "aiUsageTitle": "AI usage",
+  "aiUsageLinkSubtitle": "How much of the AI allowance is used this period.",
+  "aiUsageLoadFailed": "Could not load AI usage. This server may be older than the app.",
+  "aiUsagePeriod": "{start} to {end}",
+  "@aiUsagePeriod": {"placeholders": {"start": {"type": "String"}, "end": {"type": "String"}}},
+  "aiUsageOfAllowance": "{used} of {allowance}",
+  "@aiUsageOfAllowance": {"placeholders": {"used": {"type": "String"}, "allowance": {"type": "String"}}},
+  "aiUsagePercentUsed": "{percent}% used",
+  "@aiUsagePercentUsed": {"placeholders": {"percent": {"type": "int"}}},
+  "aiUsageSpent": "{amount} spent this period",
+  "@aiUsageSpent": {"placeholders": {"amount": {"type": "String"}}},
+  "aiUsageUnlimitedTitle": "No limit on this server",
+  "aiUsageUnlimitedBody": "AI here runs on your own model or key, so nothing caps it. The figures are what the calls would cost at list prices.",
+  "aiUsageWarning": "You have used {percent}% of this period's AI allowance.",
+  "@aiUsageWarning": {"placeholders": {"percent": {"type": "int"}}},
+  "aiUsageOver": "This period's AI allowance is used up.",
+  "aiUsageOverPayg": "You are past the allowance and using pay-as-you-go.",
+  "aiUsageBlocked": "AI is paused until the next period, or until pay-as-you-go is turned on.",
+  "aiUsageProjected": "At this pace about {amount} will be used by the end of the period.",
+  "@aiUsageProjected": {"placeholders": {"amount": {"type": "String"}}},
+  "aiUsageByFeature": "Where it went",
+  "aiUsageNoCalls": "No AI calls yet this period.",
+  "aiUsageCalls": "{count, plural, =1{1 call} other{{count} calls}}",
+  "@aiUsageCalls": {"placeholders": {"count": {"type": "int"}}},
+  "aiUsageFeatChat": "Chat",
+  "aiUsageFeatCategorization": "Categorizing transactions",
+  "aiUsageFeatInsights": "Insights",
+  "aiUsageFeatAgentic": "Insight drill-down",
+  "aiUsageFeatMemory": "Remembering details",
+  "aiUsageFeatSubscriptions": "Subscription wording",
+  "aiUsageFeatReceipts": "Receipt scanning",
+  "aiUsageFeatWrapped": "Monthly recap",
+  "aiUsageFeatOther": "Other",
+  "aiUsagePaygTitle": "Pay-as-you-go",
+  "aiUsagePaygOffBody": "Keep using AI after the allowance is gone, up to a limit you choose. Only the extra is billed.",
+  "aiUsagePaygOnBody": "On. Up to {cap} of extra spend this period. Used so far: {used}.",
+  "@aiUsagePaygOnBody": {"placeholders": {"cap": {"type": "String"}, "used": {"type": "String"}}},
+  "aiUsagePaygUnavailable": "Pay-as-you-go is not available on this account yet.",
+  "aiUsagePaygLimitLabel": "Limit in US dollars",
+  "aiUsagePaygBadLimit": "Enter an amount above zero and no more than {max}.",
+  "@aiUsagePaygBadLimit": {"placeholders": {"max": {"type": "String"}}},
+  "aiUsagePaygTurnOn": "Turn on",
+  "aiUsagePaygTurnOff": "Turn off",
+  "aiUsagePaygSaveFailed": "That could not be changed. Try again.",
+  "broadcastTitle": "Broadcast email",
+  "broadcastIntro": "Write an email to your users. You preview it first, and sending needs the recipient count typed back.",
+  "broadcastSubject": "Subject",
+  "broadcastBody": "Body (Markdown)",
+  "broadcastBodyHint": "Write the email in Markdown. Tables with pipes work.",
+  "broadcastAudience": "Audience",
+  "broadcastAudienceAll": "All users",
+  "broadcastAudienceActive": "Active users",
+  "broadcastCategory": "Category",
+  "broadcastCategoryAnnouncement": "Announcement",
+  "broadcastCategoryIncident": "Incident",
+  "broadcastCategoryHelp": "Incidents go to everyone, even people who opted out of announcements.",
+  "broadcastLivePreview": "Preview as you type",
+  "broadcastPreviewButton": "Preview recipients",
+  "broadcastPreviewing": "Checking...",
+  "broadcastRecipients": "{count, plural, =0{No one would get this email.} =1{1 person will get this email.} other{{count} people will get this email.}}",
+  "@broadcastRecipients": {"placeholders": {"count": {"type": "int"}}},
+  "broadcastSkipped": "{count} skipped because they opted out of announcements.",
+  "@broadcastSkipped": {"placeholders": {"count": {"type": "int"}}},
+  "broadcastConfirmLabel": "Type {count} to confirm",
+  "@broadcastConfirmLabel": {"placeholders": {"count": {"type": "int"}}},
+  "broadcastSend": "Send now",
+  "broadcastSending": "Sending...",
+  "broadcastSent": "Queued for delivery to {count} recipients.",
+  "@broadcastSent": {"placeholders": {"count": {"type": "int"}}},
+  "broadcastNewOne": "Write another",
+  "broadcastEditedNote": "You changed the email. Preview the recipients again before sending.",
+  "broadcastErrorMfa": "Broadcasts need two-step sign-in with an authenticator app or a passkey. Set one up in Profile, then try again.",
+  "broadcastErrorGeneric": "The broadcast could not be completed. Try again.",
+  "broadcastFieldsRequired": "Add a subject and a body first.",
+  "cloudTitle": "BuoyAI Cloud",
+  "cloudSettingsSubtitle": "Link a server, bank feed, AI and add-ons",
+  "cloudIntro": "Optional add-ons that run on BuoyAI Cloud: a bank feed and AI with no setup. The app itself stays free.",
+  "cloudLoadFailed": "This could not be loaded. Try again in a moment.",
+  "cloudPairTitle": "Link this server",
+  "cloudPairNotConfigured": "This server has no Cloud address set. Set CloudBridge__Url on the server to turn the Cloud features on.",
+  "cloudPairIntro": "Make a one-time code on buoy-ai.com under Settings, BuoyAI Cloud, Your servers, then enter it here. The code works for 10 minutes and once.",
+  "cloudPairCodeLabel": "Pairing code",
+  "cloudPairNameLabel": "Name for this server (optional)",
+  "cloudPairButton": "Link this server",
+  "cloudPairing": "Linking...",
+  "cloudPaired": "Linked as {name}",
+  "@cloudPaired": {"placeholders": {"name": {"type": "String"}}},
+  "cloudPairedSince": "Linked on {date}",
+  "@cloudPairedSince": {"placeholders": {"date": {"type": "String"}}},
+  "cloudPairAwaiting": "Confirm this server on buoy-ai.com under Settings, BuoyAI Cloud, Your servers. No bank data is sent until you do.",
+  "cloudUnlink": "Unlink",
+  "cloudUnlinkTitle": "Unlink this server?",
+  "cloudUnlinkBody": "This server forgets the link. Also revoke it in your Cloud account to stop the Cloud side. Banks connected through the Cloud stop updating.",
+  "cloudUnlinked": "This server is no longer linked.",
+  "cloudPairFailed": "That did not work. Check the code and try again.",
+  "cloudBankTitle": "Bank feed",
+  "cloudBankIntro": "Connect your bank through BuoyAI Cloud. You sign in at your bank on a Cloud page. This server keeps the transactions; the Cloud keeps only the key to ask for updates.",
+  "cloudBankConnect": "Connect a bank",
+  "cloudBankOpened": "Finish signing in at your bank in the page that opened, then come back and tap the button below.",
+  "cloudBankDone": "I finished signing in",
+  "cloudBankNone": "No banks are connected through the Cloud yet.",
+  "cloudBankStatusOk": "Working",
+  "cloudBankStatusAttention": "Needs attention",
+  "cloudBankLastSync": "Last synced {when}",
+  "@cloudBankLastSync": {"placeholders": {"when": {"type": "String"}}},
+  "cloudBankNeverSynced": "Not synced yet",
+  "cloudBankConnectFailed": "The bank connection could not be started. Try again in a moment.",
+  "cloudBankNotFinished": "That sign-in has not finished yet. Finish it at your bank, then try again.",
+  "cloudBankConnected": "Bank connected.",
+  "cloudAiTitle": "AI",
+  "cloudAiOn": "AI is on. It runs on {provider}.",
+  "@cloudAiOn": {"placeholders": {"provider": {"type": "String"}}},
+  "cloudAiOff": "AI is not set up on this server.",
+  "cloudAiProviderCloud": "BuoyAI Cloud",
+  "cloudAiProviderOwn": "this server's own provider",
+  "cloudAiMeter": "{used} of {allowance} used this period",
+  "@cloudAiMeter": {"placeholders": {"used": {"type": "String"}, "allowance": {"type": "String"}}},
+  "cloudAiMeterUnlimited": "{used} used this period. Nothing caps it on this server.",
+  "@cloudAiMeterUnlimited": {"placeholders": {"used": {"type": "String"}}},
+  "cloudAiOver": "The allowance is used up. AI is paused until the period ends or pay-as-you-go is on.",
+  "cloudAiWarning": "Most of the allowance is used.",
+  "cloudAiManage": "Usage and pay-as-you-go",
+  "cloudAiSettings": "AI features",
+  "cloudProductsTitle": "Add-ons",
+  "cloudProductsFounding": "Founding prices. They stay the same for as long as you keep the add-on.",
+  "cloudProductsList": "List prices.",
+  "cloudProductsOnPlan": "On your plan",
+  "cloudProductsMonthly": "Monthly",
+  "cloudProductsYearly": "Yearly",
+  "cloudProductPrice": "{monthly} a month or {yearly} a year",
+  "@cloudProductPrice": {"placeholders": {"monthly": {"type": "String"}, "yearly": {"type": "String"}}},
+  "cloudProductLogins": "{count} bank logins included",
+  "@cloudProductLogins": {"placeholders": {"count": {"type": "int"}}},
+  "cloudProductsTotal": "Total: {amount} {interval}",
+  "@cloudProductsTotal": {"placeholders": {"amount": {"type": "String"}, "interval": {"type": "String"}}},
+  "cloudProductsPerMonth": "a month",
+  "cloudProductsPerYear": "a year",
+  "cloudProductsCheckout": "Continue to checkout",
+  "cloudProductsRequires": "Needs {product}",
+  "@cloudProductsRequires": {"placeholders": {"product": {"type": "String"}}},
+  "cloudProductsIos": "Add-ons are not sold inside the iOS app. Manage them at buoy-ai.com.",
+  "cloudProductsHasPlan": "You already have a plan. Change it from the billing page.",
+  "cloudProductsBilling": "Billing",
+  "cloudProductsCheckoutFailed": "Checkout could not be started. Try again in a moment.",
+  "cloudProductsEmpty": "No add-ons are on offer right now.",
+  "cloudCancel": "Cancel",
+  "cloudServersTitle": "Your servers",
+  "cloudServersIntro": "Run Buoy Money on your own computer? Link it here to use bank sync and AI from BuoyAI Cloud.",
+  "cloudServersMakeCode": "Make a pairing code",
+  "cloudServersMaking": "Making a code...",
+  "cloudServersCodeHelp": "On your server, open Settings, BuoyAI Cloud and enter this code. It works once.",
+  "cloudServersCodeExpires": "Expires at {time}",
+  "@cloudServersCodeExpires": {"placeholders": {"time": {"type": "String"}}},
+  "cloudServersCopy": "Copy",
+  "cloudServersCopied": "Code copied",
+  "cloudServersEmpty": "No servers linked yet.",
+  "cloudServersNeedsEmail": "Confirm your email address first. Then you can link a server.",
+  "cloudConfirmEmailApprove": "Confirm email and approve",
+  "cloudServersNoAccount": "Buy a Cloud add-on above first. Your servers use that Cloud account.",
+  "cloudServersStatusAwaiting": "Waiting for you to confirm",
+  "cloudServersStatusLinked": "Linked",
+  "cloudServersStatusRevoked": "Revoked",
+  "cloudServersPaired": "Paired {date}",
+  "@cloudServersPaired": {"placeholders": {"date": {"type": "String"}}},
+  "cloudServersVersion": "Version {version}",
+  "@cloudServersVersion": {"placeholders": {"version": {"type": "String"}}},
+  "cloudServersConfirm": "Confirm",
+  "cloudServersConfirmed": "Server confirmed",
+  "cloudServersRevoke": "Revoke",
+  "cloudServersRevokeTitle": "Revoke {name}?",
+  "@cloudServersRevokeTitle": {"placeholders": {"name": {"type": "String"}}},
+  "cloudServersRevokeBody": "This server stops getting bank data and AI from BuoyAI Cloud. To link it again, make a new code.",
+  "cloudServersRevoked": "Server revoked",
+  "cloudServersFailed": "That did not work. Try again.",
+  "cloudLinkTitle": "Link your Buoy Money server",
+  "cloudLinkAddressLabel": "Server address",
+  "cloudLinkWhat": "Bank sync and AI you buy from BuoyAI Cloud, for this server only. Your server's data stays on your server.",
+  "cloudLinkWarning": "Only approve a server you set up yourself.",
+  "cloudLinkApprove": "Approve",
+  "cloudLinkApproving": "Approving...",
+  "cloudLinkLeaving": "Taking you back to your server...",
+  "cloudLinkInvalid": "This link is not valid. Start again from your server.",
+  "cloudLinkHostedOnly": "Open this link on buoy-ai.com to approve your server.",
+  "cloudLinkNoAccount": "You need a BuoyAI Cloud product first. Buy bank sync or AI, then come back here and approve.",
+  "cloudLinkSeeProducts": "See Cloud products",
+  "cloudLinkFailed": "That did not work. Try again.",
+  "cloudLinkOpenFailed": "Could not go back to your server. Try again.",
+  "cloudLinkIntro": "Get a short code here, then approve it on BuoyAI Cloud from any phone or computer.",
+  "cloudLinkStart": "Link with BuoyAI Cloud",
+  "cloudLinkStarting": "Getting a code...",
+  "cloudLinkStartFailed": "Could not start linking. Try again.",
+  "cloudDeviceStep": "On any phone or computer, go to {address} and enter this code.",
+  "@cloudDeviceStep": {"placeholders": {"address": {"type": "String"}}},
+  "cloudDeviceScan": "Or scan this with your phone.",
+  "cloudDeviceQrLabel": "QR code for the BuoyAI Cloud approve page",
+  "cloudDeviceOpen": "Open {host}",
+  "@cloudDeviceOpen": {"placeholders": {"host": {"type": "String"}}},
+  "cloudDeviceWaiting": "Waiting for approval...",
+  "cloudDeviceCancelFailed": "Could not stop linking. This server is still waiting for approval. Try Cancel again.",
+  "cloudDeviceExpiresIn": "Code expires in {time}",
+  "@cloudDeviceExpiresIn": {"placeholders": {"time": {"type": "String"}}},
+  "cloudDeviceExpired": "That code expired. Get a new one to try again.",
+  "cloudDeviceDenied": "The code was turned down on BuoyAI Cloud. Get a new one to try again.",
+  "cloudLinkUseCode": "Use a pairing code instead",
+  "cloudLinkDone": "This server is now linked to BuoyAI Cloud.",
+  "cloudLinkErrorCancelled": "Linking was cancelled.",
+  "cloudLinkErrorExpired": "That link expired or was already used. Try again.",
+  "cloudLinkErrorFailed": "Linking did not work. Try again.",
+  "cloudBankNeedsLink": "Link this server to use the Cloud bank feed.",
+  "cloudBillNotLinked": "This server is not linked to BuoyAI Cloud yet. Link it to see what you pay.",
+  "cloudBillTitle": "Billing",
+  "cloudBillCardBody": "What you pay for BuoyAI Cloud, line by line, your next invoice and your invoices.",
+  "cloudBillOpen": "View billing",
+  "cloudBillFounding": "Founding price",
+  "cloudBillList": "List price",
+  "cloudBillFoundingNote": "Founding prices stay the same for as long as you keep the add-on.",
+  "cloudBillPlanTitle": "Your plan",
+  "cloudBillStatusActive": "Active",
+  "cloudBillStatusTrialing": "Trial",
+  "cloudBillStatusPastDue": "Payment past due. Update your payment method.",
+  "cloudBillStatusOther": "Status: {status}",
+  "@cloudBillStatusOther": {"placeholders": {"status": {"type": "String"}}},
+  "cloudBillEnds": "Ends on {date}. Nothing is charged after that.",
+  "@cloudBillEnds": {"placeholders": {"date": {"type": "String"}}},
+  "cloudBillPerInterval": "{amount} {interval}",
+  "@cloudBillPerInterval": {"placeholders": {"amount": {"type": "String"}, "interval": {"type": "String"}}},
+  "cloudBillQtyTimes": "{quantity} x {unit} {interval}",
+  "@cloudBillQtyTimes": {"placeholders": {"quantity": {"type": "int"}, "unit": {"type": "String"}, "interval": {"type": "String"}}},
+  "cloudBillProductBankSync": "Bank sync",
+  "cloudBillProductAi": "AI",
+  "cloudBillProductBundle": "Bank sync + AI bundle",
+  "cloudBillProductExtraLogins": "Extra bank logins",
+  "cloudBillProductAiPayg": "AI pay-as-you-go",
+  "cloudBillRefreshOverage": "Extra instant refreshes",
+  "cloudBillUsageChargesTitle": "Usage charges so far",
+  "cloudBillPaygSoFar": "Used so far this period",
+  "cloudBillUsageTitle": "AI usage this period",
+  "cloudBillUsageUsed": "{used} of {allowance} used",
+  "@cloudBillUsageUsed": {"placeholders": {"used": {"type": "String"}, "allowance": {"type": "String"}}},
+  "cloudBillUsageResets": "Resets on {date}",
+  "@cloudBillUsageResets": {"placeholders": {"date": {"type": "String"}}},
+  "cloudBillPaygOn": "Pay-as-you-go is on. {used} spent beyond the allowance, capped at {cap}.",
+  "@cloudBillPaygOn": {"placeholders": {"used": {"type": "String"}, "cap": {"type": "String"}}},
+  "cloudBillPaygOff": "Pay-as-you-go is off. AI pauses when the allowance is used up.",
+  "cloudBillNextTitle": "Next invoice",
+  "cloudBillNextOn": "Billed on {date}",
+  "@cloudBillNextOn": {"placeholders": {"date": {"type": "String"}}},
+  "cloudBillEstimatedTotal": "Estimated total",
+  "cloudBillEstimateNote": "An estimate. Usage still to come this period can change it.",
+  "cloudBillNoInvoice": "The next invoice could not be loaded.",
+  "cloudBillManage": "Manage payment method and invoices",
+  "cloudBillManageFailed": "The billing page could not be opened. Try again in a moment.",
+  "cloudBillEmptyTitle": "No BuoyAI Cloud plan",
+  "cloudBillEmptyBody": "When you add bank sync or AI, what you pay shows up here.",
+  "cloudBillSeeAddons": "See add-ons",
+  "cloudBillRetry": "Try again",
+  "cloudBillUnavailable": "Billing is not available here. Link this server to your Cloud account first.",
+  "cloudBillHostedPlan": "You also have a Standard or Premium plan. It is managed on the Billing page.",
+  "cloudBillHostedPlanOpen": "Open Billing",
+  "srvLabel": "Server: {name}",
+  "@srvLabel": {"placeholders": {"name": {"type": "String"}}},
+  "srvCloudName": "BuoyAI Cloud",
+  "srvChange": "Change",
+  "srvSheetTitle": "Choose a server",
+  "srvSheetBody": "Use BuoyAI Cloud, or a Buoy Money server you run yourself.",
+  "srvOptionCloud": "BuoyAI Cloud ({host})",
+  "@srvOptionCloud": {"placeholders": {"host": {"type": "String"}}},
+  "srvOptionOwn": "My own server",
+  "srvAddressLabel": "Server address",
+  "srvHttpWarning": "This address uses http, so your password is sent unencrypted. Use it only on a network you trust.",
+  "srvConnect": "Connect",
+  "srvCancel": "Cancel",
+  "srvErrInvalid": "Enter a server address, like https://buoy.example.ts.net.",
+  "srvErrUnreachable": "Could not reach that server. Check the address and that the server is running.",
+  "srvErrNotBuoy": "That address answered, but it is not a Buoy Money server.",
+  "srvErrServerOld": "That server is on version {current}. This app needs {required} or newer. Update the server first.",
+  "@srvErrServerOld": {"placeholders": {"current": {"type": "String"}, "required": {"type": "String"}}},
+  "srvErrAppOld": "That server needs app version {required} or newer. Update the app first.",
+  "@srvErrAppOld": {"placeholders": {"required": {"type": "String"}}},
+  "verChangeServer": "Use a different server",
+  "frunKicker": "Buoy Money",
+  "frunTitle": "How would you like to use Buoy Money?",
+  "frunSubtitle": "You can change this later on the sign-in screen.",
+  "frunHostedTitle": "Hosted by Buoy Money",
+  "frunHostedBody": "We run it for you. Sign in from any device.",
+  "frunOwnTitle": "On my own server",
+  "frunOwnBody": "Your budget stays on a computer you control.",
+  "frunOwnHeading": "Connect to your server",
+  "frunOwnHelp": "Enter the address you open your server at.",
+  "frunChecking": "Checking the server...",
+  "ownerManagesThis": "Your server's owner manages this.",
+  "ownSetupTitle": "Set up your server",
+  "ownSetupProgress": "{done} of {total} done",
+  "@ownSetupProgress": {"placeholders": {"done": {"type": "int"}, "total": {"type": "int"}}},
+  "ownSetupBanksTitle": "Add your banks",
+  "ownSetupBanksBody": "Cloud bank sync, SimpleFIN, or a file from your bank.",
+  "ownSetupAiTitle": "Turn on AI",
+  "ownSetupAiBody": "Your own model, Open WebUI, or Cloud AI.",
+  "ownSetupHouseholdTitle": "Invite your household",
+  "ownSetupHouseholdBody": "Share budgets with the people you live with.",
+  "ownSetupNotifyTitle": "Phone notifications",
+  "ownSetupNotifyBody": "Bill and budget alerts on your phone.",
+  "ownSetupRelayTitle": "Give your server a push relay",
+  "ownSetupRelayBody": "Phone alerts go out through a push relay. Your server does not have one set yet. Add this line to your server's .env file, with the relay address after the equals sign:",
+  "ownSetupRelayAfter": "Then restart the server. If the relay is BuoyAI Cloud, link this server with BuoyAI Cloud too.",
+  "ownSetupRelayCheck": "I changed it, check again",
+  "ownSetupDone": "Done",
+  "ownSetupSkip": "Skip",
+  "ownSetupHide": "Hide setup steps",
+  "acctCloudNotLinkedTitle": "Not linked to BuoyAI Cloud yet",
+  "acctCloudOk": "OK",
+  "ctkSettingsTitle": "Tools for AI assistants",
+  "ctkSettingsSubtitle": "Access tokens for Open WebUI and similar tools",
+  "ctkTitle": "Access tokens",
+  "ctkIntro": "For tools like Open WebUI that read your budgets and transactions. Read-only for money.",
+  "ctkEmpty": "No tokens yet.",
+  "ctkNew": "New token",
+  "ctkNewTitle": "New access token",
+  "ctkNameLabel": "Name",
+  "ctkNameDefault": "Open WebUI",
+  "ctkCreate": "Create",
+  "ctkCancel": "Cancel",
+  "ctkCreated": "Created {date}",
+  "@ctkCreated": {"placeholders": {"date": {"type": "String"}}},
+  "ctkLastUsed": "Last used {date}",
+  "@ctkLastUsed": {"placeholders": {"date": {"type": "String"}}},
+  "ctkNeverUsed": "Never used",
+  "ctkRevoke": "Revoke",
+  "ctkRevokeTitle": "Revoke {name}?",
+  "@ctkRevokeTitle": {"placeholders": {"name": {"type": "String"}}},
+  "ctkRevokeBody": "Tools using this token stop working right away.",
+  "ctkRevoked": "Token revoked",
+  "ctkShownTitle": "Your new token",
+  "ctkShownNote": "Copy it now. You will not see it again.",
+  "ctkTokenLabel": "Token",
+  "ctkMcpLabel": "MCP address",
+  "ctkCopy": "Copy",
+  "ctkCopied": "Copied",
+  "ctkDone": "Done",
+  "ctkOff": "Turn on tools for AI assistants: set BUOY_MCP_ENABLED=true in the server's .env and restart.",
+  "ctkLoadFailed": "Could not load your tokens.",
+  "ctkRetry": "Try again",
+  "ctkCreateFailed": "Could not create the token. Try again.",
+  "ctkRevokeFailed": "Could not revoke the token. Try again.",
+  "oidcSignInWith": "Sign in with {name}",
+  "@oidcSignInWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "oidcSignUpWith": "Sign up with {name}",
+  "@oidcSignUpWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "oidcSigningIn": "Signing you in...",
+  "oidcBackToSignIn": "Back to sign in",
+  "oidcOpenFailed": "Could not open the sign-in page.",
+  "oidcErrorNoAccount": "No account uses this email. Ask the person who runs this server for an invite.",
+  "oidcErrorClosed": "This server is not taking new accounts. Ask for an invite code.",
+  "oidcErrorUnverified": "Your email is not verified at the sign-in provider.",
+  "oidcErrorDenied": "Sign-in was cancelled.",
+  "oidcErrorExpired": "This sign-in took too long. Try again.",
+  "oidcErrorUnavailable": "Could not reach the sign-in provider. Try again later.",
+  "oidcErrorGeneric": "Sign-in failed. Try again.",
+  "portalHomeTitle": "BuoyAI Cloud",
+  "portalHomeIntro": "Add-ons for your own Buoy Money server: bank sync and AI. Your budget stays on your server.",
+  "portalHomeLinkBody": "Your server shows a code when you start linking. Type it here to approve the server.",
+  "portalHomeLinkButton": "Enter a code",
+  "portalSignOut": "Sign out",
+  "portalSignUpNote": "This is a BuoyAI Cloud account, for buying add-ons for your own server. It does not start the hosted app's free trial.",
+  "portalNotFound": "This page is not part of BuoyAI Cloud.",
+  "portalGoHome": "Go to BuoyAI Cloud",
+  "portalLinkTitle": "Link a server",
+  "portalLinkIntro": "Approve the Buoy Money server that is showing you a code.",
+  "portalLinkCodeTitle": "Code from your server",
+  "portalLinkCodeHelp": "Your server shows an 8 letter code next to Link with BuoyAI Cloud.",
+  "portalLinkCodeLabel": "Code",
+  "portalLinkContinue": "Continue",
+  "portalLinkChecking": "Checking...",
+  "portalLinkServerTitle": "Server asking to link",
+  "portalLinkUnnamed": "Unnamed server",
+  "portalLinkVersion": "Version",
+  "portalLinkAsked": "Asked at",
+  "portalLinkExpires": "Code expires at",
+  "portalLinkWarning": "Only approve a code shown on your own server.",
+  "portalLinkDeny": "Deny",
+  "portalLinkOtherCode": "Use a different code",
+  "portalLinkApproved": "Linked. Your server finishes on its own in a few seconds.",
+  "portalLinkSeeServers": "See your servers",
+  "portalLinkDenied": "Denied. That server will not be linked.",
+  "portalLinkBadCode": "That code is not valid or has expired. Check the code on your server.",
+  "portalLinkAlreadyDecided": "This code was already used. Start again on your server to get a new one.",
+  "portalLinkTooManyTries": "Too many wrong codes. Wait a while, then try again."
+}

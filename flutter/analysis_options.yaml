@@ -1,0 +1,13 @@
+# This file configures the analyzer, which statically analyzes Dart code to
+# check for errors, warnings, and lints.
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    # AOT-vs-web safety gate: flags implicit `dynamic` downcasts that dart2js
+    # (web) silently elides but AOT (iOS/Android) enforces at runtime — the class
+    # of bug behind the Accounts "won't load on Android" crash (#686).
+    strict-casts: true
+
+linter:
+  rules:

@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+
+const title = 'Daily Allowance Budget Calculator';
+const description =
+  'A free count-up budgeting calculator: turn any monthly category budget into a daily allowance and see how much you’d bank by underspending. No sign-up required.';
+const url = `${SITE.url}/calculator`;
+
+const jsonLd = [
+  {
+    '@type': 'WebApplication',
+    name: title,
+    url,
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web',
+    description,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@id': `${SITE.url}/#org` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Calculator', item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} path="/calculator" jsonLd={jsonLd}>
+  <header class="calc-hero">
+    <div class="container">
+      <p class="kicker" style="justify-content:center">FREE TOOL</p>
+      <h1>Daily allowance calculator</h1>
+      <p class="lead">
+        See count-up budgeting in action. Turn a monthly category budget into a daily
+        allowance, and see how much you’d bank by skipping a few days.
+      </p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:0">
+    <div class="container calc-grid">
+      <form class="card calc-form" id="calc" autocomplete="off">
+        <div class="field">
+          <label for="monthly">Monthly budget for one category</label>
+          <div class="input-money">
+            <span aria-hidden="true">$</span>
+            <input type="number" id="monthly" min="0" max="1000000000" step="10" value="300" inputmode="numeric" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="days">Days in the period</label>
+          <input type="number" id="days" min="1" max="365" step="1" value="30" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="skips">Spend-free days per week: <output id="skipsOut">2</output></label>
+          <input type="range" id="skips" min="0" max="7" step="1" value="2" />
+        </div>
+      </form>
+
+      <div class="calc-results">
+        <div class="card result">
+          <span class="result-label">Your daily allowance</span>
+          <span class="result-value" id="allowance">$10.00</span>
+          <span class="result-sub">added to this category every day</span>
+        </div>
+        <div class="card result result-accent">
+          <span class="result-label">Banked this month</span>
+          <span class="result-value text-green" id="banked">$80</span>
+          <span class="result-sub" id="bankedSub">by skipping 2 days a week</span>
+        </div>
+        <div class="card result">
+          <span class="result-label">Over a year</span>
+          <span class="result-value" id="yearly">$960</span>
+          <span class="result-sub">same habit, twelve months</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container calc-foot">
+      <p>
+        That’s the whole idea behind <a href="/count-up-budgeting">count-up budgeting</a>:
+        underspending becomes a number you watch grow. Buoy does this automatically across
+        every category, and rewards the streak.
+      </p>
+      <a href={SITE.appRegister} class="btn btn-primary">Start your free trial</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script type="module" src="/calculator.js"></script>
+
+<style>
+  .calc-hero {
+    background: linear-gradient(180deg, var(--sky-top), var(--surface));
+    padding: clamp(48px, 8vw, 88px) 0 clamp(28px, 4vw, 44px);
+    text-align: center;
+  }
+  .calc-hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    margin-bottom: 16px;
+  }
+  .calc-hero .lead {
+    margin: 0 auto;
+    max-width: 56ch;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 26px;
+    align-items: start;
+  }
+  .calc-form {
+    padding: 30px 32px;
+    display: grid;
+    gap: 24px;
+  }
+  .field label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .field input[type='number'] {
+    width: 100%;
+    font: inherit;
+    font-weight: 700;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+  }
+  .input-money {
+    position: relative;
+  }
+  .input-money span {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    color: var(--ink-faint);
+  }
+  .input-money input {
+    padding-left: 28px !important;
+  }
+  input[type='range'] {
+    width: 100%;
+    accent-color: var(--blue);
+  }
+  output {
+    color: var(--blue);
+  }
+
+  .calc-results {
+    display: grid;
+    gap: 16px;
+  }
+  .result {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .result-accent {
+    border-color: var(--blue);
+    box-shadow: var(--shadow-md);
+  }
+  .result-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .result-value {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--blue);
+    line-height: 1;
+  }
+  .result-sub {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+  .calc-foot {
+    text-align: center;
+    margin-top: 40px;
+    max-width: 640px;
+  }
+  .calc-foot p {
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .calc-foot a:not(.btn) {
+    color: var(--blue);
+    font-weight: 600;
+  }
+  @media (max-width: 760px) {
+    .calc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

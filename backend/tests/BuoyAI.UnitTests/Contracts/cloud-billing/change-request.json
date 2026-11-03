@@ -1,0 +1,9 @@
+{
+  "customerId": "cus_1",
+  "environment": "production",
+  "type": "set_quantity",
+  "product": "extra_logins",
+  "quantity": 2,
+  "prorationDate": "2027-01-15T00:00:00Z",
+  "idempotencyKey": "idem-2"
+}

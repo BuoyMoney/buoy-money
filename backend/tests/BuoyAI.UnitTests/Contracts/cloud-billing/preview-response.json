@@ -1,0 +1,50 @@
+{
+  "type": "add",
+  "effective": "now",
+  "effectiveAt": null,
+  "prorationTotalCents": 750,
+  "nextInvoiceTotalCents": 3149,
+  "currency": "usd",
+  "prorationDate": "2027-01-15T00:00:00Z",
+  "lines": [
+    {
+      "description": "Unused time on AI",
+      "amountCents": 750,
+      "proration": true
+    },
+    {
+      "description": "Bank sync renewal",
+      "amountCents": 2399,
+      "proration": false
+    }
+  ],
+  "productsAfter": [
+    {
+      "product": "bank_sync",
+      "quantity": 1,
+      "entitlements": [
+        "bank_sync"
+      ],
+      "endsAt": null,
+      "quantityAfterPeriodEnd": null
+    },
+    {
+      "product": "ai",
+      "quantity": 1,
+      "entitlements": [
+        "ai"
+      ],
+      "endsAt": "2027-01-15T00:00:00Z",
+      "quantityAfterPeriodEnd": null
+    },
+    {
+      "product": "extra_logins",
+      "quantity": 5,
+      "entitlements": [
+        "extra_logins"
+      ],
+      "endsAt": null,
+      "quantityAfterPeriodEnd": 2
+    }
+  ]
+}

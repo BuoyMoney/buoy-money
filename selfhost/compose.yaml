@@ -1,0 +1,221 @@
+# Buoy Money, self-hosted: the app and its database. Nothing else to install.
+#
+#   cp .env.example .env       # optional: set your address and admin email
+#   docker compose up -d
+#   open http://localhost:8080
+#
+# First run creates the database password and the app's keys for you (the "init" service writes
+# them to the "secrets" volume). Nothing in this file is a password. The database is not
+# published on any port: only the app is reachable.
+#
+# HTTPS (needed for passkeys and for anything outside your home network):
+#   - Easiest: Tailscale. See docs/self_host/running.md ("HTTPS with Tailscale").
+#   - Or Caddy:  docker compose --profile https up -d   (set BUOY_HOST, BUOY_ORIGIN, BUOY_BIND=127.0.0.1)
+#
+# Upgrade:  docker compose pull && docker compose up -d
+#           (a verified database backup is taken before any schema change; see running.md)
+#
+# To build the image from this checkout instead of pulling it:  docker compose up -d --build
+
+name: buoy-money
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  # One-shot: creates /secrets/* the first time, keeps them afterwards.
+  init:
+    image: ${BUOY_IMAGE:-ghcr.io/buoymoney/buoy-money}:${BUOY_VERSION:-latest}
+    build:
+      context: ..
+      dockerfile: Dockerfile.selfhost
+    entrypoint: ["/usr/local/bin/buoy-init-secrets"]
+    restart: "no"
+    network_mode: none
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    volumes:
+      - secrets:/secrets
+    logging: *logging
+
+  db:
+    # pgvector/pgvector 0.8.0 on PostgreSQL 16 (ships the vector extension), pinned by digest (amd64 and arm64)
+    image: pgvector/pgvector:0.8.0-pg16@sha256:a132765ec351c65111b5b675928a3a0515a466a40f97277329db8b8209ad8bc9
+    restart: unless-stopped
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    environment:
+      POSTGRES_DB: buoy
+      POSTGRES_USER: buoy
+      POSTGRES_PASSWORD_FILE: /secrets/db_password
+    # Small-box tuning (a 4 GB Raspberry Pi shares its memory with the app and the system).
+    command:
+      - postgres
+      - -c
+      - shared_buffers=96MB
+      - -c
+      - effective_cache_size=512MB
+      - -c
+      - work_mem=4MB
+      - -c
+      - maintenance_work_mem=32MB
+      - -c
+      - max_connections=30
+      - -c
+      - wal_compression=on
+      - -c
+      - checkpoint_timeout=15min
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - secrets:/secrets:ro
+    # No "ports:" on purpose. The database is reachable only by the app, on the internal network.
+    networks: [internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U buoy -d buoy"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+    mem_limit: 384m
+    shm_size: 128m
+    logging: *logging
+
+  app:
+    image: ${BUOY_IMAGE:-ghcr.io/buoymoney/buoy-money}:${BUOY_VERSION:-latest}
+    build:
+      context: ..
+      dockerfile: Dockerfile.selfhost
+    restart: unless-stopped
+    depends_on:
+      init:
+        condition: service_completed_successfully
+      db:
+        condition: service_healthy
+    environment:
+      # The address people type into the browser. The passkey "relying party" is its host name and
+      # cannot change later without invalidating every passkey, so set these before first use.
+      WebAuthn__RelyingPartyId: ${BUOY_HOST:-localhost}
+      WebAuthn__Origin: ${BUOY_ORIGIN:-http://localhost:8080}
+      App__BaseUrl: ${BUOY_ORIGIN:-http://localhost:8080}
+      # The account with this email is the admin. Set it before you register.
+      Admin__Emails__0: ${BUOY_ADMIN_EMAIL:-}
+      # Outgoing email (password reset, verification codes, family invites). Optional: with no host
+      # set, nothing is sent and new accounts skip email verification. See docs/self_host/sign_in_email_push.md.
+      Smtp__Host: ${BUOY_SMTP_HOST:-}
+      Smtp__Port: ${BUOY_SMTP_PORT:-587}
+      Smtp__Security: ${BUOY_SMTP_SECURITY:-starttls}
+      Smtp__Username: ${BUOY_SMTP_USERNAME:-}
+      Smtp__Password: ${BUOY_SMTP_PASSWORD:-}
+      Smtp__FromAddress: ${BUOY_SMTP_FROM:-}
+      # Phone notifications through the BuoyAI push relay. Optional: empty means no push.
+      PushRelay__Url: ${BUOY_PUSH_RELAY_URL:-}
+      # Trust X-Forwarded-* only from the proxy in front of the app. The image trusts loopback only;
+      # this adds the Caddy container's fixed address (used by the https profile). Add your own
+      # proxy as ForwardedHeaders__TrustedNetworks__3 if you run one elsewhere.
+      ForwardedHeaders__TrustedNetworks__2: ${BUOY_CADDY_IP:-172.30.0.250}/32
+      # AI is off until you choose a provider. All blank means off; see docs/self_host/ai.md.
+      Ai__Provider: ${BUOY_AI_PROVIDER:-}
+      Ai__BaseUrl: ${BUOY_AI_BASE_URL:-}
+      Ai__Model: ${BUOY_AI_MODEL:-}
+      Ai__ApiKey: ${BUOY_AI_API_KEY:-}
+      # Native gemini reads its key from here, so one setting covers every provider.
+      Gemini__ApiKey: ${BUOY_AI_API_KEY:-}
+      Ai__EmbeddingModel: ${BUOY_AI_EMBEDDING_MODEL:-}
+      Ai__ReasoningEffort: ${BUOY_AI_REASONING_EFFORT:-}
+      Ai__TimeoutSeconds: ${BUOY_AI_TIMEOUT_SECONDS:-}
+      Ai__EmbeddingDimensions: ${BUOY_AI_EMBEDDING_DIMENSIONS:-}
+      Ai__Temperature: ${BUOY_AI_TEMPERATURE:-}
+      Ai__PriceInputPerMillion: ${BUOY_AI_PRICE_INPUT_PER_MILLION:-}
+      Ai__PriceOutputPerMillion: ${BUOY_AI_PRICE_OUTPUT_PER_MILLION:-}
+      Ai__Models__categorization: ${BUOY_AI_MODEL_CATEGORIZATION:-}
+      Ai__Models__insights: ${BUOY_AI_MODEL_INSIGHTS:-}
+      Ai__Models__subscriptions: ${BUOY_AI_MODEL_SUBSCRIPTIONS:-}
+      # AI from BuoyAI Cloud (BUOY_AI_PROVIDER=buoy-cloud): the gateway address and this server's pairing credential.
+      Ai__CloudUrl: ${BUOY_AI_CLOUD_URL:-}
+      Ai__CloudCredential: ${BUOY_AI_CLOUD_CREDENTIAL:-}
+      # BuoyAI Cloud bank feed and pairing (docs/self_host/bridge.md). Empty address means off.
+      CloudBridge__Url: ${BUOY_CLOUD_BRIDGE_URL:-}
+      CloudBridge__BankFeedEnabled: ${BUOY_CLOUD_BANK_FEED:-false}
+      # Tools for AI assistants (Open WebUI, Claude) at <BUOY_ORIGIN>/mcp. Off unless BUOY_MCP_ENABLED=true.
+      # Make an access token for a tool in the app under Settings, Connected apps. See docs/self_host/connect.md.
+      Mcp__Enabled: ${BUOY_MCP_ENABLED:-false}
+      Mcp__Issuer: ${BUOY_ORIGIN:-http://localhost:8080}
+      Mcp__ResourceUri: ${BUOY_ORIGIN:-http://localhost:8080}/mcp
+      # Single sign-on with your own OpenID Connect provider (Pocket ID, Authentik, Keycloak). Off unless
+      # BUOY_OIDC_ENABLED=true. Callback to register at the provider: <BUOY_ORIGIN>/api/auth/oidc/callback.
+      # See docs/self_host/sign_in_email_push.md.
+      Oidc__Enabled: ${BUOY_OIDC_ENABLED:-false}
+      Oidc__Authority: ${BUOY_OIDC_AUTHORITY:-}
+      Oidc__ClientId: ${BUOY_OIDC_CLIENT_ID:-}
+      Oidc__ClientSecret: ${BUOY_OIDC_CLIENT_SECRET:-}
+      Oidc__DisplayName: ${BUOY_OIDC_DISPLAY_NAME:-Single sign-on}
+      Oidc__AutoRegister: ${BUOY_OIDC_AUTO_REGISTER:-false}
+      Oidc__DisablePasswordLogin: ${BUOY_OIDC_DISABLE_PASSWORD_LOGIN:-false}
+      Oidc__TrustUnverifiedEmail: ${BUOY_OIDC_TRUST_UNVERIFIED_EMAIL:-false}
+      Oidc__SkipAppMfa: ${BUOY_OIDC_SKIP_APP_MFA:-false}
+    # Lets the app reach an Ollama running on this machine at http://host.docker.internal:11434/v1
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - secrets:/secrets:ro
+      - appdata:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    user: "10001:10001"
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    # Set BUOY_BIND=127.0.0.1 when a proxy (Caddy, Tailscale) is in front, so the app is not also open on the LAN.
+    ports:
+      - "${BUOY_BIND:-0.0.0.0}:${BUOY_PORT:-8080}:8080"
+    networks: [internal, web]
+    mem_limit: 768m
+    logging: *logging
+
+  # Optional HTTPS in front of the app: docker compose --profile https up -d
+  caddy:
+    profiles: ["https"]
+    # caddy:2-alpine, pinned by digest (amd64 and arm64)
+    image: caddy:2-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+    restart: unless-stopped
+    depends_on:
+      - app
+    environment:
+      BUOY_HOST: ${BUOY_HOST:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # A folder, not a single file: single-file mounts break on some hosts when the file is edited.
+      - ./caddy:/etc/caddy:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      web:
+        ipv4_address: ${BUOY_CADDY_IP:-172.30.0.250}
+    mem_limit: 96m
+    logging: *logging
+
+volumes:
+  pgdata:
+  appdata:
+  secrets:
+  caddy_data:
+  caddy_config:
+
+networks:
+  # Database traffic only: no route to the internet.
+  internal:
+    internal: true
+  # Fixed subnet so the app can trust X-Forwarded-* from Caddy's address and nothing else.
+  # BUOY_WEB_SUBNET and BUOY_CADDY_IP are for a second install or a clash ("Pool overlaps" from Docker); otherwise leave them unset.
+  # Keep the Caddy address high (.250): the app gets the first free address, and Caddy needs its own fixed one to still be free.
+  web:
+    ipam:
+      config:
+        - subnet: ${BUOY_WEB_SUBNET:-172.30.0.0/24}

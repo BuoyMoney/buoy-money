@@ -1,0 +1,25 @@
+---
+// Nautical wave divider that transitions between two section backgrounds.
+// `top` = colour of the area above the wave, `bottom` = colour below it.
+interface Props {
+  top?: string;
+  bottom?: string;
+  flip?: boolean;
+}
+const { top = 'var(--surface)', bottom = 'var(--surface-tint)', flip = false } = Astro.props;
+---
+
+<div class="wave" style={`background:${top}`} aria-hidden="true">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="wave-divider" style={flip ? 'transform:scaleX(-1)' : ''}>
+    <path
+      d="M0,40 C240,10 420,72 720,44 C1020,16 1200,70 1440,38 L1440,80 L0,80 Z"
+      fill={bottom}
+    ></path>
+  </svg>
+</div>
+
+<style>
+  .wave {
+    line-height: 0;
+  }
+</style>

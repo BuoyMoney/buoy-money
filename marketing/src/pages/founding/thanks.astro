@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Founding reservation: what happens next"
+  description="What happens after you reserve a founding spot."
+  path="/founding/thanks"
+  noindex={true}
+>
+  <article class="section">
+    <div class="container narrow">
+      <p class="kicker">FOUNDING MEMBERS</p>
+      <h1>What happens after you reserve</h1>
+
+      <p>
+        Once Stripe confirms your $1, you're on the list and Stripe emails you a receipt. No receipt
+        within a few minutes? Email <a href="mailto:support@buoy-ai.com">support@buoy-ai.com</a> and I'll check.
+      </p>
+
+      <h2>What happens next</h2>
+      <ul>
+        <li>You'll be among the first invited to the beta, by email.</li>
+        <li>Your $1 comes off your first year when you start a plan.</li>
+        <li>
+          Your founding prices are locked, apart from any increase in what Plaid charges per
+          connected bank, which is passed through at cost.
+        </li>
+        <li>
+          I saved your card so starting a plan is one tap. It won't be charged again unless you
+          choose a plan.
+        </li>
+      </ul>
+
+      <p class="fine">
+        Changed your mind? Email <a href="mailto:support@buoy-ai.com">support@buoy-ai.com</a> and I refund the $1, no questions.
+      </p>
+
+      <p><a href="/" class="btn btn-ghost">Back to the home page</a></p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .container.narrow {
+    max-width: 640px;
+    padding-top: clamp(48px, 8vw, 96px);
+  }
+  ul {
+    padding-left: 20px;
+    line-height: 1.65;
+  }
+  li + li {
+    margin-top: 8px;
+  }
+  .fine {
+    margin-top: 22px;
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+  }
+</style>

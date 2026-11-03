@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { renderLegal } from '../lib/legal';
+
+const html = renderLegal('PRIVACY_POLICY.md');
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="How Buoy Money collects, uses, and protects your personal and financial information."
+  path="/privacy-policy"
+>
+  <article class="section">
+    <div class="container prose" set:html={html} />
+  </article>
+</BaseLayout>

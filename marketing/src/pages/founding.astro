@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LaunchCountdown from '../components/LaunchCountdown.astro';
+
+/*
+  Founding-member $1 reservation page (the Buoy Money demand test).
+
+  The button and the live spots-left line are driven by /founding.js, a static external script,
+  because the site is statically built and the production CSP forbids inline script. The
+  API is same-origin (/api/...), so no CORS or extra connect-src is needed.
+
+  Everything works without JavaScript except the button itself. While the API says
+  reservations are not open, /founding.js swaps the button for a "Reservations open soon"
+  note. The note is the default markup state of the "soon" block, hidden until needed.
+*/
+const choices = [
+  { value: 'bank_sync', label: 'Bank sync' },
+  { value: 'ai', label: 'AI' },
+  { value: 'both', label: 'Both' },
+  { value: 'free', label: 'Just the free app' },
+  { value: 'unsure', label: 'Not sure' },
+];
+---
+
+<BaseLayout
+  title="Founding members"
+  description="BuoyAI is becoming Buoy Money: your budget on your own server, real US bank sync, optional AI. Reserve a founding spot for $1, credited to your first year and refundable any time."
+  path="/founding"
+>
+  <section class="page-top">
+    <div class="container">
+      <p class="kicker" style="justify-content:center">FOUNDING MEMBERS</p>
+      <h1 class="page-title">
+        BuoyAI is becoming <span class="text-blue">Buoy Money.</span>
+      </h1>
+      <p class="lede">
+        Your budget on your own server. Real US bank sync when you want it. AI only if you turn it
+        on. The app itself is free and open source. I charge for the parts that cost me money to
+        run.
+      </p>
+      <LaunchCountdown />
+      <p class="limit">
+        Founding prices are for the first 150 founders. Your spot does not expire when the
+        countdown ends.
+      </p>
+      <div class="spots spots-top" data-spots hidden>
+        <p class="spots-text"><span class="spots-num" data-spots-num></span> <span data-spots-label></span></p>
+        <div class="spots-bar" aria-hidden="true"><i data-spots-fill></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2>I'm the small one</h2>
+      <p>
+        YNAB and Monarch have big teams and big marketing budgets. Buoy Money is one person in Kansas
+        who builds it at night. So I work harder for every user: you can email the person who wrote
+        the code, the app has no ads and no trackers, and your data lives on your own server, not mine.
+        If I ever stop, the app keeps running, because it's yours.
+      </p>
+
+      <h2>What it costs</h2>
+      <div class="table-wrap">
+        <table class="prices">
+          <thead>
+            <tr><th>Product</th><th>Per year</th><th>Per month</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>The app, self-hosted</td><td>Free</td><td>Free</td></tr>
+            <tr><td>Bank sync (3 bank logins included)</td><td>$23.99</td><td>$2.79</td></tr>
+            <tr><td>AI</td><td>$14.99</td><td>$1.99</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">
+        An instant-refresh add-on is planned for later. Founding prices are about a third below
+        what members who join later will pay, and they are locked in for you.
+      </p>
+
+      <h2>What founding members get</h2>
+      <ul class="gets">
+        <li>
+          <strong>Founding prices, locked.</strong> One exception: if my bank data provider
+          (Plaid) raises what it charges per connected bank, that increase is passed through to
+          you at cost, with no markup.
+        </li>
+        <li><strong>First invites to the beta.</strong> You get in before the public launch.</li>
+        <li><strong>Your $1 is credited.</strong> It comes off your first year.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="container narrow">
+      <h2>Reserve your spot for $1</h2>
+      <p>
+        Paying $1 now holds your founding spot. It comes off your first year, and it is
+        refundable any time. I save your card so you can start a plan in one tap later. I
+        won't charge it again unless you choose a plan.
+      </p>
+
+      <form id="founding-form" class="card form" novalidate>
+        <fieldset id="founding-choices">
+          <legend>Which would you pick at launch?</legend>
+          {
+            choices.map((c, i) => (
+              <label class="choice">
+                <input type="radio" name="choice" value={c.value} checked={i === choices.length - 1} />
+                <span>{c.label}</span>
+              </label>
+            ))
+          }
+        </fieldset>
+
+        <div class="spots spots-form" data-spots hidden>
+          <p class="spots-text"><span class="spots-num" data-spots-num></span> <span data-spots-label></span></p>
+        <div class="spots-bar" aria-hidden="true"><i data-spots-fill></i></div>
+        </div>
+
+        <div id="founding-open">
+          <button type="submit" id="founding-button" class="btn btn-primary">Reserve for $1</button>
+          <p id="founding-error" class="error" role="alert" hidden>
+            Something went wrong starting checkout. Please try again in a moment.
+          </p>
+        </div>
+
+        <p id="founding-full" class="soon" role="status" hidden>
+          <strong>All 150 founding spots are taken.</strong> Thank you to everyone who joined.
+          Email <a href="mailto:support@buoy-ai.com">support@buoy-ai.com</a> and I will add you to
+          the list for the public launch.
+        </p>
+
+        <p id="founding-soon" class="soon" hidden>
+          <strong>Reservations open soon.</strong> Check back shortly, or watch this page.
+        </p>
+      </form>
+
+      <p class="fine">
+        Changed your mind? Email <a href="mailto:support@buoy-ai.com">support@buoy-ai.com</a> and I refund the $1, no questions.
+      </p>
+    </div>
+  </section>
+
+  <script type="module" src="/founding.js"></script>
+</BaseLayout>
+
+<style>
+  .page-top {
+    padding: clamp(64px, 10vw, 116px) 0 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--sky-top), var(--surface));
+  }
+  .page-title {
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    margin-top: 14px;
+  }
+  .lede {
+    max-width: 640px;
+    margin: 18px auto 0;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .limit {
+    margin: 14px auto 0;
+    max-width: 520px;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .container.narrow {
+    max-width: 720px;
+  }
+  .page-top + .section {
+    padding-top: clamp(40px, 6vw, 64px);
+  }
+  .narrow h2 {
+    margin: 48px 0 16px;
+  }
+  .narrow h2:first-child {
+    margin-top: 0;
+  }
+  .narrow > :last-child {
+    margin-bottom: 0;
+  }
+  .table-wrap {
+    overflow-x: auto;
+  }
+  .prices {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+  .prices th,
+  .prices td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+  .prices th {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .gets {
+    padding-left: 20px;
+    line-height: 1.65;
+  }
+  .gets li + li {
+    margin-top: 10px;
+  }
+  .form {
+    margin-top: 20px;
+    padding: 24px;
+  }
+  fieldset {
+    border: 0;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+  legend {
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+  .choice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  .choice input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--blue);
+  }
+  .error {
+    margin-top: 12px;
+    color: #b42318;
+    font-size: 0.95rem;
+  }
+  .soon {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  /* Live spots left. Hidden until the API answers; min-height reserves the line so the
+     layout does not jump when it appears. */
+  .spots {
+    max-width: 360px;
+    margin: 18px auto 0;
+    min-height: 3.1rem;
+  }
+  .spots[hidden] {
+    display: block;
+    visibility: hidden;
+  }
+  .spots-form {
+    margin: 0 0 20px;
+    text-align: left;
+  }
+  .spots-text {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .spots-num {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #094aaa;
+    font-variant-numeric: tabular-nums;
+  }
+  .spots-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .spots-bar i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #094aaa;
+    transition: width 0.6s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .spots-bar i {
+      transition: none;
+    }
+  }
+  .fine {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    line-height: 1.55;
+  }
+  @media (max-width: 480px) {
+    .prices th,
+    .prices td {
+      padding: 10px 8px;
+    }
+    .form {
+      padding: 20px;
+    }
+  }
+</style>

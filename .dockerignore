@@ -1,0 +1,64 @@
+# Git and version control
+.git
+.gitignore
+.gitmodules
+
+# Documentation
+*.md
+README*
+CHANGELOG*
+LICENSE*
+docs/
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# .NET
+backend/bin/
+backend/obj/
+backend/*/bin/
+backend/*/obj/
+backend/TestResults/
+backend/.vs/
+backend/*.user
+backend/*.suo
+
+# Build output at any depth (backend/src/<project>/obj holds Windows paths that break the Linux build)
+backend/**/bin/
+backend/**/obj/
+
+# Flutter host build state; the image runs its own pub get and build
+flutter/.dart_tool/
+flutter/build/
+flutter/ios/Flutter/ephemeral/
+flutter/android/.gradle/
+**/node_modules/
+
+# Environment files (keep for Docker build context)
+# .env files should be handled via secrets/build args
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# Test artifacts
+coverage/
+.nyc_output
+
+# Temporary files
+tmp/
+temp/

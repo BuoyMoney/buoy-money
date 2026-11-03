@@ -1,0 +1,110 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Biometric authentication permission -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
+    <!-- Offline background sync (#493): WorkManager reschedules the periodic
+         outbox drain + cache warm after a device reboot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <!-- Push notifications (#190): Android 13+ requires runtime notification permission;
+         the in-app soft ask (PushNotificationService.maybeShowEnablePrompt) precedes the
+         system dialog. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    
+    <application
+        android:label="${appLabel}"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true"
+        android:networkSecurityConfig="@xml/network_security_config">
+        <!-- networkSecurityConfig: https everywhere, with plain http allowed only for loopback and
+             the emulator host, so a self-hosted server on a home network can still be reached
+             while a typed public http:// address is refused. The server picker also warns that
+             passwords travel unencrypted over http. -->
+        <!-- enableOnBackInvokedCallback: opt in to Android's modern OnBackInvokedCallback / the
+             predictive back gesture (API 33+; default-on from Android 15). Without it the app used
+             the legacy back path and, with no route to pop, Android ran its exit animation — which
+             is why the back swipe closed the app. Flutter's engine now drives back through this,
+             and the app's shell PopScope + NavHistory decide "previous page" vs "exit". -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- Links reach the app through app_links (main.dart _routeIncomingUri), which maps /app paths,
+                 leaves Plaid's return alone and sends the sign-on return to /auth/oidc. Flutter's own deep
+                 linking would ALSO hand the raw link to the router, which bounces it to sign-in. -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
+            <!-- Specifies an Android theme to apply to this Activity as soon as
+                 the Android process has started. This theme is visible to the user
+                 while the Flutter UI initializes. After that, this theme continues
+                 to determine the Window background behind the Flutter UI. -->
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+              />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <!-- Receipt scanning: Buoy Money appears in the share sheet for screenshots, photos and
+                 PDFs. Shared files open the receipt sheet, which shows them before anything is
+                 sent (ReceiptShareListener). -->
+            <!-- Single sign-on on a self-hosted server: the server sends the browser back to
+                 com.buoyai.buoymoney://oidc?code=... (a one-time code, never a token; the app's own
+                 PKCE verifier is needed to use it). -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="com.buoyai.buoymoney" android:host="oidc"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+                <data android:mimeType="application/pdf"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+                <data android:mimeType="application/pdf"/>
+            </intent-filter>
+        </activity>
+        <!-- Don't delete the meta-data below.
+             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+
+        <!-- Push notifications (#190): FCM defaults for background-delivered notification
+             messages. The channel is created in MainActivity.onCreate; the small icon must
+             be a white-on-transparent drawable (the launcher icon renders as a grey square). -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="buoyai_alerts" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/notification_accent" />
+    </application>
+    <!-- Required to query activities that can process text, see:
+         https://developer.android.com/training/package-visibility and
+         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+
+         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+</manifest>

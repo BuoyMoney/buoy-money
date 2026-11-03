@@ -1,0 +1,145 @@
+name: Publish self-host image
+
+# Builds the Buoy Money self-host image for PCs and Raspberry Pis (linux/amd64 and linux/arm64)
+# from Dockerfile.selfhost and pushes it to GitHub Container Registry. Runs only when started by
+# hand. Nothing here touches the hosted deploys.
+#
+#   gh workflow run publish-selfhost-image.yml -f version=<version> -f push=true -f attach_to_release=true
+#
+# push=false builds both architectures and throws the result away (a check that the image still
+# builds). attach_to_release=true also uploads compose.yaml (without its build blocks), env.example
+# and Caddyfile to the release tagged v<version>, which is what docs/self_host/running.md downloads.
+# Create that release first (gh release create v<version>).
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish, like 1.5.33 (no leading v). Empty reads flutter/pubspec.yaml.'
+        required: false
+        default: ''
+      push:
+        description: 'Push the image to ghcr.io (false = build only, nothing is published).'
+        type: boolean
+        default: false
+      latest:
+        description: 'Also move the "latest" tag to this version (only when pushing).'
+        type: boolean
+        default: true
+      attach_to_release:
+        description: 'Upload compose.yaml, env.example and Caddyfile to the release v<version>. Needs push=true, and run it from the public repo (set the GHCR package to public after the first push).'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-selfhost-image
+  cancel-in-progress: false
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  publish:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write   # attach files to a release
+      packages: write   # push to ghcr.io
+      id-token: write   # sign the build provenance record (keyless, via GitHub's OIDC)
+      attestations: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Work out the version and image name
+        id: meta
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.attach_to_release }}" = "true" ] && [ "${{ inputs.push }}" != "true" ]; then
+            echo "::error::attach_to_release needs push=true: compose.yaml would point at an image that was never pushed."
+            exit 1
+          fi
+          V="$INPUT_VERSION"
+          if [ -z "$V" ]; then
+            V=$(grep '^version:' flutter/pubspec.yaml | sed 's/version: *//; s/+.*//' | tr -d '[:space:]')
+          fi
+          case "$V" in
+            [0-9]*.[0-9]*.[0-9]*) ;;
+            *) echo "::error::version must look like 1.5.31, got '$V'"; exit 1;;
+          esac
+          OWNER_LC=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
+          IMAGE="$REGISTRY/$OWNER_LC/buoy-money"
+          TAGS="$IMAGE:$V"
+          if [ "${{ inputs.latest }}" = "true" ]; then TAGS="$TAGS"$'\n'"$IMAGE:latest"; fi
+          {
+            echo "version=$V"
+            echo "image=$IMAGE"
+            echo "tags<<EOF"
+            echo "$TAGS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "Publishing $IMAGE:$V (push=${{ inputs.push }})"
+
+      - name: Set up QEMU (the runtime stage is built once per architecture)
+        uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+
+      - name: Log in to GitHub Container Registry
+        if: inputs.push
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build (and push) the multi-arch image
+        id: build
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          file: Dockerfile.selfhost
+          platforms: linux/amd64,linux/arm64
+          push: ${{ inputs.push }}
+          # SBOM and BuildKit provenance are stored next to the image in the registry.
+          sbom: ${{ inputs.push }}
+          provenance: mode=max
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: |
+            APP_VERSION=${{ steps.meta.outputs.version }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.version=${{ steps.meta.outputs.version }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha,scope=selfhost
+          cache-to: type=gha,mode=max,scope=selfhost
+
+      - name: Sign the build provenance
+        if: inputs.push
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ${{ steps.meta.outputs.image }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
+
+      - name: Write the release files
+        if: inputs.attach_to_release
+        run: bash scripts/publish/selfhost-assets.sh "$RUNNER_TEMP/assets"
+
+      - name: Attach the release files
+        if: inputs.attach_to_release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: v${{ steps.meta.outputs.version }}
+        run: |
+          gh release upload "$TAG" "$RUNNER_TEMP/assets/compose.yaml" "$RUNNER_TEMP/assets/env.example" "$RUNNER_TEMP/assets/Caddyfile" --clobber --repo "${{ github.repository }}"

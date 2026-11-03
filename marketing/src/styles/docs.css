@@ -1,0 +1,95 @@
+/* Buoy brand on Starlight (/docs). Starlight owns layout and components; this file only
+   maps the brand palette and font onto its variables. Same tokens as global.css:
+   blue #094AAA, bright #1E88E5, green #1EB442, deep-navy ink #0C2440. */
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-var.woff2') format('woff2');
+}
+
+:root {
+  --sl-font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sl-content-width: 46rem;
+}
+
+/* Dark (Starlight's default theme) */
+:root {
+  --sl-color-accent-low: #0b2350;
+  --sl-color-accent: #4f9cf0;
+  --sl-color-accent-high: #cfe3fb;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e4ecf6;
+  --sl-color-gray-2: #c2cfdf;
+  --sl-color-gray-3: #8fa1b8;
+  --sl-color-gray-4: #5a6b82;
+  --sl-color-gray-5: #34445a;
+  --sl-color-gray-6: #1b2b40;
+  --sl-color-black: #0c1a2c;
+}
+
+/* Light */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #dbe9fa;
+  --sl-color-accent: #094aaa;
+  --sl-color-accent-high: #082a5f;
+  --sl-color-white: #0c2440;
+  --sl-color-gray-1: #1b3150;
+  --sl-color-gray-2: #33475f;
+  --sl-color-gray-3: #4a5a6e;
+  --sl-color-gray-4: #7d8ca0;
+  --sl-color-gray-5: #c4d3e3;
+  --sl-color-gray-6: #eef5fc;
+  --sl-color-gray-7: #f6f9fd;
+  --sl-color-black: #ffffff;
+}
+
+.site-title img {
+  height: 1.8rem;
+  width: auto;
+}
+
+/* Plan badges in page text: "Premium" and "Standard" */
+.plan {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8em;
+  font-weight: 700;
+  border: 1px solid var(--sl-color-accent);
+  color: var(--sl-color-accent-high);
+  background: var(--sl-color-accent-low);
+}
+
+/* The shared consent banner is styled with the marketing site's variables and buttons.
+   Give it those variables here, following Starlight's light/dark colours. */
+#consent-banner {
+  --blue: var(--sl-color-accent);
+  --ink-soft: var(--sl-color-gray-2);
+  --line: var(--sl-color-gray-5);
+  --surface: var(--sl-color-black);
+  --radius: 18px;
+  --shadow-lg: 0 30px 60px -28px rgba(9, 74, 170, 0.35);
+  color: var(--sl-color-white);
+}
+#consent-banner .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font: 600 0.9rem var(--sl-font);
+  cursor: pointer;
+  border: 1.5px solid #094aaa;
+}
+#consent-banner .btn-primary {
+  background: #094aaa;
+  color: #fff;
+}
+#consent-banner .btn-ghost {
+  background: transparent;
+  color: var(--sl-color-white);
+}

@@ -1,0 +1,15 @@
+# HTTPS in front of Buoy Money. Used by: docker compose --profile https up -d
+#
+# BUOY_HOST is the name you type in the browser (set it in .env).
+#  - A real domain pointing at this machine, with ports 80 and 443 reachable from the internet:
+#    Caddy gets a free public certificate by itself.
+#  - A home name such as buoy.home.arpa, buoy.local or localhost: Caddy signs the certificate with
+#    its own private authority. Each device must trust that authority once (phones make this
+#    awkward), or the browser shows a warning. Tailscale (docs/self_host/running.md) avoids that.
+{$BUOY_HOST} {
+	# The app serves its own gzip files and sets its own security headers.
+	reverse_proxy app:8080 {
+		# Server-sent events (AI chat) must not be buffered.
+		flush_interval -1
+	}
+}

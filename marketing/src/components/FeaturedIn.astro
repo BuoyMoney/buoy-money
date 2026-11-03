@@ -1,0 +1,101 @@
+---
+// "As featured in" social-proof strip (#618). Add more badges to the list as they come in;
+// the row wraps and stays centered. Badge images load from their host over https, which the
+// site CSP already allows (img-src 'self' data: https: blob:).
+const badges = [
+  {
+    name: 'BetaList',
+    href: 'https://betalist.com/startups/buoy?utm_campaign=badge-buoy&utm_medium=badge&utm_source=badge-featured',
+    img: 'https://betalist.com/badges/featured?id=173732&theme=color',
+    alt: 'Buoy — featured on BetaList',
+    width: 156,
+    height: 54,
+  },
+  {
+    name: 'StartupBase',
+    href: 'https://startupbase.io/products/buoyai?utm_source=startupbase&utm_medium=badge&utm_campaign=launch-badge-light',
+    img: 'https://statics.startupbase.io/site/badges/launched-on-sb.svg',
+    alt: 'Buoy — launched on StartupBase',
+    // Badge is a 300×80 SVG (aspect 3.75); 206×55 keeps that ratio exact and
+    // sits level with the 54px-tall BetaList badge. Displaying it is required
+    // for the free StartupBase listing (#551).
+    width: 206,
+    height: 55,
+  },
+  {
+    name: 'Product Hunt',
+    href: 'https://www.producthunt.com/products/buoyai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-buoyai',
+    // PH's own embed, kept verbatim (including the `t` cache-buster it generates).
+    // Pre-launch this endpoint renders "FIND US ON Product Hunt"; it flips to the
+    // featured variant once we launch — so RE-COPY the embed from PH on launch day
+    // to pick up a fresh `t` and bust any cached pre-launch render (#551).
+    img: 'https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1197415&theme=light&t=1784128847677',
+    // Deliberately neutral: stays accurate before and after launch.
+    alt: 'BuoyAI on Product Hunt',
+    width: 250,
+    height: 54,
+  },
+];
+---
+
+<section class="featured" id="featured-in" aria-label="As featured in">
+  <div class="container">
+    <p class="eyebrow">As featured in</p>
+    <ul class="badges">
+      {badges.map((b) => (
+        <li>
+          <a href={b.href} target="_blank" rel="noopener noreferrer" aria-label={b.name}>
+            <img
+              src={b.img}
+              alt={b.alt}
+              width={b.width}
+              height={b.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .featured {
+    background: var(--surface);
+    padding: clamp(32px, 5vw, 52px) 0;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted, #64748b);
+    margin: 0 0 20px;
+  }
+  .badges {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .badges a {
+    display: inline-flex;
+    opacity: 0.92;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .badges a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  .badges img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+</style>

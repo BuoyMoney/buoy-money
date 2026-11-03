@@ -1,0 +1,58 @@
+---
+/**
+ * Official Google Play badge (hotlinked per Google's badge guidelines: artwork
+ * unmodified, links to the store listing). The generic PNG ships with built-in
+ * transparent padding, trimmed visually with a negative margin. iOS note shows
+ * until the App Store listing is live.
+ */
+import { SITE } from '../consts';
+
+interface Props {
+  tone?: 'light' | 'dark';
+  align?: 'start' | 'center';
+  note?: boolean;
+}
+const { tone = 'light', align = 'start', note = true } = Astro.props;
+---
+
+<div class:list={['store-badges', { center: align === 'center', dark: tone === 'dark' }]}>
+  <a href={SITE.playStore} rel="noopener" aria-label="Get Buoy Money on Google Play">
+    <img
+      src={SITE.playBadge}
+      alt="Get it on Google Play"
+      height="60"
+      loading="lazy"
+      decoding="async"
+    />
+  </a>
+  {note && <span class="ios-note">iOS coming soon</span>}
+</div>
+
+<style>
+  .store-badges {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .store-badges.center {
+    justify-content: center;
+  }
+  .store-badges a {
+    display: block;
+  }
+  .store-badges img {
+    display: block;
+    height: 60px;
+    width: auto;
+    margin: -10px;
+  }
+  .ios-note {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+  }
+  .store-badges.dark .ios-note {
+    color: rgba(255, 255, 255, 0.75);
+  }
+</style>

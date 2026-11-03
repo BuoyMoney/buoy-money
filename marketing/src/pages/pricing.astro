@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Pricing from '../components/Pricing.astro';
+import ProtocolStack from '../components/ProtocolStack.astro';
+import Faq from '../components/Faq.astro';
+import WaveDivider from '../components/WaveDivider.astro';
+---
+
+<BaseLayout
+  title="Pricing"
+  description="Buoy Money pricing: Standard $100/yr ($10/mo) and Premium $150/yr ($15/mo). Pay annually and get two months free. Start with a free trial, cancel anytime."
+  path="/pricing"
+>
+  <div class="page-top">
+    <div class="container">
+      <p class="kicker" style="justify-content:center">PRICING</p>
+      <h1 class="page-title">Pay for clarity,<br /><span class="text-blue">not complexity.</span></h1>
+    </div>
+  </div>
+  <Pricing showHeading={false} />
+  <WaveDivider top="var(--surface)" bottom="var(--surface-tint)" />
+  <Faq />
+  <ProtocolStack />
+</BaseLayout>
+
+<style>
+  .page-top {
+    padding: clamp(64px, 10vw, 116px) 0 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--sky-top), var(--surface));
+  }
+  .page-title {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    margin-top: 14px;
+  }
+</style>

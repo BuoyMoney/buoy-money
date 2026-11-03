@@ -1,0 +1,65 @@
+---
+// Real 404 page. nginx's `error_page 404 /404.html` serves this for any unknown path —
+// replacing the old behavior where every mistyped URL got the homepage with a 200
+// (a soft-404 that polluted Search Console with duplicate-homepage entries).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="That page drifted away. Head back to shore."
+  path="/404"
+  noindex
+>
+  <section class="notfound">
+    <div class="container">
+      <p class="nf-code">404</p>
+      <h1>That page drifted away.</h1>
+      <p class="nf-sub">
+        The link may be old or mistyped. Everything worth finding is a click from shore.
+      </p>
+      <div class="nf-cta">
+        <a href="/" class="btn btn-primary">Back to home</a>
+        <a href={SITE.appLogin} class="btn btn-outline-dark">Open the app</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    padding: clamp(80px, 14vw, 160px) 0;
+    text-align: center;
+  }
+  .notfound .container {
+    max-width: 640px;
+  }
+  .nf-code {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--blue);
+    margin: 0 0 12px;
+  }
+  .notfound h1 {
+    font-size: clamp(1.9rem, 4.4vw, 2.8rem);
+    margin-bottom: 14px;
+  }
+  .nf-sub {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    margin: 0 auto 28px;
+  }
+  .nf-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-outline-dark {
+    background: transparent;
+    border: 1.5px solid var(--blue);
+    color: var(--blue);
+  }
+</style>

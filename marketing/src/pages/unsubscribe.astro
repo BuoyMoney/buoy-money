@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/*
+  Opt-out landing page for the unsubscribe link in lead emails.
+
+  Deliberately noindex: it is a functional endpoint reached from an email, not content, and
+  the token in the URL should never end up in a search index.
+
+  The token is read and submitted by /unsubscribe.js rather than server-side, because this
+  site is statically built (no request context) and CSP forbids inline script.
+*/
+---
+
+<BaseLayout
+  title="Unsubscribe"
+  description="Stop receiving marketing email from Buoy Money."
+  path="/unsubscribe"
+  noindex={true}
+>
+  <article class="section">
+    <div class="container narrow" id="unsub" data-state="working">
+      <h1>Unsubscribe</h1>
+
+      <p class="state state-working">One moment, updating your preferences…</p>
+
+      <p class="state state-done">
+        You're unsubscribed. You won't receive marketing email from us again.
+      </p>
+
+      <p class="state state-error">
+        We couldn't reach our server just now. Please try the link again in a moment, or email
+        <a href="mailto:support@buoy-ai.com">support@buoy-ai.com</a> and we'll take care of it.
+      </p>
+
+      <p class="state state-missing">
+        This link is missing its unsubscribe code. Please use the link exactly as it appears in
+        the email, or email <a href="mailto:support@buoy-ai.com">support@buoy-ai.com</a>.
+      </p>
+
+      <p class="fine">
+        This only affects marketing email. If you have a Buoy Money account, essential messages
+        about your account and security are unaffected, and you can manage those in
+        <strong>Settings &rarr; Notifications</strong>.
+      </p>
+    </div>
+
+    <!--
+      Inside the layout on purpose. Placed after the BaseLayout tag instead, this renders
+      past the document's closing tag; browsers still run it, but it is the kind of thing a
+      future build step or minifier is entitled to drop.
+    -->
+    <script type="module" src="/unsubscribe.js"></script>
+  </article>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 640px;
+  }
+  .state {
+    display: none;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  #unsub[data-state='working'] .state-working,
+  #unsub[data-state='done'] .state-done,
+  #unsub[data-state='error'] .state-error,
+  #unsub[data-state='missing'] .state-missing {
+    display: block;
+  }
+  .fine {
+    margin-top: 22px;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
