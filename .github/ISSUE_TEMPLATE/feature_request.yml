@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest something Buoy Money should do, or do differently.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation or problem, in your own words. A real example helps more than a general one.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+      description: The change you have in mind, if you have one.
+  - type: textarea
+    id: today
+    attributes:
+      label: What do you do today instead?
+      description: A workaround, another tool, or nothing.
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Which edition do you use?
+      options:
+        - Self-hosted
+        - Hosted
+        - Both
+        - Not using it yet

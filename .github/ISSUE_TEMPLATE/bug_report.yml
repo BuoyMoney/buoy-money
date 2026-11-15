@@ -1,0 +1,68 @@
+name: Bug report
+description: Something in Buoy Money does not work as it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. Before you post: remove real account numbers, names, balances,
+        tokens and addresses from logs and screenshots. For a security problem, do not open an issue:
+        use the Security tab, "Report a vulnerability".
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Open `/api/system/version` on your server, or copy the image tag you run.
+      placeholder: "1.5.37"
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How do you run it?
+      options:
+        - Docker Compose with the published image
+        - Docker Compose, image built from a checkout
+        - From source (dotnet run and flutter run)
+        - The hosted service
+        - Other (say which below)
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did you see it?
+      multiple: true
+      options:
+        - Web app
+        - Android app
+        - iOS app
+        - Server or API
+        - Install, upgrade or backup
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Budgets
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Machine and setup
+      description: Host and architecture (PC, NAS, Raspberry Pi), browser or phone, proxy in front (Caddy, Tailscale, other), AI provider if any.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Output of `docker compose logs --tail 100 app`, with anything private removed.
+      render: text

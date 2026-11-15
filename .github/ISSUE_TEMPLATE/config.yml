@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security problem
+    url: https://github.com/BuoyMoney/buoy-money/security/advisories/new
+    about: Please report security problems privately here, not in a public issue.
+  - name: Install and setup guide
+    url: https://github.com/BuoyMoney/buoy-money/blob/main/docs/self_host/running.md
+    about: Install, HTTPS, backups, upgrades and known limits.
